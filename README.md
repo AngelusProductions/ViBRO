@@ -1,24 +1,5 @@
-# README
+ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  The musical  process is grueling, lonely and can lack PERSPECTIVE. Many musicians are perfectionists and only show their final product and release it without any outside opinions. Think about it: if you want your song to appeal to the masses, shouldn’t you get input from the masses? Crowdfunding has brought the world some of the most innovative products ever created. If the creative process is democratized, then the contributor will be more invested in the final product. Music itself has a monetization problem— and Vibro seeks to fix that.
+  
+                                     YOU FEELIN' MY VIBE, BRO? 
