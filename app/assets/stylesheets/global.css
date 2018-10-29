@@ -1,0 +1,112 @@
+.top-bar {
+  background: #ffffff;
+  border-radius: 30px;
+  background-size: auto;
+  margin-top: 20px;
+}
+
+a.vibro-logo img {
+  height: 45px;
+  border-radius: 70px;
+}
+
+a.vibro-logo img:hover {
+  filter: hue-rotate(90deg);
+}
+
+a.username {
+  font-size: 150%;
+}
+
+ul#sign.right li {
+  background: none;
+}
+
+ul#sign.right a {
+  background-color: white;
+  font-family: monospace;
+  color: blueviolet;
+}
+
+ul#sign.right a:hover {
+  color: aquamarine;
+}
+
+#waviest-vibes-title {
+  font-family: "Impact";
+  letter-spacing: 5px;
+  margin-top: 2rem;
+  animation-name: Pulsate;
+  animation-duration: 3s;
+  animation-iteration-count:infinite;
+}
+
+#waviest-vibes-title:hover {
+  animation-name: Pulsatehover;
+  animation-duration: 3s;
+  animation-iteration-count:infinite;
+}
+
+ul {
+  list-style: none;
+}
+
+#waviest-vibes-ul, .vibe-name, .vibe-user, .vibe-blurb {
+  font-family: monospace;
+}
+
+#waviest-vibes-ul {
+  text-align: center;
+}
+
+.vibe-name {
+  color: #ff00dc;
+  text-decoration: none;
+}
+
+.vibe-name:hover {
+  color: #476cff;
+  animation-name: Pulsatehover;
+  animation-duration: .25s;
+  animation-iteration-count:infinite;
+}
+
+.vibe-user {
+  font-size: 1rem;
+  color: blueviolet;
+  text-decoration: none;
+}
+
+.vibe-user:hover {
+  color: #ff00dc;
+}
+
+.vibe-blurb {
+  font-size: .75rem;
+  color: rebeccapurple;
+}
+
+.fa-broadcast-tower, #tower-text {
+  display: inline-block;
+  color: royalblue;
+}
+
+#tower-text {
+  font-family: monospace;
+}
+
+@-webkit-keyframes Pulsate {
+  from { color: #80ffbf; text-shadow: 2px 2px #ff00dc; }
+  1% { color: #ffb3ff; text-shadow: 2px 2px #80ffbf; }
+  2% { color: #80ffbf; text-shadow: 2px 2px #ff00dc;}
+  90% { color: #80ffbf; text-shadow: 2px 2px #ff00dc;}
+  90.5% { color: #ffb3ff; text-shadow: 2px 2px #80ffbf; }
+  91% { color: #80ffbf; text-shadow: 2px 2px #ff00dc;}
+  to { color: #80ffbf; text-shadow: 2px 2px #ff00dc; }
+}
+
+@-webkit-keyframes Pulsatehover {
+  from { color: #476cff; text-shadow: 2px 2px #ff00dc;}
+  10% { color: #ffa8f3;  text-shadow: 2px 2px #476cff;}
+  to { color: #476cff; text-shadow: 2px 2px #ff00dc;}
+}

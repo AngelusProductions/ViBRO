@@ -18,18 +18,18 @@ lineups_seeds = [
   {name: "The Rest", blurb: "miscellaneous", art: "#{Rails.root}/app/assets/images/therest.jpg", waves: 12, user_id: 1}
 ]
 
-# users_seeds.each do |seed|
-#   User.create(seed)
-# end
-#
-# managers_seeds.each do |seed|
-#   Manager.create(seed)
-# end
-#
-# lineups_seeds.each do |seed|
-#   Lineup.create(seed)
-# end
-#
-# vibes_seeds.each do |seed|
-#   Vibe.create(seed)
-# end
+users_seeds.each do |seed|
+  User.create(seed)
+end
+
+managers_seeds.each do |seed|
+  Manager.create(seed)
+end
+
+lineups_seeds.each do |seed|
+  Lineup.create(seed)
+end
+
+vibes_seeds.each do |seed|
+  Vibe.create(seed)
+end
