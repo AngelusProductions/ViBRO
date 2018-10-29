@@ -1,0 +1,28 @@
+
+<div id="waviest-vibes-div">
+  <h1 id="waviest-vibes-title" class="text-center">waviest vibes</h1>
+</div>
+
+  <div id="waviest-vibes-ul">
+    <ul>
+      <% @vibes.each do |vibe| %>
+        <br>
+        <li>
+          <h2><%= link_to "#{vibe.name}",
+                  vibe_path(vibe),
+                  :class=>"vibe-name" %>
+              <%= link_to "#{User.find(vibe.user_id).username}",
+                  user_path(vibe.user_id),
+                  :class=>"vibe-user"%>
+          </h2>
+          <p class="vibe-blurb"><%= vibe.blurb %><p>
+          <i class="fas fa-broadcast-tower"></i>
+          <span id="tower-text">
+            <%= vibe.waves %>
+          </span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>
