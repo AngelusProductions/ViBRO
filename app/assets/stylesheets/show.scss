@@ -1,0 +1,75 @@
+
+.show-page-div {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+#show-page-vibe-name,
+#show-page-username,
+#show-page-blurb {
+  font-family: monospace;
+}
+
+#show-page-vibe-name {
+  font-size: 2rem;
+}
+
+.fa-fire {
+  color: #ff2600;
+}
+
+.fa-snowflake {
+  color: #00f6ff;
+  margin-left: 2rem;
+  animation-name: TwitchRotate;
+  animation-delay: 5s;
+  animation-duration: 10s;
+  animation-iteration-count:infinite;
+}
+
+.fa-snowflake:hover {
+  filter: hue-rotate(90deg);
+  animation-name: SlowRotate;
+  animation-delay: 0s;
+  animation-duration: 1s;
+  animation-iteration-count:infinite;
+}
+
+.fa-fire {
+  margin-left: 2rem;
+  animation-name: TwitchFlip;
+  transform: rotateY(180deg);
+  animation-delay: 10s;
+  animation-duration: 10s;
+  animation-iteration-count:infinite;
+}
+
+.fa-fire:hover {
+  filter: hue-rotate(270deg);
+  animation-name: SlowFlip;
+  animation-delay: 0s;
+  animation-duration: 1s;
+  animation-iteration-count:infinite;
+}
+
+@-webkit-keyframes TwitchRotate {
+  from { transform: rotate(0deg); }
+  10% { transform: rotate(360deg); }
+  to { transform: rotate(360deg); }
+}
+
+@-webkit-keyframes SlowRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@-webkit-keyframes TwitchFlip {
+  from { transform: rotate(0deg); }
+  10% { transform: rotateY(360deg); }
+  to { transform: rotate(360deg); }
+}
+
+@-webkit-keyframes SlowFlip {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
