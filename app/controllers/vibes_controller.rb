@@ -7,6 +7,7 @@ class VibesController < ApplicationController
 
   def show
     @vibe = Vibe.find(params[:id])
+    @user = @vibe.user
   end
 
   def new
