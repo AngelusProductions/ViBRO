@@ -1,12 +1,14 @@
 
+user_photo_1 = File.new("#{Rails.root}/app/assets/images/tmimonkey.jpg")
+
 vibes_seeds = [
   {name: "Don\'t Phunq Up!", runtime: 206, blurb: "title track from new funk/disco project", art: "#{Rails.root}/app/assets/images/dontphunqup.jpg", waves: 11, user_id: 1, manager_id: 1, lineup_id: 1},
   {name: "Never Over", runtime: 34, blurb: "quick loop that has potential", art: "#{Rails.root}/app/assets/images/neverover.jpg", waves: 6, user_id: 1, manager_id: 1, lineup_id: 2},
-  {name: "Shadang", runtime: 124, blurb: "overtly sexual track", art: "#{Rails.root}/app/assets/images/shadang.jpg", waves: 9, user_id: 1, manager_id: 1, lineup_id: 2}
+  {name: "Shadang", runtime: 124, blurb: "overtly sexual track", art: user_photo_1, waves: 9, user_id: 1, manager_id: 1, lineup_id: 2}
 ]
 
 users_seeds = [
-  {email: "angelusproductions@gmail.com", password: 123456, first_name: "Corey", last_name: "Angelus", username: "Angelus", pro_pic: "#{Rails.root}/app/assets/images/angelus.jpg", bio: "human from earth"}
+  {email: "angelusproductions@gmail.com", password: 123456, first_name: "Corey", last_name: "Angelus", username: "Angelus", pro_pic: user_photo_1, bio: "human from earth"}
 ]
 
 managers_seeds = [

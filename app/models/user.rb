@@ -9,4 +9,6 @@ class User < ApplicationRecord
 
   has_many :vibes
   has_many :lineups
+
+  mount_uploader :pro_pic, ProPicUploader
 end
