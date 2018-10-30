@@ -1,0 +1,24 @@
+
+<div class="user-show-page-div">
+  <h1 class="vibe-user" id="user-show-username"><%= @user.username %></h1>
+  <h2 class="user-full-name"><%= @name %></h2>
+  <h3 class="user-bio"><%= @user.bio %></h3>
+
+  <ul>
+    <% @user.vibes.each do |vibe| %>
+    <br>
+    <li>
+      <%= link_to "#{vibe.name}",
+              vibe_path(vibe),
+              :class=>"vibe-name" %>
+      <p class="vibe-blurb"><%= vibe.blurb %><p>
+      <i class="fas fa-broadcast-tower"></i>
+      <span id="tower-text">
+        <%= vibe.waves %>
+      </span>
+
+      <%= react_component 'AudioComponent' %>
+    </li>
+  <% end %>
+  </ul>
+</div>
