@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ViBRO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+
+  <nav class="top-bar">
+    <ul class="title-area">
+      <li class="name">
+        <h1><%= link_to image_tag('vibro-logo-without-background.jpg'), vibes_path, :class => "vibro-logo" %></h1>
+      </li>
+    </ul>
+
+    <%= render 'dots' %>
+
+    <section class="top-bar-section">
+      <ul class="right" id="sign">
+        <%- if current_user -%>
+          <li><%= link_to current_user.username, user_path(current_user.id), :class => "username" %></li>
+          <li><%= link_to 'sign out', destroy_user_session_path, method: :delete, :class => "sign-out" %></li>
+        <%- else -%>
+          <li><%= link_to 'sign up', new_user_registration_path, :class => "sign-up" %></li>
+          <li><%= link_to 'sign in', new_user_session_path, :class => "sign-in" %></li>
+        <%- end -%>
+      </ul>
+    </section>
+  </nav>
+
+  <%- flash.each do |key, value| -%>
+    <div class="flash flash-<%= key %>">
+      <%= value %>
+    </div>
+  <%- end -%>
+
+  <%= yield %>
+
+  <%= javascript_include_tag 'application' %>
+
+  <%- if Rails.env.development? || Rails.env.test? -%>
+    <%= javascript_tag do %>
+      window.railsEnv = '<%= Rails.env %>'
+    <%- end -%>
+  <%- end -%>
+  <%= javascript_pack_tag 'application' %>
+
+  <%= yield :extra_footer %>
+</body>
+</html>

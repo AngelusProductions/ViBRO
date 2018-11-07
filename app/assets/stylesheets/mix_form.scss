@@ -1,0 +1,38 @@
+.form,
+#mix-form-submit,
+#new-mix-title {
+  text-align: center;
+  font-family: monospace;
+}
+
+.form {
+  margin-left: 25%;
+}
+
+#new-mix-title {
+  color: #ed1eed;
+  text-shadow: 5px 5px aquamarine;
+}
+
+.mix-form-field label,
+.dropzone p {
+  font-size: 1.25rem;
+  color: #476cff;
+  text-shadow: 2.5px 2.5px aquamarine;
+}
+
+#mix-form-audio-file,
+#mix-form-art {
+  margin-left: 28%;
+}
+
+#mix-form-submit {
+  background-color: #476cff;
+  border: solid 15px aquamarine;
+  box-shadow: 5px 10px #ed1eed;
+}
+#mix-form-submit:hover {
+  background-color: #ed1eed;
+  border: solid 15px #476cff;
+  box-shadow: 5px 10px aquamarine;
+}

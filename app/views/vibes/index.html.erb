@@ -1,0 +1,72 @@
+
+<div id="waviest-vibes-div small-12 columns">
+  <h1 id="waviest-vibes-title" class="text-center small-4 left column">chill</h1>
+  <h1 id="waviest-vibes-title" class="text-center small-4 center column">waviest</h1>
+  <h1 id="waviest-vibes-title" class="text-center small-4 right coumn">fire</h1>
+</div>
+
+<div class-"small-12 columns">
+
+  <div id="chill-vibes-ul" class="text-center small-4 left column">
+    <ul>
+      <% @chillVibes.each do |vibe| %>
+        <br>
+        <li>
+          <h2><%= link_to "#{vibe.name}",
+                  vibe_path(vibe),
+                  :class=>"vibe-name" %>
+              <%= link_to "#{User.find(vibe.user_id).username}",
+                  user_path(vibe.user_id),
+                  :class=>"vibe-user"%>
+          </h2>
+          <i class="fas fa-snowflake"></i>
+          <span class="chill-text">
+            <%= vibe.ice %>
+          </span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+    <div id="waviest-vibes-ul" class="text-center small-4 center column">
+      <ul>
+        <% @waveyVibes.each do |vibe| %>
+          <br>
+          <li>
+            <h2><%= link_to "#{vibe.name}",
+                    vibe_path(vibe),
+                    :class=>"vibe-name" %>
+                <%= link_to "#{User.find(vibe.user_id).username}",
+                    user_path(vibe.user_id),
+                    :class=>"vibe-user"%>
+            </h2>
+            <i class="fas fa-broadcast-tower"></i>
+            <span class="tower-text">
+              <%= vibe.waves %>
+            </span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div id="fire-vibes-ul" class="text-center small-4 right column">
+      <ul>
+        <% @fireVibes.each do |vibe| %>
+          <br>
+          <li>
+            <h2><%= link_to "#{vibe.name}",
+                    vibe_path(vibe),
+                    :class=>"vibe-name" %>
+                <%= link_to "#{User.find(vibe.user_id).username}",
+                    user_path(vibe.user_id),
+                    :class=>"vibe-user"%>
+            </h2>
+            <i class="fas fa-fire"></i>
+            <span class="fire-text">
+              <%= vibe.fire %>
+            </span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+</div>
