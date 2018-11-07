@@ -35,6 +35,5 @@ coverage/*
 
 # Ignore uploaded files in test/development
 /public/uploads/*
-/app/assets/vibes/*
 
 .env
