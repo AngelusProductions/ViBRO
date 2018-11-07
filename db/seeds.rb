@@ -1,12 +1,12 @@
-
-art_file_1 = File.new("#{Rails.root}/app/assets/images/dontphunqup.jpeg")
-art_file_2 = File.new("#{Rails.root}/app/assets/images/neverover.jpg")
-art_file_3 = File.new("#{Rails.root}/app/assets/images/shadang.jpg")
-
-audio_file_1 = File.new("#{Rails.root}/app/assets/vibes/Don't Phunq Up! 1.m4a")
-audio_file_2 = File.new("#{Rails.root}/app/assets/vibes/Don't Phunq Up! 2.m4a")
-audio_file_3 = File.new("#{Rails.root}/app/assets/vibes/NeverOver.mp3")
-audio_file_4 = File.new("#{Rails.root}/app/assets/vibes/Shadang.mp3")
+# 
+# art_file_1 = File.new("#{Rails.root}/app/assets/images/dontphunqup.jpeg")
+# art_file_2 = File.new("#{Rails.root}/app/assets/images/neverover.jpg")
+# art_file_3 = File.new("#{Rails.root}/app/assets/images/shadang.jpg")
+#
+# audio_file_1 = File.new("#{Rails.root}/app/assets/vibes/Don't Phunq Up! 1.m4a")
+# audio_file_2 = File.new("#{Rails.root}/app/assets/vibes/Don't Phunq Up! 2.m4a")
+# audio_file_3 = File.new("#{Rails.root}/app/assets/vibes/NeverOver.mp3")
+# audio_file_4 = File.new("#{Rails.root}/app/assets/vibes/Shadang.mp3")
 
 vibes_seeds = [
   {name: "Don\'t Phunq Up!", runtime: 206, blurb: "title track from new funk/disco project", art: art_file_1, waves: 11, fire: 3, ice: 6, user_id: 1, manager_id: 1, lineup_id: 1},
