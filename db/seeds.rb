@@ -1,17 +1,8 @@
-# 
-# art_file_1 = File.new("#{Rails.root}/app/assets/images/dontphunqup.jpeg")
-# art_file_2 = File.new("#{Rails.root}/app/assets/images/neverover.jpg")
-# art_file_3 = File.new("#{Rails.root}/app/assets/images/shadang.jpg")
-#
-# audio_file_1 = File.new("#{Rails.root}/app/assets/vibes/Don't Phunq Up! 1.m4a")
-# audio_file_2 = File.new("#{Rails.root}/app/assets/vibes/Don't Phunq Up! 2.m4a")
-# audio_file_3 = File.new("#{Rails.root}/app/assets/vibes/NeverOver.mp3")
-# audio_file_4 = File.new("#{Rails.root}/app/assets/vibes/Shadang.mp3")
 
 vibes_seeds = [
-  {name: "Don\'t Phunq Up!", runtime: 206, blurb: "title track from new funk/disco project", art: art_file_1, waves: 11, fire: 3, ice: 6, user_id: 1, manager_id: 1, lineup_id: 1},
-  {name: "Never Over", runtime: 34, blurb: "quick loop that has potential", art: art_file_2, waves: 6, fire: 2, ice: 9, user_id: 1, manager_id: 1, lineup_id: 2},
-  {name: "Shadang", runtime: 124, blurb: "overtly sexual track", art: art_file_3, waves: 9, fire: 11, ice: 5, user_id: 1, manager_id: 1, lineup_id: 2}
+  {name: "Don\'t Phunq Up!", blurb: "title track from new funk/disco project", remote_art_url: "https://s3.amazonaws.com/vibro-development/Art/dontphunqup.jpeg", waves: 11, fire: 3, ice: 6, user_id: 1, manager_id: 1, lineup_id: 1},
+  {name: "Never Over", blurb: "quick loop that has potential", remote_art_url: "https://s3.amazonaws.com/vibro-development/Art/neverover.jpg", waves: 6, fire: 2, ice: 9, user_id: 1, manager_id: 1, lineup_id: 2},
+  {name: "Shadang", blurb: "overtly sexual track", remote_art_url: "https://s3.amazonaws.com/vibro-development/Art/shadang.jpg", waves: 9, fire: 11, ice: 5, user_id: 1, manager_id: 1, lineup_id: 2}
 ]
 
 users_seeds = [
@@ -30,10 +21,10 @@ lineups_seeds = [
 ]
 
 mixes_seeds = [
-  {number: 1, name: "loop for potential title track off of Vibro\'s new album: first mix", blurb: "where should I go from here?", bpm: 76, color: "blueviolet", audio_file: audio_file_1, vibe_id: 1 },
-  {number: 2, name: "second mix: expanded the loop and added breakdown", blurb: "how do I end this?", bpm: 76, color: "aquamarine", audio_file: audio_file_2, vibe_id: 1 },
-  {number: 1, name: "first draft loop", blurb: "where should I go with this?", bpm: 114, color: "LawnGreen", audio_file: audio_file_3, vibe_id: 2 },
-  {number: 1, name: "old favorite of mine", blurb: "should I do something different at the end?", bpm: 83, color: "LightCoral", audio_file: audio_file_4, vibe_id: 3 }
+  {number: 1, name: "loop for potential title track off of Vibro\'s new album: first mix", blurb: "where should I go from here?", bpm: 76, color: "blueviolet", remote_audio_file_url: "https://s3.amazonaws.com/vibro-development/Vibes/Don't+Phunq+Up!+1.m4a", vibe_id: 1 },
+  {number: 2, name: "second mix: expanded the loop and added breakdown", blurb: "how do I end this?", bpm: 76, color: "aquamarine", remote_audio_file_url: "https://s3.amazonaws.com/vibro-development/Vibes/Don't+Phunq+Up!+2.mp3", vibe_id: 1 },
+  {number: 1, name: "first draft loop", blurb: "where should I go with this?", bpm: 114, color: "LawnGreen", remote_audio_file_url: "https://s3.amazonaws.com/vibro-development/Vibes/NeverOver.mp3", vibe_id: 2 },
+  {number: 1, name: "old favorite of mine", blurb: "should I do something different at the end?", bpm: 83, color: "LightCoral", remote_audio_file_url: "https://s3.amazonaws.com/vibro-development/Vibes/Shadang.mp3", vibe_id: 3 }
 ]
 
 users_seeds.each do |seed|

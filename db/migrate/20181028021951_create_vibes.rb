@@ -2,7 +2,6 @@ class CreateVibes < ActiveRecord::Migration[5.2]
   def change
     create_table :vibes do |t|
       t.string :name, null: false
-      t.integer :runtime, null: false
       t.string :art
       t.text :blurb
       t.integer :waves, default: 0

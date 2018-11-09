@@ -12,7 +12,6 @@ class MixForm extends Component {
       color: "",
       audioFile: [],
       art: [],
-      message: "",
       newMixShow: true
     }
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -22,6 +21,7 @@ class MixForm extends Component {
     this.handleColorChange = this.handleColorChange.bind(this)
     this.handleAudioFileDrop = this.handleAudioFileDrop.bind(this)
     this.handleArtDrop = this.handleArtDrop.bind(this)
+    this.clearForm = this.clearForm.bind(this)
   }
 
   handleNameChange (event) {
@@ -58,7 +58,6 @@ class MixForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-
     let payload = new FormData()
     payload.append("name", this.state.name)
     payload.append("blurb", this.state.blurb)
@@ -69,16 +68,35 @@ class MixForm extends Component {
 
     fetch(`/api/v1/vibes/${this.props.vibe.id}/mixes`, {
       method: 'POST',
-      headers: {
-       "Accept": "application/json",
-       "Content-Type": "application/json"
-      },
-      body: payload })
-      .then(response => response.json())
-    .then(body => {
-      this.setState({ message: body.message,
-                      newMixShow: false })
+      body: payload
     })
+    .then(response => response.json())
+    .then(body => {
+      this.props.handleNewMixAdded(body)
+      this.clearForm()
+    })
+    // let mix = {
+    //            name: this.state.name,
+    //            blurb: this.state.blurb,
+    //            bpm: this.state.bpm,
+    //            color: this.state.color,
+    //            audioFile: this.state.audioFile,
+    //            art: this.state.art
+    //          }
+  }
+
+  clearForm() {
+    this.setState({
+                    name: "",
+                    blurb: "",
+                    bpm: 0,
+                    color: "",
+                    audioFile: [],
+                    art: [],
+                    message: "",
+                    newMixShow: false
+                 })
+    this.props.handleNewMixClick()
   }
 
   render() {

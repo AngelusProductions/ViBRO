@@ -3,10 +3,13 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "3.5",
+    "aws-sdk": "^2.351.0",
     "babel-preset-react": "~6.24.1",
     "dropzone": "^5.5.1",
+    "progressbar.js": "^1.0.1",
     "prop-types": "~15.6.0",
     "react": "~15.4.2",
+    "react-audio-spectrum": "0.0.9",
     "react-dom": "~15.4.2",
     "react-dropzone": "^7.0.1",
     "react-router": "~3.2.0",

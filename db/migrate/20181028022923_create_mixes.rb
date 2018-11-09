@@ -3,6 +3,7 @@ class CreateMixes < ActiveRecord::Migration[5.2]
     create_table :mixes do |t|
       t.string :name
       t.integer :number, null: false
+      t.integer :runtime, default: 0
       t.string :audio_file, null: false
       t.text :blurb
       t.string :art
