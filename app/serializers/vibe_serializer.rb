@@ -1,5 +1,5 @@
 class VibeSerializer < ActiveModel::Serializer
-  attributes :id, :name, :runtime, :blurb, :art, :mixes
+  attributes :id, :name, :blurb, :art, :mixes
 
   belongs_to :user
   belongs_to :manager

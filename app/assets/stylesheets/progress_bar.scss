@@ -1,0 +1,12 @@
+#container {
+  margin: 200px;
+  width: 400px;
+  height: 8px;
+  transform: rotate(90deg);
+}
+
+@-webkit-keyframes Colorize {
+  from { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(180deg); }
+  to { filter: hue-rotate(360deg); }
+}

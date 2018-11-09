@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AudioPlayer from '../components/AudioPlayer'
 import Mix from '../components/Mix'
+import Progress from '../components/Progress'
 
 class AudioContainer extends Component {
  constructor(props) {
@@ -8,7 +9,6 @@ class AudioContainer extends Component {
    this.state = {
      vibe: {
        name: "",
-       runtime: 0,
        art: "",
        blurb: "",
        waves: 0,
@@ -18,6 +18,7 @@ class AudioContainer extends Component {
        lineup_id: null,
        mixes: [{
          number: 1,
+         runtime: 0,
          audio_file: "",
          blurb: "",
          art: "",
@@ -28,16 +29,23 @@ class AudioContainer extends Component {
          vibe_id: 0
       }]
      },
-     mix: 1,
+     mix: {},
+     mixes: [],
+     mixNum: 1,
      playing: false,
-     newMixShow: false
+     newMixShow: false,
+     audioPlayerShow: false,
+     progressShow: false,
+     runtime: 0
    }
    this.handlePlayClick = this.handlePlayClick.bind(this)
    this.handleMixClick = this.handleMixClick.bind(this)
    this.handleNewMixClick = this.handleNewMixClick.bind(this)
+   this.afterFetchSetStates = this.afterFetchSetStates.bind(this)
+   this.handleNewMixAdded = this.handleNewMixAdded.bind(this)
  }
 
- componentDidMount () {
+ componentDidMount() {
    fetch(`/api/v1/vibes/${this.props.params.id}`)
     .then(response => {
         if (response.ok) {
@@ -50,38 +58,44 @@ class AudioContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      this.setState( { vibe: body.vibe })
+      this.setState( { vibe: body.vibe } )
+      this.afterFetchSetStates()
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
  }
 
- handlePlayClick () {
+ handlePlayClick() {
    let player = document.getElementsByTagName("audio")[0]
+   let runtime = player.duration
 
    if (this.state.playing === false) {
      player.play()
-     this.setState({ playing: true })
+     this.setState({ playing: true,
+                     runtime: runtime })
     } else {
       player.pause()
-     this.setState({ playing: false})
+     this.setState({ playing: false,
+                     runtime: runtime })
     }
-
  }
 
- handleMixClick (event) {
-   let mix = parseInt(event.target.value)
+ handleMixClick(event) {
+   let mixNum = parseInt(event.target.value)
+   let mix = this.state.mixes[mixNum - 1]
    let player = document.getElementsByTagName("audio")[0]
    player.pause()
 
-   if (this.state.mix != mix ) {
+   if (this.state.mixNum != mixNum ) {
      this.setState({ mix: mix,
+                     mixNum: mixNum,
+                     runtime: mix.runtime,
                      playing: false });
    } else {
      this.setState({ playing: false });
    }
  }
 
- handleNewMixClick () {
+ handleNewMixClick() {
    if (this.state.newMixShow) {
      this.setState({ newMixShow: false})
    } else {
@@ -89,19 +103,38 @@ class AudioContainer extends Component {
    }
  }
 
+ handleNewMixAdded(mix) {
+   let mixes = this.state.vibe.mixes
+   let newMixes = mixes.concat(mix)
+   this.setState({ mixes: newMixes })
+ }
+
+ afterFetchSetStates() {
+   let mix = this.state.vibe.mixes[this.state.mixNum - 1]
+   this.setState({ mix: mix,
+                   mixes: this.state.vibe.mixes,
+                   mixRuntime: this.state.mixRuntime,
+                   progressShow: true,
+                   audioPlayerShow: true })
+   }
+
  render() {
    return(
      <div>
-
       <AudioPlayer
         vibe={this.state.vibe}
         handleMixClick={this.handleMixClick}
         handlePlayClick={this.handlePlayClick}
+        audioPlayerShow={this.state.audioPlayerShow}
+        progressShow={this.state.progressShow}
         mix={this.state.mix}
+        mixNum={this.state.mixNum}
+        mixes={this.state.mixes}
         playing={this.state.playing}
-        mixes={this.state.vibe.mixes}
         handleNewMixClick={this.handleNewMixClick}
         newMixShow={this.state.newMixShow}
+        handleNewMixAdded={this.handleNewMixAdded}
+        runtime={this.state.runtime}
       />
 
      </div>

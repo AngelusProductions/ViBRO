@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2018_10_28_221459) do
   create_table "mixes", force: :cascade do |t|
     t.string "name"
     t.integer "number", null: false
+    t.integer "runtime", default: 0
     t.string "audio_file", null: false
     t.text "blurb"
     t.string "art"
@@ -114,7 +115,6 @@ ActiveRecord::Schema.define(version: 2018_10_28_221459) do
 
   create_table "vibes", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "runtime", null: false
     t.string "art"
     t.text "blurb"
     t.integer "waves", default: 0

@@ -18,10 +18,9 @@ class Api::V1::MixesController < ApplicationController
     @mix.number = @vibe.mixes.length + 1
 
     if @mix.save
-      # flash[:notice] = "mixed down and out"
-      render json: @vibe
+      render json: @mix
+
     else
-      # flash[:error] = @mix.errors.full_messages.join(', ')
       error = @mix.errors.full_messages.join(', ')
       render json: error
     end

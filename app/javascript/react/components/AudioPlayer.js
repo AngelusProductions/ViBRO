@@ -1,10 +1,16 @@
 import React from 'react';
 import Mix from './Mix'
+import AudioVisualizer from '../components/AudioVisualizer'
+import Progress from '../components/Progress'
 
 const AudioPlayer = ( props => {
-  let mixNum = props.mix
-  let mix = props.vibe.mixes[mixNum - 1]
+
+  let url = ""
   let playerClass = "";
+
+  if (props.audioPlayerShow) {
+    url = props.mix.audio_file.url
+  }
 
   if (props.playing) {
     playerClass = "playing"
@@ -14,26 +20,40 @@ const AudioPlayer = ( props => {
 
  return(
    <div className="player small-12">
+    <div className={`player-div small-4 left ${playerClass}`} >
+      <div className={`spinner-outer ${playerClass}`}></div>
+      <div className={`spinner-center ${playerClass}`}></div>
+      <div className={`play-sprite ${playerClass}`} onClick={props.handlePlayClick}></div>
 
-   <div className={`player-div small-4 left ${playerClass}`} >
-     <div className={`spinner-outer ${playerClass}`}></div>
-     <div className={`spinner-center ${playerClass}`}></div>
-     <div className={`play-sprite ${playerClass}`} onClick={props.handlePlayClick}></div>
+      <audio
+       src={url}
+       id="vibe-player"
+       className={playerClass}
+       loop="loop"
+       crossOrigin="anonymous"
+      ></audio>
 
-     <audio src={mix.audio_file.url} id="vibe-player" className={playerClass} loop="loop"></audio>
+      <Progress
+        mix={props.mix}
+        show={props.progressShow}
+        playing={props.playing}
+        runtime={props.runtime}
+      />
 
+      <AudioVisualizer />
+
+    </div>
+
+      <Mix
+        mix={props.mix}
+        mixes={props.mixes}
+        vibe={props.vibe}
+        handleMixClick={props.handleMixClick}
+        handleNewMixClick={props.handleNewMixClick}
+        handleNewMixAdded={props.handleNewMixAdded}
+        newMixShow={props.newMixShow}
+      />
    </div>
-
-     <Mix
-       mix={mix}
-       mixes={props.mixes}
-       vibe={props.vibe}
-       handleMixClick={props.handleMixClick}
-       handleNewMixClick={props.handleNewMixClick}
-       newMixShow={props.newMixShow}
-     />
-
-  </div>
  )
 })
 

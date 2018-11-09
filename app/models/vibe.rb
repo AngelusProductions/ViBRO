@@ -1,6 +1,5 @@
 class Vibe < ApplicationRecord
   validates :name, presence: true
-  validates :runtime, presence: true, numericality: true
 
   mount_uploader :art, VibeArtUploader
 

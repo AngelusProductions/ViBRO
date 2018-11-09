@@ -61,7 +61,9 @@ ul {
   font-family: monospace;
 }
 
-#waviest-vibes-ul {
+#waviest-vibes-ul,
+#chill-vibes-ul,
+#fire-vibes-ul {
   text-align: center;
 }
 
@@ -74,7 +76,7 @@ ul {
   color: #476cff;
   animation-name: Pulsatehover;
   animation-duration: .25s;
-  animation-iteration-count:infinite;
+  animation-iteration-count: infinite;
 }
 
 .vibe-user {
@@ -96,7 +98,6 @@ ul {
 .chill-text,
 .fire-text {
   display: inline-block;
-
 }
 
 .tower-text, .fa-broadcast-tower {
