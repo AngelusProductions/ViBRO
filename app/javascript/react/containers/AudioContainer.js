@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import ProgressBar from 'progressbar.js'
 import AudioPlayer from '../components/AudioPlayer'
 import Mix from '../components/Mix'
-import Progress from '../components/Progress'
 
 class AudioContainer extends Component {
  constructor(props) {
@@ -29,20 +29,29 @@ class AudioContainer extends Component {
          vibe_id: 0
       }]
      },
+
      mix: {},
      mixes: [],
      mixNum: 1,
+     runtime: 0,
      playing: false,
+
      newMixShow: false,
      audioPlayerShow: false,
-     progressShow: false,
-     runtime: 0
+
+     afterFetch: false,
+     progressBar: {},
+     progressBarCreated: false,
+     progressBarDestroyed: false
    }
    this.handlePlayClick = this.handlePlayClick.bind(this)
    this.handleMixClick = this.handleMixClick.bind(this)
    this.handleNewMixClick = this.handleNewMixClick.bind(this)
-   this.afterFetchSetStates = this.afterFetchSetStates.bind(this)
    this.handleNewMixAdded = this.handleNewMixAdded.bind(this)
+   this.handleIdeaClick = this.handleIdeaClick.bind(this)
+   this.handleProgressBarCreated = this.handleProgressBarCreated.bind(this)
+   this.handleProgressBarDestroyed = this.handleProgressBarDestroyed.bind(this)
+   this.afterFetch = this.afterFetch.bind(this)
  }
 
  componentDidMount() {
@@ -58,24 +67,40 @@ class AudioContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      this.setState( { vibe: body.vibe } )
-      this.afterFetchSetStates()
+      this.setState({ vibe: body.vibe,
+                      mixes: body.vibe.mixes })
+      this.afterFetch()
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
  }
 
+ afterFetch () {
+   let mix = this.state.mixes[this.state.mixNum - 1]
+   this.setState({ mix: mix,
+                   afterFetch: true,
+                   audioPlayerShow: true })
+ }
+
+  handleProgressBarCreated(progressBar) {
+    this.setState({ progressBar: progressBar,
+                    progressBarCreated: true })
+  }
+
+  handleProgressBarDestroyed(progressBar) {
+    this.setState({ progressBar: progressBar,
+                    progressBarDestroyed: true })
+  }
+
  handlePlayClick() {
    let player = document.getElementsByTagName("audio")[0]
-   let runtime = player.duration
+   let runtime = player.duration * 1000
 
-   if (this.state.playing === false) {
+   if (!this.state.playing) {
      player.play()
-     this.setState({ playing: true,
-                     runtime: runtime })
+     this.setState({ playing: true})
     } else {
-      player.pause()
-     this.setState({ playing: false,
-                     runtime: runtime })
+     player.pause()
+     this.setState({ playing: false })
     }
  }
 
@@ -88,7 +113,6 @@ class AudioContainer extends Component {
    if (this.state.mixNum != mixNum ) {
      this.setState({ mix: mix,
                      mixNum: mixNum,
-                     runtime: mix.runtime,
                      playing: false });
    } else {
      this.setState({ playing: false });
@@ -109,32 +133,37 @@ class AudioContainer extends Component {
    this.setState({ mixes: newMixes })
  }
 
- afterFetchSetStates() {
-   let mix = this.state.vibe.mixes[this.state.mixNum - 1]
-   this.setState({ mix: mix,
-                   mixes: this.state.vibe.mixes,
-                   mixRuntime: this.state.mixRuntime,
-                   progressShow: true,
-                   audioPlayerShow: true })
-   }
+ handleIdeaClick() {
+   debugger
+ }
 
  render() {
    return(
      <div>
+
       <AudioPlayer
         vibe={this.state.vibe}
-        handleMixClick={this.handleMixClick}
-        handlePlayClick={this.handlePlayClick}
-        audioPlayerShow={this.state.audioPlayerShow}
-        progressShow={this.state.progressShow}
         mix={this.state.mix}
         mixNum={this.state.mixNum}
         mixes={this.state.mixes}
-        playing={this.state.playing}
+
+        handleMixClick={this.handleMixClick}
         handleNewMixClick={this.handleNewMixClick}
-        newMixShow={this.state.newMixShow}
         handleNewMixAdded={this.handleNewMixAdded}
-        runtime={this.state.runtime}
+
+        handlePlayClick={this.handlePlayClick}
+        handleIdeaClick={this.handleIdeaClick}
+
+        playing={this.state.playing}
+        audioPlayerShow={this.state.audioPlayerShow}
+        newMixShow={this.state.newMixShow}
+        afterFetch={this.state.afterFetch}
+
+        progressBar={this.state.progressBar}
+        progressBarCreated={this.state.progressBarCreated}
+        handleProgressBarCreated={this.handleProgressBarCreated}
+        handleProgressBarDestroyed={this.handleProgressBarDestroyed}
+        progressBarDestroyed={this.state.progressBarDestroyed}
       />
 
      </div>

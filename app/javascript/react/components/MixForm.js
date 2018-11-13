@@ -75,14 +75,6 @@ class MixForm extends Component {
       this.props.handleNewMixAdded(body)
       this.clearForm()
     })
-    // let mix = {
-    //            name: this.state.name,
-    //            blurb: this.state.blurb,
-    //            bpm: this.state.bpm,
-    //            color: this.state.color,
-    //            audioFile: this.state.audioFile,
-    //            art: this.state.art
-    //          }
   }
 
   clearForm() {
