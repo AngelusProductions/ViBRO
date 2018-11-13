@@ -1,12 +1,15 @@
 import React from 'react';
+import ProgressBar from 'progressbar.js'
 import Mix from './Mix'
 import AudioVisualizer from '../components/AudioVisualizer'
-import Progress from '../components/Progress'
+import IdeaForm from '../components/IdeaForm'
 
 const AudioPlayer = ( props => {
 
   let url = ""
-  let playerClass = "";
+  let playerClass = ""
+  let progressBar = props.progressBar
+  let player = document.getElementsByTagName("audio")[0]
 
   if (props.audioPlayerShow) {
     url = props.mix.audio_file.url
@@ -17,6 +20,40 @@ const AudioPlayer = ( props => {
   } else {
     playerClass = ""
   }
+
+  if (props.afterFetch && !props.progressBarCreated) {
+      progressBar = new ProgressBar.Line(container, {
+      strokeWidth: 100,
+      progress: 0,
+      trailColor: '#e6e6ff',
+      trailWidth: 100,
+      svgStyle: {width: '200%', height: '250%'},
+    })
+    props.handleProgressBarCreated(progressBar)
+  }
+
+  if (props.playing && props.progressBarCreated && !props.progressBarDestroyed) {
+    progressBar.destroy()
+    progressBar = new ProgressBar.Line(container, {
+    strokeWidth: 100,
+    progress: 0,
+    duration: player.duration * 1000,
+    color: '#476cff',
+    trailColor: '#e6e6ff',
+    trailWidth: 100,
+    svgStyle: {width: '200%', height: '250%'},
+    from: {color: '#80ffbf'},
+    to: {color: '#476cff'},
+    step: (state, bar) => {
+      bar.path.setAttribute('stroke', state.color);
+    }
+  })
+  props.handleProgressBarDestroyed(progressBar)
+} else if (!props.playing && props.progressBarCreated && props.progressBarDestroyed) {
+  progressBar.stop()
+} else if (props.playing && props.progressBarCreated && props.progressBarDestroyed) {
+  progressBar.animate(1)
+}
 
  return(
    <div className="player small-12">
@@ -33,14 +70,9 @@ const AudioPlayer = ( props => {
        crossOrigin="anonymous"
       ></audio>
 
-      <Progress
-        mix={props.mix}
-        show={props.progressShow}
-        playing={props.playing}
-        runtime={props.runtime}
-      />
-
       <AudioVisualizer />
+
+      <div id="container"></div>
 
     </div>
 
@@ -53,6 +85,7 @@ const AudioPlayer = ( props => {
         handleNewMixAdded={props.handleNewMixAdded}
         newMixShow={props.newMixShow}
       />
+
    </div>
  )
 })
