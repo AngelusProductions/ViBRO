@@ -8,4 +8,9 @@ class Mix < ApplicationRecord
   mount_uploader :art, MixArtUploader
 
   belongs_to :vibe
+  has_many :ideas
+
+  def current_user
+    current_user
+  end
 end

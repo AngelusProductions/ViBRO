@@ -2,12 +2,13 @@ import React from 'react';
 import ProgressBar from 'progressbar.js'
 import Mix from './Mix'
 import AudioVisualizer from '../components/AudioVisualizer'
-import IdeaForm from '../components/IdeaForm'
+import NewIdeaModal from './NewIdeaModal'
 
 const AudioPlayer = ( props => {
 
   let url = ""
   let playerClass = ""
+  let newIdeaModal = ""
   let progressBar = props.progressBar
   let player = document.getElementsByTagName("audio")[0]
 
@@ -21,7 +22,8 @@ const AudioPlayer = ( props => {
     playerClass = ""
   }
 
-  if (props.afterFetch && !props.progressBarCreated) {
+  if (props.afterFetch
+  && !props.progressBarCreated) {
       progressBar = new ProgressBar.Line(container, {
       strokeWidth: 100,
       progress: 0,
@@ -32,7 +34,9 @@ const AudioPlayer = ( props => {
     props.handleProgressBarCreated(progressBar)
   }
 
-  if (props.playing && props.progressBarCreated && !props.progressBarDestroyed) {
+  if (props.playing
+   && props.progressBarCreated
+  && !props.progressBarDestroyed) {
     progressBar.destroy()
     progressBar = new ProgressBar.Line(container, {
     strokeWidth: 100,
@@ -49,18 +53,39 @@ const AudioPlayer = ( props => {
     }
   })
   props.handleProgressBarDestroyed(progressBar)
-} else if (!props.playing && props.progressBarCreated && props.progressBarDestroyed) {
-  progressBar.stop()
-} else if (props.playing && props.progressBarCreated && props.progressBarDestroyed) {
-  progressBar.animate(1)
-}
+  } else if (props.playing
+          && props.progressBarCreated
+          && props.progressBarDestroyed) {
+    progressBar.animate(1)
+  } else if (!props.playing
+          && props.progressBarCreated
+          && props.progressBarDestroyed) {
+    progressBar.stop()
+  }
+
+  if (props.newIdeaModalShow) {
+    newIdeaModal = <NewIdeaModal
+                      mix={props.mix}
+                      mixNum={props.mixNum}
+                      vibe={props.vibe}
+                      handleNewIdeaModalOpen={props.handleNewIdeaModalOpen}
+                      handleNewIdeaModalClose={props.handleNewIdeaModalClose}
+                      handleNewIdeaFormSubmit={props.handleNewIdeaFormSubmit}
+                      newIdeaClickProgressPercent={props.newIdeaClickProgressPercent}
+                      handleNewIdeaAdded={props.handleNewIdeaAdded}
+                    />
+  } else {
+    newIdeaModal = ""
+  }
 
  return(
    <div className="player small-12">
     <div className={`player-div small-4 left ${playerClass}`} >
       <div className={`spinner-outer ${playerClass}`}></div>
       <div className={`spinner-center ${playerClass}`}></div>
-      <div className={`play-sprite ${playerClass}`} onClick={props.handlePlayClick}></div>
+      <div className={`play-sprite ${playerClass}`}
+           onClick={props.handlePlayClick}>
+      </div>
 
       <audio
        src={url}
@@ -72,7 +97,7 @@ const AudioPlayer = ( props => {
 
       <AudioVisualizer />
 
-      <div id="container"></div>
+      <div id="container" onClick={props.handleNewIdeaClick}></div>
 
     </div>
 
@@ -85,6 +110,8 @@ const AudioPlayer = ( props => {
         handleNewMixAdded={props.handleNewMixAdded}
         newMixShow={props.newMixShow}
       />
+
+      {newIdeaModal}
 
    </div>
  )

@@ -3,7 +3,6 @@ class UserSerializer < ActiveModel::Serializer
 
   has_many :vibes
   has_many :lineups
-  has_many :ideas
 
   def fullname
     if object.last_name

@@ -6,7 +6,8 @@ vibes_seeds = [
 ]
 
 users_seeds = [
-  {email: "angelusproductions@gmail.com", password: 123456, first_name: "Corey", last_name: "Angelus", username: "Angelus", pro_pic: "#{Rails.root}/app/assets/images/angelus.jpg", bio: "human from earth"}
+  {email: "angelusproductions@gmail.com", password: 123456, first_name: "Corey", last_name: "Angelus", username: "Angelus", pro_pic: "#{Rails.root}/app/assets/images/angelus.jpg", bio: "human from earth"},
+  {email: "cca257@nyu.edu", password: 123456, first_name: "Shmlorey", last_name: "Shmlangelus", username: "Shmlangelus", pro_pic: "#{Rails.root}/app/assets/images/velvetopia pixelated.jpg", bio: "alien from mars"}
 ]
 
 managers_seeds = [
@@ -27,6 +28,12 @@ mixes_seeds = [
   {number: 1, name: "old favorite of mine", blurb: "should I do something different at the end?", bpm: 83, color: "LightCoral", remote_audio_file_url: "https://s3.amazonaws.com/vibro-development/Vibes/Shadang.mp3", vibe_id: 3 }
 ]
 
+ideas_seeds = [
+  {title: "Maybe a breakdown?", description: "I think you should try out some new chords and do something completely different here", time: 73, vibe_id: 1, mix_id: 1, user_id: 2},
+  {title: "Love that idea!!", description: "Lemme try it. Be honest when you hear it okay?", time: 81, vibe_id: 1, mix_id: 1, user_id: 1},
+  {title: "Bad bassline", description: "The chords you play here don\'t sync well with the bassline", time: 34, vibe_id: 1, mix_id: 2, user_id: 2}
+]
+
 users_seeds.each do |seed|
   User.create!(seed)
 end
@@ -45,4 +52,8 @@ end
 
 mixes_seeds.each do |seed|
   Mix.create!(seed)
+end
+
+ideas_seeds.each do |seed|
+  Idea.create!(seed)
 end

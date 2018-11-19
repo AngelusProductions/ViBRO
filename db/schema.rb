@@ -28,16 +28,19 @@ ActiveRecord::Schema.define(version: 2018_10_28_221459) do
   end
 
   create_table "ideas", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "type", null: false
+    t.string "title", null: false
+    t.string "description", null: false
+    t.integer "time", null: false
     t.string "audio_file"
     t.integer "fire"
     t.integer "ice"
     t.boolean "accepted", default: false
     t.bigint "user_id", null: false
     t.bigint "vibe_id", null: false
+    t.bigint "mix_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["mix_id"], name: "index_ideas_on_mix_id"
     t.index ["user_id"], name: "index_ideas_on_user_id"
     t.index ["vibe_id"], name: "index_ideas_on_vibe_id"
   end

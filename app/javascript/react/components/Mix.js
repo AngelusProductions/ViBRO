@@ -7,7 +7,7 @@ const Mix = ( props => {
   let mixText = "new mix"
   let mix = props.mix
   props.mixes.reverse;
-  
+
   let mixRadio = props.mixes.map( mix => {
     return (
         <input type="radio" className="radio-button" name="mix" value={mix.number} key={mix.number} onClick={props.handleMixClick}></input>

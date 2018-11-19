@@ -10,9 +10,12 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      resources :current_user, only: [:index]
       resources :users
       resources :vibes do
-        resources :mixes
+        resources :mixes do
+          resources :ideas
+        end
       end
     end
   end
