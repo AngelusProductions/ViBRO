@@ -42,13 +42,22 @@ class AudioContainer extends Component {
      afterFetch: false,
      progressBar: {},
      progressBarCreated: false,
-     progressBarDestroyed: false
+     progressBarDestroyed: false,
+
+     ideas: [],
+     newIdeaModalShow: false,
+     newIdeaClickProgressPercent: 0
    }
    this.handlePlayClick = this.handlePlayClick.bind(this)
+
    this.handleMixClick = this.handleMixClick.bind(this)
    this.handleNewMixClick = this.handleNewMixClick.bind(this)
    this.handleNewMixAdded = this.handleNewMixAdded.bind(this)
-   this.handleIdeaClick = this.handleIdeaClick.bind(this)
+
+   this.handleNewIdeaClick = this.handleNewIdeaClick.bind(this)
+   this.handleNewIdeaModalClose = this.handleNewIdeaModalClose.bind(this)
+   this.handleNewIdeaAdded = this.handleNewIdeaAdded.bind(this)
+
    this.handleProgressBarCreated = this.handleProgressBarCreated.bind(this)
    this.handleProgressBarDestroyed = this.handleProgressBarDestroyed.bind(this)
    this.afterFetch = this.afterFetch.bind(this)
@@ -68,7 +77,8 @@ class AudioContainer extends Component {
     .then(response => response.json())
     .then(body => {
       this.setState({ vibe: body.vibe,
-                      mixes: body.vibe.mixes })
+                      mixes: body.vibe.mixes,
+                      ideas: body.vibe.mixes[this.state.mixNum].ideas })
       this.afterFetch()
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -128,13 +138,37 @@ class AudioContainer extends Component {
  }
 
  handleNewMixAdded(mix) {
-   let mixes = this.state.vibe.mixes
-   let newMixes = mixes.concat(mix)
+   let oldMixes = this.state.vibe.mixes
+   let newMixes = oldMixes.concat(mix)
    this.setState({ mixes: newMixes })
  }
 
- handleIdeaClick() {
-   debugger
+ handleNewIdeaClick(event) {
+   event.preventDefault()
+
+   let newIdeaClickPageHeight = event.clientY
+
+   let progressBarTopHeight = document.getElementById("container").getBoundingClientRect().top
+   let progressBarBottomHeight = document.getElementById("container").getBoundingClientRect().bottom
+   let progressBarLength = document.getElementById("container").getBoundingClientRect().bottom - document.getElementById("container").getBoundingClientRect().top
+
+   let newIdeaClickProgressDifference = newIdeaClickPageHeight - progressBarTopHeight
+   let newIdeaClickProgressPercent = newIdeaClickProgressDifference / progressBarLength
+   newIdeaClickProgressPercent *= 100
+
+   this.setState({ newIdeaClickProgressPercent: newIdeaClickProgressPercent,
+                   newIdeaModalShow: true })
+ }
+
+ handleNewIdeaModalClose() {
+   this.setState({ newIdeaModalShow: false })
+ }
+
+ handleNewIdeaAdded(idea) {
+   let oldIdeas = this.state.ideas
+   let newIdeas = oldIdeas.concat(idea)
+   this.setState({ newIdeaModalShow: false,
+                   ideas: newIdeas })
  }
 
  render() {
@@ -150,14 +184,20 @@ class AudioContainer extends Component {
         handleMixClick={this.handleMixClick}
         handleNewMixClick={this.handleNewMixClick}
         handleNewMixAdded={this.handleNewMixAdded}
-
         handlePlayClick={this.handlePlayClick}
-        handleIdeaClick={this.handleIdeaClick}
+
+        ideas={this.state.ideas}
+        newIdeaModalShow={this.state.newIdeaModalShow}
+        handleNewIdeaClick={this.handleNewIdeaClick}
+        handleNewIdeaModalOpen={this.handleNewIdeaModalOpen}
+        handleNewIdeaModalClose={this.handleNewIdeaModalClose}
+        newIdeaClickProgressPercent={this.state.newIdeaClickProgressPercent}
+        handleNewIdeaAdded={this.handleNewIdeaAdded}
 
         playing={this.state.playing}
-        audioPlayerShow={this.state.audioPlayerShow}
-        newMixShow={this.state.newMixShow}
         afterFetch={this.state.afterFetch}
+        newMixShow={this.state.newMixShow}
+        audioPlayerShow={this.state.audioPlayerShow}
 
         progressBar={this.state.progressBar}
         progressBarCreated={this.state.progressBarCreated}

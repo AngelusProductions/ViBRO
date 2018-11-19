@@ -1,0 +1,69 @@
+#new-idea-form-time,
+#new-idea-form-title-label,
+#new-idea-form-title-input,
+#new-idea-form-description-label,
+#new-idea-form-description-input,
+#new-idea-form-button,
+#newIdeaTitle,
+.new-idea-form-input
+{
+  font-family: monospace;
+}
+
+.fa-lightbulb {
+  transform: scale(5);
+  color: #80ffbf;
+  text-shadow: 2px 2px #ff00dc;
+  float: left;
+  display: block;
+}
+
+#new-idea-form {
+  text-align: center;
+}
+
+#new-idea-form-time {
+  font-size: 3rem;
+  animation-name: Pulsatehover;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  margin-bottom: 1rem;
+}
+
+#new-idea-form-title-label,
+#new-idea-form-description-label {
+  font-size: 1.65rem;
+  animation-name: BackForth;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+}
+
+#new-idea-form-title-label {
+  color: rebeccapurple;
+}
+
+#new-idea-form-description-label {
+  color: royalblue;
+}
+
+#new-idea-form-title-input,
+#new-idea-form-description-input {
+  margin: auto;
+  color: #ff4242;
+  width: 75%;
+}
+
+#new-idea-form-description-input {
+  height: 5rem;
+}
+
+#new-idea-form-button {
+  color: #ff00dc;
+  border-radius: 90%;
+  box-shadow: 5px 5px 2px 1px #80ffbf;
+}
+
+#new-idea-form-button:hover {
+  color: #80ffbf;
+  box-shadow: 5px 5px 2px 1px royalblue;
+}

@@ -28,27 +28,6 @@ class VibesController < ApplicationController
     end
   end
 
-  def edit
-    @vibe = Vibe.find(params[:id])
-    @user = User.find(@vibe.user_id)
-  end
-
-  def update
-    @vibe = Vibe.find(params[:id])
-    if @vibe.update_attributes(vibe_params)
-      redirect_to "/users/#{@vibe.user_id}", notice: "vibe updated"
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    @vibes = Vibe.all
-    user_id = Vibe.find(params[:id]).user_id
-    Vibe.destroy(params[:id])
-    redirect_to "/users/#{user_id}", notice: "vibe gone"
-  end
-
   private
 
   def vibe_params
