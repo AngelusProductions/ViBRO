@@ -77,8 +77,7 @@ class AudioContainer extends Component {
     .then(response => response.json())
     .then(body => {
       this.setState({ vibe: body.vibe,
-                      mixes: body.vibe.mixes,
-                      ideas: body.vibe.mixes[this.state.mixNum].ideas })
+                      mixes: body.vibe.mixes })
       this.afterFetch()
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -88,7 +87,8 @@ class AudioContainer extends Component {
    let mix = this.state.mixes[this.state.mixNum - 1]
    this.setState({ mix: mix,
                    afterFetch: true,
-                   audioPlayerShow: true })
+                   audioPlayerShow: true,
+                   ideas: mix.ideas })
  }
 
   handleProgressBarCreated(progressBar) {
