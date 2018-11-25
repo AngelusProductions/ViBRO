@@ -63,3 +63,4 @@ gem "active_model_serializers"
 gem "carrierwave"
 gem 'fog'
 gem "fog-aws"
+gem 'aws-sdk-s3', require: false
