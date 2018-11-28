@@ -36,7 +36,7 @@
   left: 50%;
   margin-left: -163px;
   border-radius: 50%;
-  background: url(spinner-outer.png) center center no-repeat #32302e;
+  background: url(https://s3.amazonaws.com/vibro-production/Art/spinner-outer.png) center center no-repeat #32302e;
   filter: hue-rotate(270deg);
   box-shadow: 0 0 5px 5px #ed1eed;
 }
@@ -50,7 +50,7 @@
   height: 200px;
   width: 200px;
   position: absolute;
-  background: url(spinner-center.png) center center no-repeat;
+  background: url(https://s3.amazonaws.com/vibro-production/Art/spinner-center.png) center center no-repeat;
   filter: hue-rotate(90deg);
   border-radius: 50%;
   left: 50%;
@@ -70,7 +70,7 @@
   top: 42%;
   left: 50%;
   margin: -35px 0 0 -35px;
-  background: url(play-sprite.png) 0px 0px no-repeat;
+  background: url(https://s3.amazonaws.com/vibro-production/Art/play-sprite.png) 0px 0px no-repeat;
   filter: hue-rotate(-90deg);
   height: 70px;
   width: 70px;
