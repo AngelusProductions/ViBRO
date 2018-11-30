@@ -1,0 +1,84 @@
+.flash {
+  font-size: 2.5em;
+  color: red;
+  margin: auto;
+  margin-top: 1em;
+  text-align: center;
+  animation-name: BackForth;
+  animation-duration: 5s;
+  animation-iteration-count:infinite;
+}
+
+.flash,
+.field,
+.actions,
+.devise-title,
+.devise-links {
+  text-align: center;
+  font-family: monospace;
+}
+
+.devise-title {
+  color: #476cff;
+  font-size: 4em;
+  margin-top: 1em;
+  margin-bottom: .5em;
+  animation-name: Changecolor;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
+
+.field {
+  width: 50%;
+  margin: auto;
+  color: red;
+}
+
+.label-text {
+  font-size: 2em;
+  color: #ed1eed;
+}
+
+.remember {
+  color: #476cff;
+}
+
+.devise-button {
+  color: white;
+  background-color: #476cff;
+  border: solid 15px aquamarine;
+  box-shadow: 5px 10px #ed1eed;
+}
+.devise-button:hover {
+  background-color: #ed1eed;
+  border: solid 15px #476cff;
+  box-shadow: 5px 10px aquamarine;
+}
+
+.devise-links {
+  margin-top: 1em;
+}
+
+.devise-link {
+  font-size: 1em;
+  color: blueviolet;
+}
+
+.devise-link:hover {
+  color: aquamarine;
+  text-decoration: none;
+}
+
+@-webkit-keyframes Changecolor {
+  from { color: #476cff; text-shadow: 2px 2px #ff00dc;}
+  10% { color: #f45342;  text-shadow: 2px 2px #e7ff4c;}
+  20% { color: #fc9802;  text-shadow: 2px 2px #724cff;}
+  30% { color: #01fca8;  text-shadow: 2px 2px #fc2a00;}
+  40% { color: #ff00dc;  text-shadow: 2px 2px #ffa8f3;}
+  50% { color: #9b00fc;  text-shadow: 2px 2px #04fc00;}
+  60% { color: #f7fc00;  text-shadow: 2px 2px #fc007e;}
+  70% { color: #00fce6;  text-shadow: 2px 2px #4300ff;}
+  80% { color: #fc0082;  text-shadow: 2px 2px #476cff;}
+  90% { color: #48ff00;  text-shadow: 2px 2px #00ffff;}
+  to { color: #476cff; text-shadow: 2px 2px #ff00dc;}
+}
