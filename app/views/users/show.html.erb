@@ -1,8 +1,15 @@
 
 <div class="user-show-page-div">
-  <h1 class="vibe-user" id="user-show-username"><%= @user.username %></h1>
-  <h2 class="user-full-name"><%= @name %></h2>
-  <h3 class="user-bio"><%= @user.bio %></h3>
+  <div class="user-header small-12 row">
+    <div class="user-photo-div small-4 left">
+      <%= image_tag(@user.pro_pic.url, :class => "user-photo") %>
+    </div>
+    <div class="user-info small-4 right">
+      <h1 class="vibe-user" id="user-show-username"><%= @user.username %></h1>
+      <h2 class="user-full-name"><%= @name %></h2>
+      <h3 class="user-bio"><%= @user.bio %></h3>
+    </div>
+  </div>
 
   <ul>
     <% @user.vibes.each do |vibe| %>

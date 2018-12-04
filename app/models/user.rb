@@ -7,6 +7,8 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :username, presence: true
 
+  mount_uploader :pro_pic, ProPicUploader
+
   has_many :vibes
   has_many :lineups
 end
