@@ -1,4 +1,4 @@
-class VibeArtUploader < CarrierWave::Uploader::Base
+class ProPicUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick

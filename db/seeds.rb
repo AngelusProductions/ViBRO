@@ -1,13 +1,7 @@
 
-vibes_seeds = [
-  {name: "Don\'t Phunq Up!", blurb: "title track from new funk/disco project", remote_art_url: "https://s3.amazonaws.com/vibro-development/Art/dontphunqup.jpeg", waves: 11, fire: 3, ice: 6, user_id: 1, manager_id: 1, lineup_id: 1},
-  {name: "Never Over", blurb: "quick loop that has potential", remote_art_url: "https://s3.amazonaws.com/vibro-development/Art/neverover.jpg", waves: 6, fire: 2, ice: 9, user_id: 1, manager_id: 1, lineup_id: 2},
-  {name: "Shadang", blurb: "overtly sexual track", remote_art_url: "https://s3.amazonaws.com/vibro-development/Art/shadang.jpg", waves: 9, fire: 11, ice: 5, user_id: 1, manager_id: 1, lineup_id: 2}
-]
-
 users_seeds = [
-  {email: "angelusproductions@gmail.com", password: 123456, first_name: "Corey", last_name: "Angelus", username: "Angelus", pro_pic: "#{Rails.root}/app/assets/images/angelus.jpg", bio: "human from earth"},
-  {email: "cca257@nyu.edu", password: 123456, first_name: "Shmlorey", last_name: "Shmlangelus", username: "Shmlangelus", pro_pic: "#{Rails.root}/app/assets/images/velvetopia pixelated.jpg", bio: "alien from mars"}
+  {email: "angelusproductions@gmail.com", password: 123456, first_name: "Corey", last_name: "Angelus", username: "Angelus", remote_pro_pic_url: "https://s3.amazonaws.com/vibro-development/Art/angelus.jpg", bio: "human from earth"},
+  {email: "cca257@nyu.edu", password: 123456, first_name: "Shmlorey", last_name: "Shmlangelus", username: "Shmlangelus", remote_pro_pic_url: "https://s3.amazonaws.com/vibro-development/Art/velvetopia pixelated.jpg", bio: "alien from mars"}
 ]
 
 managers_seeds = [
@@ -19,6 +13,12 @@ managers_seeds = [
 lineups_seeds = [
   {name: "Don\'t Phunq Up!", blurb: "funk/disco album", art: "/assets/dontphunqup.jpeg", waves: 7, user_id: 1},
   {name: "The Rest", blurb: "miscellaneous", art: "/assets/therest.gif", waves: 12, user_id: 1}
+]
+
+vibes_seeds = [
+  {name: "Don\'t Phunq Up!", blurb: "title track from new funk/disco project", remote_art_url: "https://s3.amazonaws.com/vibro-development/Art/dontphunqup.jpeg", waves: 11, fire: 3, ice: 6, user_id: 1, manager_id: 1, lineup_id: 1},
+  {name: "Never Over", blurb: "quick loop that has potential", remote_art_url: "https://s3.amazonaws.com/vibro-development/Art/neverover.jpg", waves: 6, fire: 2, ice: 9, user_id: 1, manager_id: 1, lineup_id: 2},
+  {name: "Shadang", blurb: "overtly sexual track", remote_art_url: "https://s3.amazonaws.com/vibro-development/Art/shadang.jpg", waves: 9, fire: 11, ice: 5, user_id: 1, manager_id: 1, lineup_id: 2}
 ]
 
 mixes_seeds = [

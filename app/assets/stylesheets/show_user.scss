@@ -4,7 +4,11 @@
   text-align: center;
 }
 
-.user-full-name, .user-bio {
+.user-full-name,
+.user-bio,
+#user-show-username {
+  float: left;
+  margin-left: 1.5rem;
   font-family: monospace;
 }
 
@@ -21,4 +25,10 @@
 
 #user-show-username {
   font-size: 3rem;
+}
+
+.user-photo {
+  border-radius: 50%;
+  margin-left: 1em;
+  border: solid 5px aquamarine;
 }
