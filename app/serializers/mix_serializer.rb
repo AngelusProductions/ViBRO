@@ -1,5 +1,5 @@
 class MixSerializer < ActiveModel::Serializer
-  attributes :id, :name, :number, :runtime, :audio_file, :blurb, :art, :color, :bpm, :ideas
+  attributes :id, :name, :number, :runtime, :audio_file, :blurb, :color, :bpm, :ideas
 
   belongs_to :vibe
 

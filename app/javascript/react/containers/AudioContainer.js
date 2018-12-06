@@ -21,7 +21,6 @@ class AudioContainer extends Component {
          runtime: 0,
          audio_file: "",
          blurb: "",
-         art: "",
          bpm: 0,
          color: "",
          fire: 0,

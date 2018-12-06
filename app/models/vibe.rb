@@ -1,7 +1,7 @@
 class Vibe < ApplicationRecord
   validates :name, presence: true
 
-  mount_uploader :art, VibeArtUploader
+  mount_uploader :art, VibeArtUploader, presence: true
 
   belongs_to :user
   belongs_to :manager

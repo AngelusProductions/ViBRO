@@ -28,7 +28,12 @@ class Api::V1::MixesController < ApplicationController
   private
 
   def mix_params
-    params.permit(:name, :blurb, :color, :audio_file, :art, :bpm, :vibe_id)
+    params.permit(:name,
+                  :blurb,
+                  :color,
+                  :audio_file,
+                  :bpm, 
+                  :vibe_id)
   end
 
 end

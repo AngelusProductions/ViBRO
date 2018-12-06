@@ -11,7 +11,6 @@ class MixForm extends Component {
       bpm: 0,
       color: "",
       audioFile: [],
-      art: [],
       newMixShow: true
     }
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -20,7 +19,6 @@ class MixForm extends Component {
     this.handleBPMChange = this.handleBPMChange.bind(this)
     this.handleColorChange = this.handleColorChange.bind(this)
     this.handleAudioFileDrop = this.handleAudioFileDrop.bind(this)
-    this.handleArtDrop = this.handleArtDrop.bind(this)
     this.clearForm = this.clearForm.bind(this)
   }
 
@@ -48,23 +46,15 @@ class MixForm extends Component {
     }
   }
 
-  handleArtDrop (file) {
-    if (file.length == 1) {
-      this.setState({ art: file })
-    } else {
-      this.setState({ message: 'only one pic at a time!'})
-    }
-  }
-
   handleSubmit(event) {
     event.preventDefault()
+
     let payload = new FormData()
     payload.append("name", this.state.name)
     payload.append("blurb", this.state.blurb)
     payload.append("bpm", parseInt(this.state.bpm))
     payload.append("color", this.state.color)
     payload.append("audio_file", this.state.audioFile[0])
-    payload.append("art", this.state.art[0])
 
     fetch(`/api/v1/vibes/${this.props.vibe.id}/mixes`, {
       method: 'POST',
@@ -84,7 +74,6 @@ class MixForm extends Component {
                     bpm: 0,
                     color: "",
                     audioFile: [],
-                    art: [],
                     message: "",
                     newMixShow: false
                  })
@@ -97,57 +86,44 @@ class MixForm extends Component {
         <h1 id="new-mix-title">new mix</h1>
 
         <div className="mix-form-field" id="mix-form-name">
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name">what is the name?</label>
           <input type="text" id="name" name="name" onChange={this.handleNameChange}/>
         </div>
 
         <div className="mix-form-field" id="mix-form-blurb">
-          <label htmlFor="blurb">Blurb:</label>
+          <label htmlFor="blurb">what is new?</label>
           <input type="text" id="blurb" name="blurb" onChange={this.handleBlurbChange} />
         </div>
 
         <div className="mix-form-field" id="mix-form-bpm">
-          <label htmlFor="bpm">BPM:</label>
+          <label htmlFor="bpm">what is the BPM?</label>
           <input type="text" id="bpm" name="bpm" onChange={this.handleBPMChange}/>
         </div>
 
         <div className="mix-form-field" id="mix-form-color">
-          <label htmlFor="color">Color:</label>
+          <label htmlFor="color">choose a color:</label>
           <select id="color-dropdown" name="color" onChange={this.handleColorChange}>
-          <option value="blue">Blue</option>
-          <option value="purple">Purple</option>
-          <option value="pink">Pink</option>
-          <option value="green">Green</option>
+          <option value="blue">blue</option>
+          <option value="purple">purple</option>
+          <option value="pink">pink</option>
+          <option value="green">green</option>
           </select>
         </div>
 
-        <div id="dropzones">
-          <section className="dropzone-section">
-            <div id="mix-form-audio-file" className="dropzone">
-              <Dropzone onDrop={this.handleAudioFileDrop}>
-                <p>Mix:</p>
-              </Dropzone>
-            </div>
-            <aside>
-              <ul>
-                { this.state.audioFile.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>) }
-              </ul>
-            </aside>
+        <section className="dropzone-section">
+          <div id="mix-form-audio-file" className="dropzone">
+            <Dropzone onDrop={this.handleAudioFileDrop}>
+              <p>audio file</p>
+            </Dropzone>
+          </div>
+          <aside>
+            <ul>
+              { this.state.audioFile.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>) }
+            </ul>
+          </aside>
+        </section>
 
-            <div id="mix-form-art" className="dropzone">
-              <Dropzone onDrop={this.handleArtDrop}>
-                <p>Art:</p>
-              </Dropzone>
-            </div>
-            <aside>
-              <ul>
-                { this.state.art.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>) }
-              </ul>
-            </aside>
-          </section>
-        </div>
-
-        <input id="mix-form-submit" type="submit" className="button" value="Submit"/>
+        <input id="mix-form-submit" type="submit" className="button" value="submit"/>
       </form>
     )
   }

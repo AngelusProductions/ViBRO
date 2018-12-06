@@ -11,11 +11,12 @@ class VibeForm extends Component {
       mixName: "",
       mixBlurb: "",
       mixColor: "",
-      mixBPM: 0,
+      mixBPM: null,
       mixArt: [],
       mixAudioFile: [],
       vibeShow: true,
       mixShow: false,
+      currentUser: null,
       message: ""
     }
     this.handleVibeNameChange = this.handleVibeNameChange.bind(this)
@@ -30,6 +31,27 @@ class VibeForm extends Component {
     this.handleMixAudioFileDrop = this.handleMixAudioFileDrop.bind(this)
     this.handleMixArtDrop = this.handleMixArtDrop.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+
+    this.handleBackClick = this.handleBackClick.bind(this)
+  }
+
+  componentDidMount() {
+    // get lineups
+    fetch('/api/v1/current_user')
+    .then(response => {
+        if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      this.setState({ currentUser: body.user })
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   handleVibeNameChange (event) {
@@ -52,6 +74,12 @@ class VibeForm extends Component {
     event.preventDefault()
     this.setState({ vibeShow: false,
                     mixShow: true })
+  }
+
+  handleBackClick () {
+    event.preventDefault()
+    this.setState({ vibeShow: true,
+                    mixShow: false })
   }
 
   handleMixNameChange (event) {
@@ -93,6 +121,7 @@ class VibeForm extends Component {
     payload.append("vibeName", this.state.vibeName)
     payload.append("vibeBlurb", this.state.vibeBlurb)
     payload.append("vibeArt", this.state.vibeArt[0])
+    payload.append("currentUserId", this.state.currentUser.id)
 
     payload.append("mixName", this.state.mixName)
     payload.append("mixBlurb", this.state.mixBlurb)
@@ -103,17 +132,19 @@ class VibeForm extends Component {
 
     fetch(`/api/v1/vibes`, {
       method: 'POST',
-      body: JSON.stringify(payload),
-      credentials: 'same-origin',
-      headers: {
-       'Content-Type': 'application/json',
-       'X-Requested-With': 'XMLHttpRequest'
+      body: payload,
+      credentials: 'same-origin'
+    })
+    .then(response => {
+        if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+        throw(error);
       }
     })
-    .then(response => response.json())
-    .then(body => {
-      debugger
-    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   render() {
@@ -126,12 +157,12 @@ class VibeForm extends Component {
 
                     <div className="vibe-form-field" id="vibe-form-name">
                       <label htmlFor="vibeName">what do you call it?</label>
-                      <input type="text" id="vibeName" name="vibeName" onChange={this.handleVibeNameChange}/>
+                      <input type="text" id="vibeName" name="vibeName" value={this.state.vibeName} onChange={this.handleVibeNameChange}/>
                     </div>
 
                     <div className="vibe-form-field" id="vibe-form-blurb">
                       <label htmlFor="vibeBlurb">what is the goal?</label>
-                      <input type="text" id="vibeBlurb" name="vibeBlurb" onChange={this.handleVibeBlurbChange} />
+                      <input type="text" id="vibeBlurb" name="vibeBlurb" value={this.state.vibeBlurb}onChange={this.handleVibeBlurbChange} />
                     </div>
 
                     <div id="vibe-form-art" className="dropzone">
@@ -153,67 +184,59 @@ class VibeForm extends Component {
     }
 
     if (this.state.mixShow) {
-      mixForm = <form onSubmit={this.handleSubmit} className="form small-6 column center" id="mix-form">
-                  <h1 id="new-mix-title">first mix</h1>
+      mixForm = <div>
+                  <form onSubmit={this.handleSubmit} className="form small-6 column center" id="mix-form">
+                    <i className="fas fa-caret-left fa-4x" onClick={this.handleBackClick}></i>
+                    <h1 id="first-mix-title">first mix</h1>
 
-                  <div className="mix-form-field" id="mix-form-name">
-                    <label htmlFor="mixName">describe it!</label>
-                    <input type="text" id="mixName" name="mixName" onChange={this.handleMixNameChange}/>
-                  </div>
+                    <div className="mix-form-field" id="mix-form-name">
+                      <label htmlFor="mixName">describe it!</label>
+                      <input type="text" id="mixName" name="mixName" value={this.state.mixName} onChange={this.handleMixNameChange}/>
+                    </div>
 
-                  <div className="mix-form-field" id="mix-form-blurb">
-                    <label htmlFor="mixBlurb">what does it need?</label>
-                    <input type="text" id="mixBlurb" name="mixBlurb" onChange={this.handleMixBlurbChange} />
-                  </div>
+                    <div className="mix-form-field" id="mix-form-blurb">
+                      <label htmlFor="mixBlurb">what does it need?</label>
+                      <input type="text" id="mixBlurb" name="mixBlurb" value={this.state.mixBlurb} onChange={this.handleMixBlurbChange} />
+                    </div>
 
-                  <div className="mix-form-field" id="mix-form-bpm">
-                    <label htmlFor="mixBPM">bpm?</label>
-                    <input type="text" id="mixBPM" name="mixBPM" onChange={this.handleMixBPMChange}/>
-                  </div>
+                    <div className="mix-form-field" id="mix-form-bpm">
+                      <label htmlFor="mixBPM">bpm?</label>
+                      <input type="text" id="mixBPM" name="mixBPM" value={this.state.mixBPM} onChange={this.handleMixBPMChange}/>
+                    </div>
 
-                  <div className="mix-form-field" id="mix-form-color">
-                    <label htmlFor="mixColor">choose a color:</label>
-                    <select id="color-dropdown" name="mixColor" onChange={this.handleMixColorChange}>
-                      <option value="blue">blue</option>
-                      <option value="purple">purple</option>
-                      <option value="pink">pink</option>
-                      <option value="green">green</option>
-                    </select>
-                  </div>
+                    <div className="mix-form-field" id="mix-form-color">
+                      <label htmlFor="mixColor">choose a color:</label>
+                      <select id="color-dropdown" name="mixColor" value={this.state.mixColor} onChange={this.handleMixColorChange}>
+                        <option value="blue">blue</option>
+                        <option value="purple">purple</option>
+                        <option value="pink">pink</option>
+                        <option value="green">green</option>
+                      </select>
+                    </div>
 
-                  <div id="dropzones">
                     <section className="dropzone-section">
-                      <div id="mix-form-art" className="dropzone">
-                        <Dropzone onDrop={this.handleMixArtDrop}>
-                          <p>art</p>
-                          </Dropzone>
+                      <div id="mix-form-audio-file" className="dropzone">
+                        <Dropzone onDrop={this.handleMixAudioFileDrop}>
+                          <p>audio file</p>
+                        </Dropzone>
                       </div>
                       <aside>
                         <ul>
-                          { this.state.mixArt.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>) }
+                          { this.state.mixAudioFile.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>) }
                         </ul>
                       </aside>
                     </section>
-                  </div>
-                    <div id="mix-form-audio-file" className="dropzone">
-                      <Dropzone onDrop={this.handleMixAudioFileDrop}>
-                        <p>audio file</p>
-                      </Dropzone>
-                    </div>
-                    <aside>
-                      <ul>
-                        { this.state.mixAudioFile.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>) }
-                      </ul>
-                    </aside>
 
-                  <input id="mix-form-submit" type="submit" className="button" value="Submit"/>
-                </form>
+                    <input id="mix-form-submit" type="submit" className="button" value="submit"/>
+                  </form>
+                </div>
     } else {
       mixForm = ""
     }
 
     return (
       <div>
+        <span className="flash">{this.state.message}</span>
         {vibeForm}
         {mixForm}
       </div>
