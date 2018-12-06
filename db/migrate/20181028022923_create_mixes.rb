@@ -6,7 +6,6 @@ class CreateMixes < ActiveRecord::Migration[5.2]
       t.integer :runtime, default: 0
       t.string :audio_file, null: false
       t.text :blurb
-      t.string :art
       t.string :color
       t.integer :bpm, null: false
 

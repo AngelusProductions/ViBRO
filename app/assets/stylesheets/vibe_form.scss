@@ -1,12 +1,22 @@
 #vibe-form-submit,
-#new-vibe-title {
+#new-vibe-title,
+#first-mix-title {
   text-align: center;
   font-family: monospace;
 }
 
+#new-vibe-title,
+#first-mix-title {
+  margin-top: 3rem;
+}
+
 #new-vibe-title {
   color: #ed1eed;
-  margin-top: 3rem;
+  text-shadow: 5px 5px aquamarine;
+}
+
+#first-mix-title {
+  color: #ed1eed;
   text-shadow: 5px 5px aquamarine;
 }
 
@@ -32,4 +42,9 @@
   background-color: #ed1eed;
   border: solid 15px #476cff;
   box-shadow: 5px 10px aquamarine;
+}
+
+.fa-caret-left {
+  float: left;
+  color: aquamarine;
 }

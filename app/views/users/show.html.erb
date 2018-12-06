@@ -22,7 +22,7 @@
   <ul id="user-vibes-list" class="row">
     <% @user.vibes.each do |vibe| %>
     <br>
-    <li class="user-vibes-list-item small-12 medium-6 large-4">
+    <li class="user-vibes-list-item small-12 medium-5 large-4">
       <%= link_to "#{vibe.name}",
               vibe_path(vibe),
               :class=>"vibe-name" %>
