@@ -1,20 +1,28 @@
 
 <div class="user-show-page-div">
   <div class="user-header small-12 row">
-    <div class="user-photo-div small-4 left">
+    <div class="user-photo-div small-12 medium-4 left">
       <%= image_tag(@user.pro_pic.url, :class => "user-photo") %>
     </div>
-    <div class="user-info small-4 right">
+    <div class="user-info small-12 medium-4 center">
       <h1 class="vibe-user" id="user-show-username"><%= @user.username %></h1>
       <h2 class="user-full-name"><%= @name %></h2>
       <h3 class="user-bio"><%= @user.bio %></h3>
     </div>
+      <% if current_user.id == params[:id].to_i %>
+        <div id-"upload-vibe" class="small-12 medium-4 right">
+          <i class="fas fa-upload"></i><br>
+          <%= link_to "new vibe",
+              new_vibe_path,
+              :id => "new-vibe-text" %>
+        </div>
+      <% end %>
   </div>
 
-  <ul>
+  <ul id="user-vibes-list" class="row">
     <% @user.vibes.each do |vibe| %>
     <br>
-    <li>
+    <li class="user-vibes-list-item small-12 medium-6 large-4">
       <%= link_to "#{vibe.name}",
               vibe_path(vibe),
               :class=>"vibe-name" %>

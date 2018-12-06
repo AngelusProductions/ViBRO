@@ -1,0 +1,35 @@
+#vibe-form-submit,
+#new-vibe-title {
+  text-align: center;
+  font-family: monospace;
+}
+
+#new-vibe-title {
+  color: #ed1eed;
+  margin-top: 3rem;
+  text-shadow: 5px 5px aquamarine;
+}
+
+.vibe-form-field label,
+.dropzone p {
+  font-size: 1.25rem;
+  color: #476cff;
+  text-shadow: 2.5px 2.5px aquamarine;
+}
+
+#vibe-form-audio-file,
+#vibe-form-art {
+  margin-left: 28%;
+}
+
+#vibe-form-submit {
+  background-color: #476cff;
+  border: solid 15px aquamarine;
+  box-shadow: 5px 10px #ed1eed;
+}
+
+#vibe-form-submit:hover {
+  background-color: #ed1eed;
+  border: solid 15px #476cff;
+  box-shadow: 5px 10px aquamarine;
+}
