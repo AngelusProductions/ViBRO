@@ -9,7 +9,7 @@
   width: 5px;
   border-radius: 50%;
   top:0;
-  background-color: royalblue;
+  background-color: #476cff;
   position: absolute;
   -webkit-animation:vertical-movement 2.5s infinite ease-in-out;
   -moz-animation:vertical-movement 2.5s infinite ease-in-out;
