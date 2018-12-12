@@ -18,7 +18,7 @@ lineups_seeds = [
 vibes_seeds = [
   {name: "Don\'t Phunq Up!", blurb: "title track from new funk/disco project", remote_art_url: "https://s3.amazonaws.com/vibro-development/Art/dontphunqup.jpeg", waves: 11, fire: 3, ice: 6, user_id: 1, manager_id: 1, lineup_id: 1},
   {name: "Never Over", blurb: "quick loop that has potential", remote_art_url: "https://s3.amazonaws.com/vibro-development/Art/neverover.jpg", waves: 6, fire: 2, ice: 9, user_id: 1, manager_id: 1, lineup_id: 2},
-  {name: "Shadang", blurb: "overtly sexual track", remote_art_url: "https://s3.amazonaws.com/vibro-development/Art/shadang.jpg", waves: 9, fire: 11, ice: 5, user_id: 1, manager_id: 1, lineup_id: 2}
+  {name: "Shadang", blurb: "overtly sexual track", remote_art_url: "https://s3.amazonaws.com/vibro-development/Art/shadang.gif", waves: 9, fire: 11, ice: 5, user_id: 1, manager_id: 1, lineup_id: 2}
 ]
 
 mixes_seeds = [

@@ -3,10 +3,10 @@ import MixForm from './MixForm'
 
 const Mix = ( props => {
 
-  let mixForm = "";
+  let mixForm = ""
   let mixText = "new mix"
   let mix = props.mix
-  props.mixes.reverse;
+  props.mixes.reverse
 
   let mixRadio = props.mixes.map( mix => {
     return (

@@ -2,7 +2,11 @@
 <div class="user-show-page-div">
   <div class="user-header small-12 row">
     <div class="user-photo-div small-12 medium-4 left">
-      <%= image_tag(@user.pro_pic.url, :class => "user-photo") %>
+      <% if @user.pro_pic.present? %>
+        <%= image_tag(@user.pro_pic.url, :class => "user-photo") %>
+      <% else %>
+        <%= image_tag("/app/assets/images/therest.gif", :class => "user-photo") %>
+      <% end %>
     </div>
     <div class="user-info small-12 medium-4 center">
       <h1 class="vibe-user" id="user-show-username"><%= @user.username %></h1>
