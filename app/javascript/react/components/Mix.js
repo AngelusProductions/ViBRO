@@ -1,12 +1,13 @@
 import React from 'react';
 import MixForm from './MixForm'
+import AudioVisualizer from '../components/AudioVisualizer'
 
 const Mix = ( props => {
 
-  let mixForm = "";
+  let mixForm = ""
   let mixText = "new mix"
   let mix = props.mix
-  props.mixes.reverse;
+  props.mixes.reverse
 
   let mixRadio = props.mixes.map( mix => {
     return (
@@ -37,10 +38,16 @@ const Mix = ( props => {
     </div>
     <h2 id="mix-name">{mix.name}</h2>
     <h3 id="mix-blurb">{mix.blurb}</h3>
+
+    <AudioVisualizer />
+
+    {mixForm}
+    
     <div className="small-4 right">
       <button id="new-mix-button" className="right" onClick={props.handleNewMixClick}>{mixText}</button>
     </div>
-    {mixForm}
+
+
   </div>
  )
 })

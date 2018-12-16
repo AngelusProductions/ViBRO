@@ -15,6 +15,7 @@
 
 #mix-num {
   color: #00f6ff;
+  text-align: center;
   text-shadow: 1.5px 1.5px #476cff;
 }
 
@@ -23,7 +24,7 @@
   padding-left: 3rem;
   padding-right: 3rem;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.25rem;
   margin-bottom: 2rem;
 }
 
@@ -54,7 +55,57 @@
   font-size: 2rem;
 }
 
-.fa-fire {
+.vibe-name {
+  color: #ff00dc;
+  text-decoration: none;
+  text-shadow: 1.5px 1.5px #476cff;
+}
+
+.vibe-name:hover {
+  color: #476cff;
+  animation-name: Pulsatehover;
+  animation-duration: .25s;
+  animation-iteration-count: infinite;
+  text-decoration: none;
+}
+
+.vibe-user {
+  font-size: 1rem;
+  color: blueviolet;
+  text-decoration: none;
+}
+
+.vibe-user:hover {
+  color: #ff00dc;
+  text-decoration: none;
+}
+
+.vibe-blurb {
+  font-size: .75rem;
+  color: rebeccapurple;
+}
+
+.tower-text,
+.chill-text,
+.fire-text {
+  display: inline-block;
+}
+
+.tower-text, .fa-broadcast-tower {
+  color: royalblue;
+}
+
+.chill-text, .fa-snowflake {
+  color: #00f6ff;
+}
+
+.fire-text, .fa-fire {
+  color: #ff2600;
+}
+
+
+.fa-fire,
+#error-message {
   color: #ff2600;
 }
 
@@ -99,7 +150,7 @@
   max-height: 400px;
   border-radius: 5%;
   margin-top: 1rem;
-  margin-right: 1rem;
+  // margin-right: 1rem;
   animation-name: BackForth;
   animation-delay: 5s;
   animation-duration: 10s;
@@ -127,6 +178,12 @@
   align-items: center;
   align-self: center;
   text-align: center;
+}
+
+#error-message {
+  margin: auto;
+  text-align: center;
+  font-size: 1rem;
 }
 
 @-webkit-keyframes TwitchRotate {
@@ -170,4 +227,10 @@
   52% { transform: scale(.8); }
   53% { transform: scale(1); }
   to { transform: scale(1); }
+}
+
+@-webkit-keyframes Pulsatehover {
+  from { color: #476cff; text-shadow: 2px 2px #ff00dc;}
+  10% { color: #ffa8f3;  text-shadow: 2px 2px #476cff;}
+  to { color: #476cff; text-shadow: 2px 2px #ff00dc;}
 }

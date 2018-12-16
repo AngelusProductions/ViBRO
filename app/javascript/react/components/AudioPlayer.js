@@ -1,7 +1,6 @@
 import React from 'react';
 import ProgressBar from 'progressbar.js'
 import Mix from './Mix'
-import AudioVisualizer from '../components/AudioVisualizer'
 import NewIdeaModal from './NewIdeaModal'
 
 const AudioPlayer = ( props => {
@@ -95,9 +94,9 @@ const AudioPlayer = ( props => {
        crossOrigin="anonymous"
       ></audio>
 
-      <AudioVisualizer />
-
       <div id="container" onClick={props.handleNewIdeaClick}></div>
+      <i className="fas fa-mouse-pointer"></i>
+      <div className="click-me">CLiCK to add your idea!</div>
 
     </div>
 

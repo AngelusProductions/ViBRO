@@ -1,0 +1,51 @@
+ 
+.pulse {
+  margin:100px;
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: aquamarine;
+  cursor: pointer;
+  box-shadow: 0 0 0 rgba(93,12,93, 0.4);
+  animation: pulse 2s infinite;
+}
+.pulse:hover {
+  animation: none;
+}
+
+#coverflow-outer {
+  margin-top: 3rem;
+  background-color: white;
+  border: solid 15px #ed1eed;
+  box-shadow: 5px 10px aquamarine;
+}
+#coverflow-outer:hover {
+  background-color: white;
+  border: solid 15px #476cff;
+  box-shadow: 5px 10px #ed1eed;
+  animation-name: Pulsatehover;
+  animation-duration: .25s;
+  animation-iteration-count: infinite;
+}
+
+#coverflow-inner {
+  font-family: monospace;
+  border: 15px solid white;
+}
+
+button.coverflow__button__25AqX {
+  color: rgba(0,0,0, 0.0)
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(93,12,93, 0.4);
+  }
+  70% {
+      -webkit-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+  }
+  100% {
+      -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+}
