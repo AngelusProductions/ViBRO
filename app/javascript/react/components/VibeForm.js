@@ -11,7 +11,7 @@ class VibeForm extends Component {
       mixName: "",
       mixBlurb: "",
       mixColor: "",
-      mixBPM: null,
+      mixBPM: "",
       mixArt: [],
       mixAudioFile: [],
       vibeShow: true,
@@ -148,6 +148,7 @@ class VibeForm extends Component {
   }
 
   render() {
+
     let vibeForm = ""
     let mixForm = ""
 
@@ -162,7 +163,7 @@ class VibeForm extends Component {
 
                     <div className="vibe-form-field" id="vibe-form-blurb">
                       <label htmlFor="vibeBlurb">what is the goal?</label>
-                      <input type="text" id="vibeBlurb" name="vibeBlurb" value={this.state.vibeBlurb}onChange={this.handleVibeBlurbChange} />
+                      <input type="text" id="vibeBlurb" name="vibeBlurb" value={this.state.vibeBlurb} onChange={this.handleVibeBlurbChange} />
                     </div>
 
                     <div id="vibe-form-art" className="dropzone">

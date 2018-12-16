@@ -13,6 +13,7 @@
     "react-audio-spectrum": "0.0.9",
     "react-bootstrap": "^0.32.4",
     "react-bootstrap-modal": "^4.2.0",
+    "react-coverflow": "^0.2.17",
     "react-dom": "~15.4.2",
     "react-dropzone": "^7.0.1",
     "react-fontawesome": "^1.6.1",

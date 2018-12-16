@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
-import AudioContainer from '../containers/AudioContainer'
 
 class MixForm extends Component {
   constructor(props) {

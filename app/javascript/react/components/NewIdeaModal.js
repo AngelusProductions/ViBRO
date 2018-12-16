@@ -7,7 +7,8 @@ class NewIdeaModal extends Component {
     this.state = {
       currentUser: null,
       newIdeaTitle: "",
-      newIdeaDescripton: ""
+      newIdeaDescripton: "",
+      errorMessage: ""
     }
     this.onNewIdeaTitleChange = this.onNewIdeaTitleChange.bind(this)
     this.onNewIdeaDescriptionChange = this.onNewIdeaDescriptionChange.bind(this)
@@ -28,7 +29,9 @@ class NewIdeaModal extends Component {
      })
      .then(response => response.json())
      .then(body => {
-       this.setState({ currentUser: body.user })
+       if (body != null) {
+         this.setState({ currentUser: body.user })
+       }
      })
      .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -46,23 +49,27 @@ class NewIdeaModal extends Component {
 
     let player = document.getElementsByTagName("audio")[0]
     let newIdeaTime = this.props.newIdeaClickProgressPercent * player.duration / 100
-
     let payload = new FormData()
-    payload.append("title", this.state.newIdeaTitle)
-    payload.append("description", this.state.newIdeaDescription)
-    payload.append("time", newIdeaTime)
-    payload.append("user_id", this.state.currentUser.id)
-    payload.append("vibe_id", this.props.vibe.id)
 
-    fetch(`/api/v1/vibes/${this.props.vibe.id}/mixes/${this.props.mixNum}/ideas`, {
-      method: 'POST',
-      body: payload
-    })
-    .then(response => response.json())
-    .then(body => {
-      this.clearNewIdeaForm()
-      this.props.handleNewIdeaAdded(body)
-    })
+    if (this.state.currentUser != null) {
+      payload.append("title", this.state.newIdeaTitle)
+      payload.append("description", this.state.newIdeaDescription)
+      payload.append("time", newIdeaTime)
+      payload.append("user_id", this.state.currentUser.id)
+      payload.append("vibe_id", this.props.vibe.id)
+
+      fetch(`/api/v1/vibes/${this.props.vibe.id}/mixes/${this.props.mixNum}/ideas`, {
+        method: 'POST',
+        body: payload
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.clearNewIdeaForm()
+        this.props.handleNewIdeaAdded(body)
+      })
+    } else {
+      this.setState({errorMessage: "please log in/sign up before leaving a comment :)"})
+    }
   }
 
   clearNewIdeaForm() {
@@ -83,6 +90,8 @@ class NewIdeaModal extends Component {
           <Modal.Body id="new-idea-form">
 
           <i className="far fa-lightbulb"></i>
+
+          <div id="error-message" className="small-6">{this.state.errorMessage}</div>
 
           <div id="new-idea-form-time">@ {time} seconds</div>
 

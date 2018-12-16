@@ -2,11 +2,9 @@ Rails.application.routes.draw do
   root 'vibes#index'
 
   devise_for :users
-  resources :users
+  resources :users, only: [:show]
 
-  resources :vibes do
-    resources :mixes
-  end
+  resources :vibes, only: [:index, :show, :new]
 
   namespace :api do
     namespace :v1 do

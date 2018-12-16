@@ -1,7 +1,6 @@
 <div class="show-page">
-  <div class="vibe-show-page-div columns small-12">
-    <%= image_tag(@vibe.art.url, class: "vibe-art small-3 center ") %>
-    <div class="song-info small-6 left">
+  <div class="vibe-show-page-div row">
+    <div class="song-info small-6 medium-6 columns">
       <h1 class="vibe-name"><%= @vibe.name %></h1>
       <h2>
         <%= link_to @user.username, user_path(@user), :class => "vibe-user", :id => "show-page-vibe-name" %>
@@ -16,7 +15,9 @@
           <i class="fas fa-snowflake"></i>
           <%= @vibe.ice %>
         </div>
+      </div>
     </div>
+    <%= image_tag(@vibe.art.url, class: "vibe-art small-6 medium-6 columns") %>
   </div>
 
   <div id="app"></div>
