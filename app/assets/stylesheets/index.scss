@@ -1,4 +1,4 @@
- 
+
 .pulse {
   margin:100px;
   display: block;
@@ -21,6 +21,7 @@
   box-shadow: 5px 10px aquamarine;
 }
 #coverflow-outer:hover {
+  filter: saturate(2);
   background-color: white;
   border: solid 15px #476cff;
   box-shadow: 5px 10px #ed1eed;

@@ -28,6 +28,10 @@ const Mix = ( props => {
     mixForm = ""
     mixText = "new mix"
   }
+  // <div className="small-4 right">
+  //   <button id="new-mix-button" className="right" onClick={props.handleNewMixClick}>{mixText}</button>
+  // </div>
+      // {mixForm}
 
  return(
    <div className="mix right small-7">
@@ -40,13 +44,6 @@ const Mix = ( props => {
     <h3 id="mix-blurb">{mix.blurb}</h3>
 
     <AudioVisualizer />
-
-    {mixForm}
-    
-    <div className="small-4 right">
-      <button id="new-mix-button" className="right" onClick={props.handleNewMixClick}>{mixText}</button>
-    </div>
-
 
   </div>
  )
