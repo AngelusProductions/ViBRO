@@ -1,0 +1,29 @@
+
+.fa-bars,
+.fa-times {
+  color: #476cff;
+  margin-top: 1rem;
+  margin-right: 0.5rem;
+}
+
+.fa-times {
+  animation: TwitchRotate;
+  animation-duration: 3s;
+  animation-iteration-count: 1;
+}
+
+.fa-bars {
+  animation: Hello;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+}
+
+@-webkit-keyframes Hello {
+  from { transform: scale(0); }
+  5% { transform: scale(1); }
+  10% { transform: scale(1.5); }
+  20% { transform: scale(1); }
+  30% { transform: scale(.8); }
+  50% { transform: scale(1); }
+  to { transform: scale(1); }
+}
