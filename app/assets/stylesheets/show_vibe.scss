@@ -58,7 +58,7 @@
 .vibe-name {
   color: #ff00dc;
   text-decoration: none;
-  text-shadow: 1.5px 1.5px #476cff;
+  text-shadow: 1px 1px #476cff;
 }
 
 .vibe-name:hover {
@@ -127,7 +127,7 @@
 }
 
 .fa-fire {
-  margin-left: 2rem;
+  margin-left: 1rem;
   animation-name: TwitchFlip;
   transform: rotateY(180deg);
   animation-delay: 10s;

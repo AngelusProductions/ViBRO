@@ -13,15 +13,6 @@
       <h2 class="user-full-name"><%= @name %></h2>
       <h3 class="user-bio"><%= @user.bio %></h3>
     </div>
-      <% if current_user &&
-            current_user.id == params[:id].to_i %>
-        <div id-"upload-vibe" class="small-12 medium-4 right">
-          <i class="fas fa-upload"></i><br>
-          <%= link_to "new vibe",
-              new_vibe_path,
-              :id => "new-vibe-text" %>
-        </div>
-      <% end %>
   </div>
 
   <ul id="user-vibes-list" class="row">
@@ -32,10 +23,29 @@
               vibe_path(vibe),
               :class=>"vibe-name" %>
       <p class="vibe-blurb"><%= vibe.blurb %><p>
-      <i class="fas fa-broadcast-tower"></i>
-      <span id="tower-text">
-        <%= vibe.waves %>
-      </span>
+        <span><%= link_to image_tag(vibe.art.url), vibe_path(vibe), :class => "vibe-art-mini" %></span>
+      <div class="columns">
+        <div class="fire-text">
+          <i class="fas fa-fire"></i>
+          <%= vibe.fire %>
+        </div>
+        <div class="chill-text">
+          <i class="fas fa-snowflake"></i>
+          <%= vibe.ice %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+  <% if current_user &&
+        current_user.id == params[:id].to_i %>
+    <li id="upload-vibe" class="user-vibes-list-item small-12 medium-5 large-4">
+      <div class="small-12">
+        <a href="/vibes/new"><i class="fas fa-upload"></i></a>
+        <br>
+        <%= link_to "new vibe",
+            new_vibe_path,
+            :id => "new-vibe-text" %>
+      </div>
     </li>
   <% end %>
   </ul>

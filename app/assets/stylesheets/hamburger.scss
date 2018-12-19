@@ -18,6 +18,43 @@
   animation-iteration-count: 1;
 }
 
+.hamburger-menu {
+  text-align: center;
+  width: 18%;
+  right: 0px;
+  position: absolute;
+  z-index: 1;
+}
+
+.hamburger-li a {
+  background-color: white;
+}
+
+.hamburger-menu a {
+  border-radius: 10px;
+  margin-top: 0.2rem;
+	display: block;
+  background-color: white;
+  box-shadow: 8px 6px 12px 6px rgba(0,0,0,0.2);
+}
+
+#first-hamburger-li {
+  margin-top: 0.5rem;
+}
+//
+// .hamburger-menu ul {
+// 	list-style-type: none;
+// }
+//
+// .hamburger-menu ul li a {
+//   border-radius: 10px;
+// }
+//
+// .sub-nav-row {
+//   width: 80%;
+//   padding: 0px;
+// }
+
 @-webkit-keyframes Hello {
   from { transform: scale(0); }
   5% { transform: scale(1); }

@@ -47,6 +47,37 @@ button.coverflow__button__25AqX {
   color: rgba(0,0,0, 0.0)
 }
 
+#discover-container {
+  height: 100%;
+  width: 100%;
+  margin-top: 3rem;
+  border-radius: 5%;
+  // border: solid 3px #476cff;
+  box-shadow: 4px 8px 16px 4px rgba(0,0,0,0.2);
+}
+
+.pro-pic-mini {
+  height: 25%;
+  width: 25%;
+  border-radius: 50%;
+  border: solid 1px aquamarine;
+}
+
+.user-avatar {
+  margin: 1rem;
+  display: inline-block;
+}
+
+#discover-vibes {
+  font-size: 2.5rem;
+  color: #476cff;
+  margin-top: .5em;
+  margin-bottom: .5em;
+  animation-name: Changecolor;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
+
 @-webkit-keyframes pulse {
   0% {
     -webkit-box-shadow: 0 0 0 0 rgba(93,12,93, 0.4);

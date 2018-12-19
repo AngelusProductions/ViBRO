@@ -25,7 +25,9 @@ class Hamburger extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      this.setState({ currentUser: body })
+      if (body != null) {
+        this.setState({ currentUser: body.user })
+      }
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -42,28 +44,39 @@ class Hamburger extends Component {
 
   render() {
     let logLink = ""
+    let userLink = ""
     let dropdownMenu = ""
 
     let icon = <i onClick={this.handleHamburgerClick} className={this.state.hamburgerClass}></i>
 
     if (this.state.dropdownShow) {
-      if (currentUser) {
-        let userPath = "/users/" + this.state.currentUser.id.toString()
-        let userLink = <a href={userPath}>my page</a>
-        let logLink = <a href="/users/sign_out">sign out</a>
+      if (this.state.currentUser != null) {
+        let userPath = "/users/" + this.state.currentUser.id
+        dropdownMenu = <div className="hamburger-menu">
+                          <ul className="row">
+                            <li className="small-12 columns hamburger-li" id="first-hamburger-li"><a href="/">home</a></li>
+                            <li className="small-12 columns hamburger-li"><a href={userPath}>my page</a></li>
+                            <li className="small-12 columns hamburger-li"><a href="/users/edit">settings</a></li>
+                            <li className="small-12 columns hamburger-li"><a className="sign-out"
+                                   href="/users/sign_out"
+                                   rel="nofollow"
+                                   data-method="delete"
+                                >sign out</a></li>
+                          </ul>
+                        </div>
       } else {
-        let logLink = ""
+        dropdownMenu = <div className="hamburger-menu">
+                          <ul>
+                            <li className="small-12 columns hamburger-li" id="first-hamburger-li"><a href="/">home</a></li>
+                            <li className="small-12 columns hamburger-li"><a href="/users/sign_in">sign in</a></li>
+                            <li className="small-12 columns hamburger-li"><a href="/users/sign_up">sign up</a></li>
+                          </ul>
+                        </div>
       }
-      dropdownMenu = <div className="navbar">
-                      {userLink}
-                      <a href="/users/edit">settings</a>
-                      {logLink}
-
-    </div>
     }
 
     return (
-      <div>
+      <div className="hamburger-container">
         {icon}
         {dropdownMenu}
       </div>
