@@ -10,4 +10,5 @@ class Vibe < ApplicationRecord
   has_many :collabs
   has_many :ideas
   has_many :mixes
+  has_many :reactions
 end

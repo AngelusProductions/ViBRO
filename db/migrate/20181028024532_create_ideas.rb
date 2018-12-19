@@ -4,9 +4,8 @@ class CreateIdeas < ActiveRecord::Migration[5.2]
       t.string :title, null: false
       t.string :description, null: false
       t.integer :time, null: false
+      t.integer :waves, default: 0
       t.string :audio_file
-      t.integer :fire
-      t.integer :ice
       t.boolean :accepted, default: false
 
       t.belongs_to :user, null: false

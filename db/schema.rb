@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_28_221459) do
+ActiveRecord::Schema.define(version: 2018_12_19_053114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,9 +31,8 @@ ActiveRecord::Schema.define(version: 2018_10_28_221459) do
     t.string "title", null: false
     t.string "description", null: false
     t.integer "time", null: false
+    t.integer "waves", default: 0
     t.string "audio_file"
-    t.integer "fire"
-    t.integer "ice"
     t.boolean "accepted", default: false
     t.bigint "user_id", null: false
     t.bigint "vibe_id", null: false
@@ -72,13 +71,22 @@ ActiveRecord::Schema.define(version: 2018_10_28_221459) do
     t.integer "runtime", default: 0
     t.string "audio_file", null: false
     t.text "blurb"
-    t.string "art"
     t.string "color"
     t.integer "bpm", null: false
     t.bigint "vibe_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["vibe_id"], name: "index_mixes_on_vibe_id"
+  end
+
+  create_table "reactions", force: :cascade do |t|
+    t.string "kind", null: false
+    t.bigint "user_id", null: false
+    t.bigint "vibe_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_reactions_on_user_id"
+    t.index ["vibe_id"], name: "index_reactions_on_vibe_id"
   end
 
   create_table "stems", force: :cascade do |t|
@@ -120,7 +128,6 @@ ActiveRecord::Schema.define(version: 2018_10_28_221459) do
     t.string "name", null: false
     t.string "art"
     t.text "blurb"
-    t.integer "waves", default: 0
     t.integer "fire", default: 0
     t.integer "ice", default: 0
     t.bigint "collab_id"

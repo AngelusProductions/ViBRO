@@ -2,9 +2,6 @@ class VibesController < ApplicationController
 
   def index
     @vibes = Vibe.all
-    @chillVibes = @vibes.sort_by(&:ice).reverse
-    @waveyVibes = @vibes.sort_by(&:waves).reverse
-    @fireVibes = @vibes.sort_by(&:fire).reverse
   end
 
   def show
@@ -17,7 +14,6 @@ class VibesController < ApplicationController
   end
 
   def create
-    binding.pry
     # @vibe = Vibe.new(vibe_params)
     @vibe.user = current_user
 

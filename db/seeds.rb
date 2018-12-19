@@ -1,6 +1,6 @@
 
 users_seeds = [
-  {email: "angelusproductions@gmail.com", password: 123456, first_name: "Corey", last_name: "Angelus", username: "Angelus", remote_pro_pic_url: "https://s3.amazonaws.com/vibro-development/Art/angelus.jpg", bio: "human from earth"},
+  {email: "angelusproductions@gmail.com", password: 123456, first_name: "Corey", last_name: "Angelus", username: "Angelus", remote_pro_pic_url: "https://s3.amazonaws.com/vibro-production/Art/angelus.jpg", bio: "human from earth"},
   {email: "cca257@nyu.edu", password: 123456, first_name: "Shmlorey", last_name: "Shmlangelus", username: "Shmlangelus", remote_pro_pic_url: "https://s3.amazonaws.com/vibro-development/Art/velvetopia pixelated.jpg", bio: "alien from mars"}
 ]
 
@@ -16,9 +16,9 @@ lineups_seeds = [
 ]
 
 vibes_seeds = [
-  {name: "Don\'t Phunq Up!", blurb: "title track from new funk/disco project", remote_art_url: "https://s3.amazonaws.com/vibro-development/Art/dontphunqup.jpeg", waves: 11, fire: 3, ice: 6, user_id: 1, manager_id: 1, lineup_id: 1},
-  {name: "Never Over", blurb: "quick loop that has potential", remote_art_url: "https://s3.amazonaws.com/vibro-development/Art/neverover.jpg", waves: 6, fire: 2, ice: 9, user_id: 1, manager_id: 1, lineup_id: 2},
-  {name: "Shadang", blurb: "overtly sexual track", remote_art_url: "https://s3.amazonaws.com/vibro-development/Art/shadang.gif", waves: 9, fire: 11, ice: 5, user_id: 1, manager_id: 1, lineup_id: 2}
+  {name: "Don\'t Phunq Up!", blurb: "title track from new funk/disco project", remote_art_url: "https://s3.amazonaws.com/vibro-development/Art/dontphunqup.jpeg", fire: 0, ice: 0, user_id: 1, manager_id: 1, lineup_id: 1},
+  {name: "Never Over", blurb: "quick loop that has potential", remote_art_url: "https://s3.amazonaws.com/vibro-development/Art/neverover.jpg", fire: 0, ice: 0, user_id: 1, manager_id: 1, lineup_id: 2},
+  {name: "Shadang", blurb: "overtly sexual track", remote_art_url: "https://s3.amazonaws.com/vibro-development/Art/shadang.gif", fire: 0, ice: 0, user_id: 1, manager_id: 1, lineup_id: 2}
 ]
 
 mixes_seeds = [
@@ -32,6 +32,12 @@ ideas_seeds = [
   {title: "Maybe a breakdown?", description: "I think you should try out some new chords and do something completely different here", time: 73, vibe_id: 1, mix_id: 1, user_id: 2},
   {title: "Love that idea!!", description: "Lemme try it. Be honest when you hear it okay?", time: 81, vibe_id: 1, mix_id: 1, user_id: 1},
   {title: "Bad bassline", description: "The chords you play here don\'t sync well with the bassline", time: 34, vibe_id: 1, mix_id: 2, user_id: 2}
+]
+
+reactions_seeds = [
+  {kind: "fire", user_id: 2, vibe_id: 1},
+  {kind: "ice", user_id: 2, vibe_id: 1},
+  {kind: "ice", user_id: 2, vibe_id: 1}
 ]
 
 users_seeds.each do |seed|
@@ -56,4 +62,8 @@ end
 
 ideas_seeds.each do |seed|
   Idea.create!(seed)
+end
+
+reactions_seeds.each do |seed|
+  Reaction.create!(seed)
 end

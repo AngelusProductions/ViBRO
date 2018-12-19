@@ -4,7 +4,6 @@ class CreateVibes < ActiveRecord::Migration[5.2]
       t.string :name, null: false
       t.string :art
       t.text :blurb
-      t.integer :waves, default: 0
       t.integer :fire, default: 0
       t.integer :ice, default: 0
 
