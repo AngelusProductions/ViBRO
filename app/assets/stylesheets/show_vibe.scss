@@ -85,6 +85,13 @@
   color: rebeccapurple;
 }
 
+.fa-fire,
+.fire-text,
+.fa-snowflake,
+.chill-text {
+  font-size: 2rem;
+}
+
 .tower-text,
 .chill-text,
 .fire-text {
@@ -103,6 +110,9 @@
   color: #ff2600;
 }
 
+.reaction-num {
+  margin-left: 0.5rem;
+}
 
 .fa-fire,
 #error-message {

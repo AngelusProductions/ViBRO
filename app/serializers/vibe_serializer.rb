@@ -1,5 +1,5 @@
 class VibeSerializer < ActiveModel::Serializer
-  attributes :id, :name, :blurb, :art, :mixes
+  attributes :id, :name, :blurb, :art, :fire, :ice, :mixes, :reactions
 
   belongs_to :user
   belongs_to :manager
@@ -7,5 +7,6 @@ class VibeSerializer < ActiveModel::Serializer
 
   has_many :collabs
   has_many :mixes
+  has_many :reactions
 
 end

@@ -40,11 +40,20 @@
     </section>
   </nav>
 
+  <script type="text/javascript">
+  $(document).ready(function(){
+    setTimeout(function(){
+      $('.flash').fadeOut();
+    }, 2000);
+  })
+  </script>
+
   <%- flash.each do |key, value| -%>
     <div class="flash flash-<%= key %>">
       <%= value %>
     </div>
   <%- end -%>
+
 
   <%= yield %>
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import VibeShow from '../components/VibeShow'
 import ProgressBar from 'progressbar.js'
 import AudioPlayer from '../components/AudioPlayer'
-import Mix from '../components/Mix'
 
 class AudioContainer extends Component {
  constructor(props) {
@@ -171,8 +171,19 @@ class AudioContainer extends Component {
  }
 
  render() {
+   let vibeShow;
+
+   if (this.state.afterFetch) {
+     vibeShow = <VibeShow
+                      vibe={this.state.vibe}
+                    />
+   } else {
+     vibeShow = ""
+   }
+
    return(
      <div>
+      {vibeShow}
 
       <AudioPlayer
         vibe={this.state.vibe}
