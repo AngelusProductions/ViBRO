@@ -7,7 +7,8 @@ class IndexPageContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      vibes: []
+      vibes: [],
+      users: []
     };
   }
 
@@ -27,6 +28,22 @@ class IndexPageContainer extends Component {
        this.setState({ vibes: body.vibes })
      })
      .catch(error => console.error(`Error in fetch: ${error.message}`));
+
+    fetch(`/api/v1/users`)
+      .then(response => {
+          if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+              error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({ users: body.users })
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   handleImageClick(event) {
@@ -43,9 +60,32 @@ class IndexPageContainer extends Component {
                  />
     }
 
+    let userList = this.state.users.map(user => {
+      let link = "/users/" + user.id
+      let proPicUrl = user.pro_pic.url
+      if (user.pro_pic != null && user.vibes.length > 0) {
+        return <div id="discover-tile" key={user.id}>
+                <div className="user-avatar">
+                    <a href={link}>
+                      <img src={proPicUrl} className="pro-pic-mini"/>
+                    </a>
+                 </div>
+                 <i className="fas fa-broadcast-tower"></i>
+                 <span id="tower-text">{user.vibes.length}</span>
+              </div>
+      }
+    })
+
     return(
-      <div id="coverflow-outer">
-        {carousel}
+      <div id="index-page">
+        <div id="coverflow-outer">
+          {carousel}
+          <span id="discover-vibes">DAiLY DiSCOVERiES</span>
+        </div>
+        <div id="discover-container">
+          {userList}
+          <span id="discover-vibes">WAViEST USERS</span>
+        </div>
       </div>
     );
   }

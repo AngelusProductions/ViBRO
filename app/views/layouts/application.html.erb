@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>ViBRO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,11 +31,11 @@
       <ul class="right" id="sign">
         <%- if current_user -%>
           <li><%= link_to current_user.username, user_path(current_user.id), :class => "username" %></li>
-          <li><%= link_to 'sign out', destroy_user_session_path, method: :delete, :class => "sign-out" %></li>
+          <!-- <li><%= link_to image_tag(current_user.pro_pic.url), user_path(current_user.id), :class => "pro-pic-mini" %></li> -->
         <%- else -%>
-          <li><%= link_to 'sign up', new_user_registration_path, :class => "sign-up" %></li>
           <li><%= link_to 'sign in', new_user_session_path, :class => "sign-in" %></li>
         <%- end -%>
+          <li id="hamburger"></li>
       </ul>
     </section>
   </nav>
