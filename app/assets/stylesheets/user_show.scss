@@ -61,7 +61,30 @@
   box-shadow: 2px 2px #ed1eed;
 }
 
+.fire-text {
+  color: #ff2600;
+}
+
+.chill-text {
+  color: #00f6ff;
+}
+
+.fire-icon {
+  animation: TwitchFlip;
+  animation-delay: 10s;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
+
+.ice-icon {
+  animation: TwitchRotate;
+  animation-delay: 5s;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
+
 .fa-upload,
+.fa-broadcast-tower,
 #tower-text {
   color: royalblue;
 }

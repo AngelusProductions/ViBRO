@@ -79,12 +79,12 @@ class IndexPageContainer extends Component {
     return(
       <div id="index-page">
         <div id="coverflow-outer">
-          {carousel}
-          <span id="discover-vibes">DAiLY DiSCOVERiES</span>
+        <span className="discover-vibes">DiSCOVER DAiLY</span>
         </div>
+        {carousel}
         <div id="discover-container">
           {userList}
-          <span id="discover-vibes">WAViEST USERS</span>
+          <span className="discover-vibes">TODAY&#39;S WAViEST</span>
         </div>
       </div>
     );

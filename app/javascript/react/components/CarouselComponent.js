@@ -13,6 +13,7 @@ const CarouselComponent = ( props => {
                    key={vibe.id}
                    onClick={refreshPage}
               >
+              <div className="carousel-text">{vibe.name} by {vibe.user.username}</div>
                 <img src={vibe.art.url}
                   key={vibe.id}
                   id={vibe.id}
@@ -25,15 +26,16 @@ const CarouselComponent = ( props => {
     return (
       <div id="coverflow-inner">
         <Coverflow
-          width={960}
+          width={1000}
           height={480}
           navigation={true}
           displayQuantityOfSide={1}
           navigation={false}
-          clickable={true}
+          clickable={false}
           currentFigureScale={2}
           otherFigureScale={0.8}
           enableHeading={true}
+          enableScroll={true}
         >
           {carouselPics}
         </Coverflow>

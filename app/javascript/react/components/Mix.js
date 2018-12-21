@@ -15,20 +15,29 @@ const Mix = ( props => {
     )
   })
 
-  if (props.newMixShow) {
-    mixForm = <MixForm
-                vibe={props.vibe}
-                newMixShow={props.newMixShow}
-                mixes={props.mixes}
-                handleNewMixClick={props.handleNewMixClick}
-                handleNewMixAdded={props.handleNewMixAdded}
-              />
+  if (props.newMixButtonShow && props.newMixShow) {
+    mixForm = <div>
+                <div className="small-4 right">
+                  <button id="new-mix-button" className="right" onClick={props.handleNewMixClick}>{mixText}</button>
+                </div>
+                <MixForm
+                  vibe={props.vibe}
+                  newMixShow={props.newMixShow}
+                  mixes={props.mixes}
+                  handleNewMixClick={props.handleNewMixClick}
+                  handleNewMixAdded={props.handleNewMixAdded}
+                />
+              </div>
     mixText = "close form"
+  } else if (props.newMixButtonShow) {
+    mixText = "new mix"
+    mixForm = <div className="small-4 right">
+                <button id="new-mix-button" className="right" onClick={props.handleNewMixClick}>{mixText}</button>
+              </div>
   } else {
     mixForm = ""
-    mixText = "new mix"
+    mixText = ""
   }
-
 
  return(
    <div className="mix right small-7">
@@ -39,9 +48,6 @@ const Mix = ( props => {
     </div>
     <h2 id="mix-name">{mix.name}</h2>
     <h3 id="mix-blurb">{mix.blurb}</h3>
-    <div className="small-4 right">
-      <button id="new-mix-button" className="right" onClick={props.handleNewMixClick}>{mixText}</button>
-    </div>
     {mixForm}
     <AudioVisualizer />
   </div>

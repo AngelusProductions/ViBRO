@@ -9,11 +9,4 @@ class ReactionsController < ApplicationController
     @reaction = Reaction.find(params[:id])
   end
 
-  def new
-  end
-
-  def create
-    binding.pry
-  end
-
 end
