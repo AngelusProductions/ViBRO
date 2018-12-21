@@ -34,11 +34,11 @@ ideas_seeds = [
   {title: "Bad bassline", description: "The chords you play here don\'t sync well with the bassline", time: 34, vibe_id: 1, mix_id: 2, user_id: 2}
 ]
 
-reactions_seeds = [
-  {kind: "fire", user_id: 2, vibe_id: 1},
-  {kind: "ice", user_id: 2, vibe_id: 1},
-  {kind: "ice", user_id: 2, vibe_id: 1}
-]
+# reactions_seeds = [
+#   {kind: "fire", user_id: 2, vibe_id: 1},
+#   {kind: "ice", user_id: 2, vibe_id: 1},
+#   {kind: "ice", user_id: 2, vibe_id: 1}
+# ]
 
 users_seeds.each do |seed|
   User.create!(seed)
@@ -64,6 +64,6 @@ ideas_seeds.each do |seed|
   Idea.create!(seed)
 end
 
-reactions_seeds.each do |seed|
-  Reaction.create!(seed)
-end
+# reactions_seeds.each do |seed|
+#   Reaction.create!(seed)
+# end
