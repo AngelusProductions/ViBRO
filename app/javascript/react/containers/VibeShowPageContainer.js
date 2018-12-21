@@ -3,7 +3,7 @@ import VibeShow from '../components/VibeShow'
 import ProgressBar from 'progressbar.js'
 import AudioPlayer from '../components/AudioPlayer'
 
-class AudioContainer extends Component {
+class VibeShowPageContainer extends Component {
  constructor(props) {
    super(props);
    this.state = {
@@ -36,6 +36,7 @@ class AudioContainer extends Component {
      playing: false,
 
      newMixShow: false,
+     newMixButtonShow: false,
      audioPlayerShow: false,
 
      afterFetch: false,
@@ -45,7 +46,10 @@ class AudioContainer extends Component {
 
      ideas: [],
      newIdeaModalShow: false,
-     newIdeaClickProgressPercent: 0
+     newIdeaClickProgressPercent: 0,
+
+     reactions: [],
+     currentUser: null
    }
    this.handlePlayClick = this.handlePlayClick.bind(this)
 
@@ -63,6 +67,26 @@ class AudioContainer extends Component {
  }
 
  componentDidMount() {
+   fetch(`/api/v1/current_user`)
+     .then(response => {
+         if (response.ok) {
+         return response;
+       } else {
+         let errorMessage = `${response.status} (${response.statusText})`,
+             error = new Error(errorMessage);
+         throw(error);
+       }
+     })
+     .then(response => response.json())
+     .then(body => {
+       if (body) {
+         this.setState({ currentUser: body.user })
+       } else {
+         this.setState({ currentUser: {} })
+       }
+     })
+     .catch(error => console.error(`Error in fetch: ${error.message}`));
+
    fetch(`/api/v1/vibes/${this.props.params.id}`)
     .then(response => {
         if (response.ok) {
@@ -76,17 +100,25 @@ class AudioContainer extends Component {
     .then(response => response.json())
     .then(body => {
       this.setState({ vibe: body.vibe,
-                      mixes: body.vibe.mixes })
+                      mixes: body.vibe.mixes,
+                      reactions: body.vibe.reactions })
       this.afterFetch()
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
  }
 
  afterFetch () {
+   let newMixButtonShow = false
    let mix = this.state.mixes[this.state.mixNum - 1]
+
+   if (this.state.currentUser.id === this.state.vibe.user.id) {
+     newMixButtonShow = true
+   }
+
    this.setState({ mix: mix,
                    afterFetch: true,
                    audioPlayerShow: true,
+                   newMixButtonShow: newMixButtonShow,
                    ideas: mix.ideas })
  }
 
@@ -176,6 +208,8 @@ class AudioContainer extends Component {
    if (this.state.afterFetch) {
      vibeShow = <VibeShow
                       vibe={this.state.vibe}
+                      currentUser={this.state.currentUser}
+                      reactions={this.state.reactions}
                     />
    } else {
      vibeShow = ""
@@ -207,6 +241,7 @@ class AudioContainer extends Component {
         playing={this.state.playing}
         afterFetch={this.state.afterFetch}
         newMixShow={this.state.newMixShow}
+        newMixButtonShow={this.state.newMixButtonShow}
         audioPlayerShow={this.state.audioPlayerShow}
 
         progressBar={this.state.progressBar}
@@ -214,6 +249,8 @@ class AudioContainer extends Component {
         handleProgressBarCreated={this.handleProgressBarCreated}
         handleProgressBarDestroyed={this.handleProgressBarDestroyed}
         progressBarDestroyed={this.state.progressBarDestroyed}
+
+        currentUser={this.state.currentUser}
       />
 
      </div>
@@ -221,4 +258,4 @@ class AudioContainer extends Component {
  }
 }
 
-export default AudioContainer;
+export default VibeShowPageContainer;

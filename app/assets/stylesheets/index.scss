@@ -8,7 +8,6 @@
   background: aquamarine;
   cursor: pointer;
   box-shadow: 0 0 0 rgba(93,12,93, 0.4);
-  animation: pulse 2s infinite;
 }
 .pulse:hover {
   animation: none;
@@ -22,17 +21,33 @@
   align-self: center;
 }
 
+.carousel-text {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #ff00dc;
+  text-decoration: none;
+  text-shadow: 1px 1px #476cff;
+}
+.carousel-text:hover {
+  color: #476cff;
+  animation-name: Pulsatehover;
+  animation-duration: .25s;
+  animation-iteration-count: infinite;
+  text-decoration: none;
+}
+
 #coverflow-outer {
   margin-top: 3rem;
-  background-color: white;
-  border: solid 15px #ed1eed;
-  box-shadow: 5px 10px aquamarine;
+  // background-color: white;
+  // border: solid 15px #ed1eed;
+  // box-shadow: 5px 10px aquamarine;
+  // border-radius: 20%;
 }
 #coverflow-outer:hover {
-  filter: saturate(2);
-  background-color: white;
-  border: solid 15px #476cff;
-  box-shadow: 5px 10px #ed1eed;
+  filter: saturate(1.1);
+  // background-color: white;
+  // border: solid 15px #476cff;
+  // box-shadow: 5px 10px #ed1eed;
   animation-name: Pulsatehover;
   animation-duration: .25s;
   animation-iteration-count: infinite;
@@ -40,20 +55,15 @@
 
 #coverflow-inner {
   font-family: monospace;
-  border: 15px solid white;
-}
-
-button.coverflow__button__25AqX {
-  color: rgba(0,0,0, 0.0)
+  radius: 20%;
+  animation: pulse 2s infinite;
 }
 
 #discover-container {
   height: 100%;
   width: 100%;
   margin-top: 3rem;
-  border-radius: 5%;
-  // border: solid 3px #476cff;
-  box-shadow: 4px 8px 16px 4px rgba(0,0,0,0.2);
+  box-shadow: 4px 8px 16px 4px rgba(0,0,0,0.3);
 }
 
 .pro-pic-mini {
@@ -68,14 +78,13 @@ button.coverflow__button__25AqX {
   display: inline-block;
 }
 
-#discover-vibes {
+.discover-vibes {
   font-size: 2.5rem;
   color: #476cff;
-  margin-top: .5em;
   margin-bottom: .5em;
-  animation-name: Changecolor;
-  animation-duration: 10s;
-  animation-iteration-count: infinite;
+  border-radius: 50%;
+  padding: 1rem;
+  animation: Pulsatehover 0.5s infinite;
 }
 
 @-webkit-keyframes pulse {

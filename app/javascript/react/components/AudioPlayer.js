@@ -108,6 +108,8 @@ const AudioPlayer = ( props => {
         handleNewMixClick={props.handleNewMixClick}
         handleNewMixAdded={props.handleNewMixAdded}
         newMixShow={props.newMixShow}
+        newMixButtonShow={props.newMixButtonShow}
+        currentUser={props.currentUser}
       />
 
       {newIdeaModal}

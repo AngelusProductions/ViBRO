@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :current_user, only: [:index]
       resources :users
       resources :vibes do
+        resources :reactions
         resources :mixes do
           resources :ideas
         end
