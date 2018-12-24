@@ -19,8 +19,10 @@ class Api::V1::ReactionsController < ApplicationController
     if @reaction.save!
       if params[:kind] === "fire"
         @vibe.fire += 1
+        @vibe.save!
       elsif params[:kind] === "ice"
         @vibe.ice += 1
+        @vibe.save!
       end
       render json: @reaction
     else

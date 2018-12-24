@@ -11,7 +11,8 @@ class VibeShow extends Component {
       fireTextId: "fire-text-deselected",
       iceTextId: "ice-text-deselected",
       userReaction: {},
-      errorMessage: ""
+      errorMessage: "",
+      errorMessageClass: ""
     };
     this.handleFireClick = this.handleFireClick.bind(this)
     this.handleIceClick = this.handleIceClick.bind(this)
@@ -83,7 +84,8 @@ class VibeShow extends Component {
                         fireTextId: "fire-text-selected",
                         iceIconId: "ice-icon-deselected",
                         iceTextId: "ice-text-deselected",
-                        errorMessage: ""})
+                        errorMessage: "",
+                        errorMessageClass: ""})
       } else {
         let payload = new FormData()
         payload.append("kind", "fire")
@@ -98,10 +100,12 @@ class VibeShow extends Component {
         this.setState({ userReaction: {},
                         fireTally: this.state.fireTally - 1,
                         fireIconId: "fire-icon-deselected",
-                        fireTextId: "fire-text-deselected"})
+                        fireTextId: "fire-text-deselected",
+                        errorMessageClass: ""})
       }
     } else {
-      this.setState({ errorMessage: "please log in first!"})
+      this.setState({ errorMessage: "please log in first!",
+                      errorMessageClass: "vibe-show-error"})
     }
   }
 
@@ -136,7 +140,8 @@ class VibeShow extends Component {
                         iceTextId: "ice-text-selected",
                         fireIconId: "fire-icon-deselected",
                         fireTextId: "fire-text-deselected",
-                        errorMessage: ""})
+                        errorMessage: "",
+                        errorMessageClass: ""})
       } else {
         let payload = new FormData()
         payload.append("kind", "ice")
@@ -151,10 +156,12 @@ class VibeShow extends Component {
         this.setState({ userReaction: {},
                         iceTally: this.state.iceTally - 1,
                         iceIconId: "ice-icon-deselected",
-                        iceTextId: "ice-text-deselected"})
+                        iceTextId: "ice-text-deselected",
+                        errorMessageClass: ""})
       }
     } else {
-      this.setState({ errorMessage: "please log in first!"})
+      this.setState({ errorMessage: "please log in first!",
+                      errorMessageClass: "vibe-show-error"})
     }
   }
 
@@ -195,7 +202,7 @@ class VibeShow extends Component {
                 </div>
                 <div className={feelinClass} id="feelin">{feelin}</div>
               </div>
-              <span className="vibe-show-error">{this.state.errorMessage}</span>
+              <div className={this.state.errorMessageClass}>{this.state.errorMessage}</div>
             </div>
             <img src={artUrl} className="vibe-art small-6 medium-6 columns" />
           </div>
