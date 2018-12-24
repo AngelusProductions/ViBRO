@@ -82,7 +82,7 @@ class VibeShowPageContainer extends Component {
        if (body) {
          this.setState({ currentUser: body.user })
        } else {
-         this.setState({ currentUser: {} })
+         this.setState({ currentUser: null })
        }
      })
      .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -111,7 +111,8 @@ class VibeShowPageContainer extends Component {
    let newMixButtonShow = false
    let mix = this.state.mixes[this.state.mixNum - 1]
 
-   if (this.state.currentUser.id === this.state.vibe.user.id) {
+   if (this.state.currentUser != null &&
+       this.state.currentUser.id === this.state.vibe.user.id) {
      newMixButtonShow = true
    }
 
