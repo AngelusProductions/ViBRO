@@ -147,7 +147,7 @@ class VibeShowPageContainer extends Component {
  }
 
  handleMixClick(event) {
-   let mixNum = parseInt(event.target.value)
+   let mixNum = parseInt(event.target.id)
    let mix = this.state.mixes[mixNum - 1]
    let player = document.getElementsByTagName("audio")[0]
    player.pause()
@@ -205,7 +205,6 @@ class VibeShowPageContainer extends Component {
 
  render() {
    let vibeShow;
-
    if (this.state.afterFetch) {
      vibeShow = <VibeShow
                       vibe={this.state.vibe}
