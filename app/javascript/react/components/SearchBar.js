@@ -22,11 +22,20 @@ class SearchBar extends Component {
 
   handleClick(event) {
     let searchFieldPosition = document.getElementById('search-field').getBoundingClientRect()
+    let logoPosition = document.getElementsByClassName('vibro-logo')[0].getBoundingClientRect()
+
     if (event.clientX < searchFieldPosition.left ||
         event.clientX > searchFieldPosition.right ||
         event.clientY < searchFieldPosition.top ||
         event.clientY > searchFieldPosition.bottom) {
       this.setState({ searchResultShow: false })
+    }
+
+    if (event.clientX > logoPosition.left &&
+        event.clientX < logoPosition.right &&
+        event.clientY > logoPosition.top &&
+        event.clientY < logoPosition.bottom) {
+      window.location = "/"
     }
 
     if (event.target.href != undefined) {
