@@ -32,6 +32,7 @@ class Hamburger extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+
   handleHamburgerClick () {
     if (this.state.hamburgerClass === "fas fa-bars") {
       this.setState({ hamburgerClass: "fas fa-times",
@@ -41,6 +42,8 @@ class Hamburger extends Component {
                       dropdownShow: false })
     }
   }
+
+  handleSearch
 
   render() {
     let logLink = ""
