@@ -33,11 +33,22 @@ body {
   background-repeat: no-repeat;
 }
 
+ul {
+  list-style: none;
+}
+
+//
+// .top-bar-section {
+//   float: right;
+//   margin: auto;
+// }
+
 .top-bar {
   background:rgba(0,0,0,0);
   border-radius: 30px;
   background-size: auto;
   margin-top: 20px;
+  display: inline;
 }
 
 a.vibro-logo img {
@@ -108,10 +119,6 @@ ul#sign.right a:hover {
   animation-name: Pulsatehover;
   animation-duration: 3s;
   animation-iteration-count:infinite;
-}
-
-ul {
-  list-style: none;
 }
 
 .vibe-name,

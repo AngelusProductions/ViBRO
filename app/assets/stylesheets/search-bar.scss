@@ -1,0 +1,160 @@
+// @import "compass/css3";
+
+* {
+  box-sizing: border-box;
+}
+
+.search-list {
+  width: 100%;
+  text-align: left;
+  border-radius: 10px;
+  width: 12.5rem;
+  position: absolute;
+  z-index: 1;
+  box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.2);
+}
+
+.search-list-li a {
+  text-decoration: none;
+  color: blueviolet;
+  z-index: 1;
+  margin-top: 0.2rem;
+  display: block;
+  background-color: white;
+}
+.search-list-li a:hover {
+  color: aquamarine;
+}
+
+button.btn {
+  text-align: center;
+  &:focus {
+    outline: none;
+  }
+  &.btn-search,
+  &.btn-reset {
+    background: hotpink;
+    border: none;
+    height: 30px;
+    font-size: 12px;
+    padding: 4px;
+    position: absolute;
+    width: 30px;
+  }
+}
+
+.sample {
+  float: left;
+  // height: 50px;
+  margin: 0 8%;
+  position: relative;
+  width: 20%;
+  &.eleven,
+  &.twelve {
+    input {
+      border-radius: 15px;
+      transition: all .2s ease-in-out;
+      width: 120px;
+      &:focus {
+        width: 200px;
+        ~ button {
+          &.btn-search {
+            animation: jumpTowardSearch 1.2s linear;
+            background: #FF00FF;
+            color: #fff;
+            left: 172px;
+          }
+          &.btn-reset {
+            animation: jumpTowardReset 1.2s linear .4s;
+            left: 202px;
+          }
+        }
+      }
+    }
+    button.btn {
+      transition: all .6s ease-in-out;
+      &.btn-search {
+        background: #00FF00;
+        border-radius: 50%;
+        height: 26px;
+        left: 92px;
+        top: 2px;
+        width: 26px;
+      }
+      &.btn-reset {
+        background: #fff;
+        border: 1px solid #00FF00;
+        border-radius: 50%;
+        font-size: 10px;
+        height: 20px;
+        left: 92px;
+        line-height: 20px;
+        padding: 0;
+        top: 5px;
+        width: 20px;
+        z-index: -1;
+      }
+    }
+  }
+}
+
+@keyframes bounceRight {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+@keyframes jumpTowardSearch {
+  0% {
+    background: #ccc;
+    opacity: 1;
+    transform: rotateZ(0deg) scale(1);
+  }
+  20% {
+    background: #ccc;
+    opacity: 0;
+    transform: rotateZ(-60deg) scale(50);
+  }
+  55% {
+    background: hotpink;
+    opacity: 0;
+    transform: rotateZ(-30deg) scale(100);
+  }
+  90% {
+    background: hotpink;
+    opacity: 0;
+    transform: rotateZ(-30deg) scale(50);
+  }
+  100% {
+    background: hotpink;
+    opacity: 1;
+    transform: rotateZ(0deg) scale(1);
+  }
+}
+@keyframes jumpTowardReset {
+  0% {
+    opacity: 0;
+    transform: rotateZ(0deg) scale(1);
+  }
+  20% {
+    opacity: 0;
+    transform: rotateZ(-60deg) scale(50);
+  }
+  55% {
+    opacity: 0;
+    transform: rotateZ(-30deg) scale(100);
+  }
+  90% {
+    opacity: 0;
+    transform: rotateZ(-30deg) scale(50);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateZ(0deg) scale(1);
+  }
+}

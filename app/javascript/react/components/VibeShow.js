@@ -187,9 +187,7 @@ class VibeShow extends Component {
           <div className="vibe-show-page-div row">
             <div className="song-info small-6 medium-6 columns">
               <h1 className="vibe-name">{this.props.vibe.name}</h1>
-              <h2>
-                <a href={userLink} className="vibe-user" id="show-page-vibe-name">{this.props.vibe.user.username}</a>
-              </h2>
+              <h2><a href={userLink} className="vibe-user" id="show-page-vibe-name">{this.props.vibe.user.username}</a></h2>
               <p className="vibe-blurb">{this.props.vibe.blurb}</p>
               <div className="reactions row">
                 <div className="fire column">
