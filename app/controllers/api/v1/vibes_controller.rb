@@ -40,9 +40,13 @@ class Api::V1::VibesController < ApplicationController
   end
 
   def search
-    @vibes = Vibe.where("name ILIKE ? OR blurb ILIKE ?",
-                        "%#{params[:search_field]}%",
-                        "%#{params[:search_field]}%")
+    if params[:search_field] != ""
+      @vibes = Vibe.where("name ILIKE ? OR blurb ILIKE ?",
+                          "%#{params[:search_field]}%",
+                          "%#{params[:search_field]}%")
+    else
+      @vibes = Vibe.all.limit(10).order(:created_at)
+    end
     render json: @vibes
   end
 
