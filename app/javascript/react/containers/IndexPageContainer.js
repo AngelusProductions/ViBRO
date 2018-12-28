@@ -84,7 +84,7 @@ class IndexPageContainer extends Component {
         {carousel}
         <div id="discover-container">
           {userList}
-          <span className="discover-vibes">TODAY&#39;S WAViEST</span>
+          <span className="discover-vibes">WAViEST ARTiSTS</span>
         </div>
       </div>
     );
