@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       post 'vibes/search', to: 'vibes#search'
+      post 'users/search', to: 'users#search'
       resources :current_user, only: [:index]
       resources :users
       resources :vibes do
