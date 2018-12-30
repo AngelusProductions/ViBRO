@@ -148,14 +148,12 @@ class VibeShowPageContainer extends Component {
    let mixNum = parseInt(event.target.id)
    let mix = this.state.mixes[mixNum - 1]
    let player = document.getElementsByTagName("audio")[0]
-   player.pause()
 
    if (this.state.mixNum != mixNum ) {
+     player.pause()
      this.setState({ mix: mix,
                      mixNum: mixNum,
                      playing: false });
-   } else {
-     this.setState({ playing: false });
    }
  }
 
@@ -177,7 +175,6 @@ class VibeShowPageContainer extends Component {
    event.preventDefault()
 
    let newIdeaClickPageHeight = event.clientY
-
    let progressBarTopHeight = document.getElementById("container").getBoundingClientRect().top
    let progressBarBottomHeight = document.getElementById("container").getBoundingClientRect().bottom
    let progressBarLength = document.getElementById("container").getBoundingClientRect().bottom - document.getElementById("container").getBoundingClientRect().top

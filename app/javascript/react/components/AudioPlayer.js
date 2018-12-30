@@ -153,7 +153,7 @@ class AudioPlayer extends Component {
           url={url}
         />
 
-          <div id="container" >
+          <div id="container" onClick={this.props.handleNewIdeaClick}>
             {ideaIcons}
           </div>
           <i className="fas fa-mouse-pointer"></i>
