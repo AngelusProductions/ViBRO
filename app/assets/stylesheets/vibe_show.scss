@@ -124,6 +124,7 @@
 #ice-icon-selected,
 #ice-text-deselected,
 #ice-text-selected {
+  z-index: 1;
   margin-left: 0.5rem;
   display: inline-block;
 }
@@ -201,9 +202,11 @@
 
 .feelin-fire,
 .feelin-ice {
-  margin-top: 1.5rem;
+  // margin-top: 1.5rem;
   font-size: 2rem;
   padding: 0;
+  z-index: 1;
+  // position: absolute;
 }
 
 .feelin-fire {
@@ -310,10 +313,6 @@
 
 .show-page-top {
   margin-bottom: 4rem;
-}
-
-.player-div {
-  margin-top: 4rem;
 }
 
 #show-page-vibe-name,

@@ -57,6 +57,7 @@ class NewIdeaModal extends Component {
       payload.append("time", newIdeaTime)
       payload.append("user_id", this.state.currentUser.id)
       payload.append("vibe_id", this.props.vibe.id)
+      payload.append("mix_id_copy", this.props.mix.id)
 
       fetch(`/api/v1/vibes/${this.props.vibe.id}/mixes/${this.props.mixNum}/ideas`, {
         method: 'POST',
