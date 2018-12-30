@@ -14,9 +14,15 @@ class Api::V1::IdeasController < ApplicationController
   end
 
   def create
-    @idea = Idea.new(idea_params)
-
-    if @idea.save
+    @idea = Idea.new
+    @idea.title = params[:title]
+    @idea.description = params[:description]
+    @idea.time = params[:time]
+    @idea.mix_id = params[:mix_id_copy]
+    @idea.vibe_id = params[:vibe_id]
+    @idea.user_id = params[:user_id]
+    
+    if @idea.save!
       render json: @idea
     else
       error = @idea.errors.full_messages.join(', ')
@@ -24,9 +30,4 @@ class Api::V1::IdeasController < ApplicationController
     end
   end
 
-  private
-
-  def idea_params
-    params.permit(:title, :description, :time, :audio_file, :mix_id, :vibe_id, :user_id, :accepted, :fire, :ice)
-  end
 end

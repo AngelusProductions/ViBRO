@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import MixForm from './MixForm'
-import AudioVisualizer from '../components/AudioVisualizer'
+import AudioVisualizer from './AudioVisualizer'
+
 
 class Mix extends Component {
   constructor(props) {
@@ -47,15 +48,17 @@ class Mix extends Component {
 
    return(
      <div className="mix right small-7">
-     <div className="radio-button-container">
-        <div id="mixes-label">mixes:</div>
-       {mixRadio}
-     </div>
+       <div className="radio-button-container">
+          <div id="mixes-label">mixes:</div>
+         {mixRadio}
+       </div>
       <h1 id="mix-num">MIX #{this.props.mix.number}</h1>
       <h2 id="mix-name">{this.props.mix.name}</h2>
       <h3 id="mix-blurb">{this.props.mix.blurb}</h3>
-      {mixForm}
+
       <AudioVisualizer />
+      {mixForm}
+
     </div>
    )
   }

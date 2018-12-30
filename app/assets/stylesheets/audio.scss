@@ -1,6 +1,3 @@
-.show-page {
-  margin: 1rem;
-}
 
 .player-div {
   height: 400px;
@@ -80,8 +77,17 @@
 }
 
 .visualizer {
-  margin-top: 15rem;
-  transform: rotate(90deg);
+  margin-top: 35rem;
+  // margin-right: 15rem;
+  z-index: -1;
+  // position: absolute;
+  transform: rotate(-90deg);
+  // padding-bottom: 1rem;
+  // display: inline-block;
+  // border-style: dotted;
+  border-bottom: 2px dotted #80ffbf;
+  // box-shadow: 5px 10px aquamarine;
+
 }
 
 @-webkit-keyframes Spin-CW {

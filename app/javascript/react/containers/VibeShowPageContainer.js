@@ -86,7 +86,6 @@ class VibeShowPageContainer extends Component {
        }
      })
      .catch(error => console.error(`Error in fetch: ${error.message}`));
-
    fetch(`/api/v1/vibes/${this.props.params.id}`)
     .then(response => {
         if (response.ok) {
@@ -109,18 +108,17 @@ class VibeShowPageContainer extends Component {
 
  afterFetch () {
    let newMixButtonShow = false
-   let mix = this.state.mixes[this.state.mixNum - 1]
 
    if (this.state.currentUser != null &&
        this.state.currentUser.id === this.state.vibe.user.id) {
      newMixButtonShow = true
    }
 
-   this.setState({ mix: mix,
+   this.setState({ mix: this.state.mixes[this.state.mixNum - 1],
                    afterFetch: true,
                    audioPlayerShow: true,
                    newMixButtonShow: newMixButtonShow,
-                   ideas: mix.ideas })
+                   ideas: this.state.vibe.ideas })
  }
 
   handleProgressBarCreated(progressBar) {

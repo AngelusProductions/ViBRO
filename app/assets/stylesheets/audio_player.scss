@@ -79,28 +79,6 @@
   background-position: 0px -70px;
 }
 
-.visualizer {
-  // margin-left: 15rem;
-  transform: rotate(-90deg);
-}
-
-.click-me,
-.fa-mouse-pointer {
-  color: #ed1eed;
-  animation-name: Pulse;
-  animation-iteration-count: infinite;
-}
-
-.fa-mouse-pointer {
-  margin-top: 20.5rem;
-  margin-left: 2rem;
-  animation-duration: .25s;
-}
-
-.click-me {
-  animation-duration: 2s;
-}
-
 @-webkit-keyframes Spin-CW {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

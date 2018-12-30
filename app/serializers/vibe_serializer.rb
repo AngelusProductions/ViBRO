@@ -8,5 +8,6 @@ class VibeSerializer < ActiveModel::Serializer
   has_many :collabs
   has_many :mixes
   has_many :reactions
+  has_many :ideas
 
 end

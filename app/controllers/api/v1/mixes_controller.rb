@@ -1,3 +1,5 @@
+require 'taglib'
+
 class Api::V1::MixesController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
 
@@ -17,11 +19,20 @@ class Api::V1::MixesController < ApplicationController
     @mix = Mix.new(mix_params)
     @mix.number = @vibe.mixes.length + 1
 
+    set_duration(@mix)
+
     if @mix.save
       render json: @mix
     else
       error = @mix.errors.full_messages.join(', ')
       render json: error
+    end
+  end
+
+  def set_duration(mix)
+    TagLib::FileRef.open(mix.audio_file.path) do |file|
+      properties = file.audio_properties
+      mix.runtime = properties.length
     end
   end
 
@@ -32,7 +43,7 @@ class Api::V1::MixesController < ApplicationController
                   :blurb,
                   :color,
                   :audio_file,
-                  :bpm, 
+                  :bpm,
                   :vibe_id)
   end
 

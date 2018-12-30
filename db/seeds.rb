@@ -22,10 +22,10 @@ vibes_seeds = [
 ]
 
 mixes_seeds = [
-  {number: 1, name: "loop for potential title track off of Vibro\'s new album: first mix", blurb: "where should I go from here?", bpm: 76, color: "blueviolet", remote_audio_file_url: "https://s3.amazonaws.com/vibro-development/Vibes/Don't+Phunq+Up!+1.m4a", vibe_id: 1 },
-  {number: 2, name: "second mix: expanded the loop and added breakdown", blurb: "how do I end this?", bpm: 76, color: "aquamarine", remote_audio_file_url: "https://s3.amazonaws.com/vibro-development/Vibes/Don't+Phunq+Up!+2.mp3", vibe_id: 1 },
-  {number: 1, name: "first draft loop", blurb: "where should I go with this?", bpm: 114, color: "LawnGreen", remote_audio_file_url: "https://s3.amazonaws.com/vibro-development/Vibes/NeverOver.mp3", vibe_id: 2 },
-  {number: 1, name: "old favorite of mine", blurb: "should I do something different at the end?", bpm: 83, color: "LightCoral", remote_audio_file_url: "https://s3.amazonaws.com/vibro-development/Vibes/Shadang.mp3", vibe_id: 3 }
+  {number: 1, name: "loop for potential title track off of Vibro\'s new album: first mix", blurb: "where should I go from here?", bpm: 76, color: "blueviolet", remote_audio_file_url: "https://s3.amazonaws.com/vibro-development/Vibes/Don't+Phunq+Up!+1.m4a", runtime: 91, vibe_id: 1 },
+  {number: 2, name: "second mix: expanded the loop and added breakdown", blurb: "how do I end this?", bpm: 76, color: "aquamarine", remote_audio_file_url: "https://s3.amazonaws.com/vibro-development/Vibes/Don't+Phunq+Up!+2.mp3", runtime: 404, vibe_id: 1 },
+  {number: 1, name: "first draft loop", blurb: "where should I go with this?", bpm: 114, color: "LawnGreen", remote_audio_file_url: "https://s3.amazonaws.com/vibro-development/Vibes/NeverOver.mp3", runtime: 16, vibe_id: 2 },
+  {number: 1, name: "old favorite of mine", blurb: "should I do something different at the end?", bpm: 83, color: "LightCoral", remote_audio_file_url: "https://s3.amazonaws.com/vibro-development/Vibes/Shadang.mp3", runtime: 157, vibe_id: 3 }
 ]
 
 ideas_seeds = [
