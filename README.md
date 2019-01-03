@@ -24,12 +24,11 @@ JS Dependencies: AWS-SDK 2.351.0,
                  ReactJS-Popup 1.3.2,
                  Tippy.js 3.3.0
                  
-Ruby on Rails Gems: active_model_serializers, 
-                    aws-sdk-s3, 
-                    carrierwave, 
-                    devise, 
-                    fog, 
-                    fog-aws, 
-                    foundation-rails,
-                    taglib-ruby,
-                    webpacker
+Unique Rails Gems: active_model_serializers, 
+                   aws-sdk-s3, 
+                   carrierwave, 
+                   devise, 
+                   fog, 
+                   fog-aws, 
+                   foundation-rails,
+                   taglib-ruby
