@@ -6,3 +6,30 @@
                                      YOU FEEL MY VIBE, BRO? 
 
 check out the beta: https://vibro.herokuapp.com
+
+    ~~~~~~~~~~~~~
+
+Built with "React on Rails" Framework
+
+JS Dependencies: AWS-SDK 2.351.0,
+                 Bootstrap 4.1.3, 
+                 React-Dropzone 5.5.1, 
+                 Progressbar.js 1.0.1, 
+                 React 15.4.2,
+                 React-Audio-Spectrum 0.0.9,
+                 React-Coverflow 0.2.17,
+                 React-Router 3.2.0,
+                 React-Router-DOM 4.3.1,
+                 React-Simple-Dropdown 3.2.3,
+                 ReactJS-Popup 1.3.2,
+                 Tippy.js 3.3.0
+                 
+Ruby on Rails Gems: active_model_serializers, 
+                    aws-sdk-s3, 
+                    carrierwave, 
+                    devise, 
+                    fog, 
+                    fog-aws, 
+                    foundation-rails,
+                    taglib-ruby,
+                    webpacker
