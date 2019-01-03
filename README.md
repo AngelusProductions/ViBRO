@@ -31,4 +31,5 @@ Unique Rails Gems: active_model_serializers,
                    fog, 
                    fog-aws, 
                    foundation-rails,
+                   sass-rails,
                    taglib-ruby
