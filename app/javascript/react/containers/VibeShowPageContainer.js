@@ -48,8 +48,12 @@ class VibeShowPageContainer extends Component {
      newIdeaModalShow: false,
      newIdeaClickProgressPercent: 0,
 
+     ideaId: null,
+     ideaSummaryShow: false,
+
+     users: [],
      reactions: [],
-     currentUser: null
+     currentUser: null,
    }
    this.handlePlayClick = this.handlePlayClick.bind(this)
 
@@ -61,6 +65,9 @@ class VibeShowPageContainer extends Component {
    this.handleNewIdeaModalClose = this.handleNewIdeaModalClose.bind(this)
    this.handleNewIdeaAdded = this.handleNewIdeaAdded.bind(this)
 
+   this.handleIdeaSummaryOpen = this.handleIdeaSummaryOpen.bind(this)
+   this.handleIdeaSummaryClose = this.handleIdeaSummaryClose.bind(this)
+
    this.handleProgressBarCreated = this.handleProgressBarCreated.bind(this)
    this.handleProgressBarDestroyed = this.handleProgressBarDestroyed.bind(this)
    this.afterFetch = this.afterFetch.bind(this)
@@ -68,15 +75,6 @@ class VibeShowPageContainer extends Component {
 
  componentDidMount() {
    fetch(`/api/v1/current_user`)
-     .then(response => {
-         if (response.ok) {
-         return response;
-       } else {
-         let errorMessage = `${response.status} (${response.statusText})`,
-             error = new Error(errorMessage);
-         throw(error);
-       }
-     })
      .then(response => response.json())
      .then(body => {
        if (body) {
@@ -85,17 +83,12 @@ class VibeShowPageContainer extends Component {
          this.setState({ currentUser: null })
        }
      })
-     .catch(error => console.error(`Error in fetch: ${error.message}`));
+   fetch(`/api/v1/users`)
+     .then(response => response.json())
+     .then(body => {
+        this.setState({ users: body.users })
+       })
    fetch(`/api/v1/vibes/${this.props.params.id}`)
-    .then(response => {
-        if (response.ok) {
-        return response;
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-        throw(error);
-      }
-    })
     .then(response => response.json())
     .then(body => {
       this.setState({ vibe: body.vibe,
@@ -103,17 +96,25 @@ class VibeShowPageContainer extends Component {
                       reactions: body.vibe.reactions })
       this.afterFetch()
     })
-    .catch(error => console.error(`Error in fetch: ${error.message}`));
+    fetch(`/api/v1/users`)
+      .then(response => response.json())
+      .then(body => {
+         this.setState({ users: body.users })
+        })
+    fetch(`/api/v1/vibes/${this.state.vibe.id}/mixes/${this.state.mixNum}/ideas`)
+    .then(response => response.json())
+    .then(body => {
+      this.setState({ ideas: body })
+    })
+    document.addEventListener('spacebar', this.handlePlayClick)
  }
 
  afterFetch () {
    let newMixButtonShow = false
-
    if (this.state.currentUser != null &&
        this.state.currentUser.id === this.state.vibe.user.id) {
      newMixButtonShow = true
    }
-
    this.setState({ mix: this.state.mixes[this.state.mixNum - 1],
                    afterFetch: true,
                    audioPlayerShow: true,
@@ -171,22 +172,6 @@ class VibeShowPageContainer extends Component {
    this.setState({ mixes: newMixes })
  }
 
- handleNewIdeaClick(event) {
-   event.preventDefault()
-
-   let newIdeaClickPageHeight = event.clientY
-   let progressBarTopHeight = document.getElementById("container").getBoundingClientRect().top
-   let progressBarBottomHeight = document.getElementById("container").getBoundingClientRect().bottom
-   let progressBarLength = document.getElementById("container").getBoundingClientRect().bottom - document.getElementById("container").getBoundingClientRect().top
-
-   let newIdeaClickProgressDifference = newIdeaClickPageHeight - progressBarTopHeight
-   let newIdeaClickProgressPercent = newIdeaClickProgressDifference / progressBarLength
-   newIdeaClickProgressPercent *= 100
-
-   this.setState({ newIdeaClickProgressPercent: newIdeaClickProgressPercent,
-                   newIdeaModalShow: true })
- }
-
  handleNewIdeaModalClose() {
    this.setState({ newIdeaModalShow: false })
  }
@@ -196,6 +181,42 @@ class VibeShowPageContainer extends Component {
    let newIdeas = oldIdeas.concat(idea)
    this.setState({ newIdeaModalShow: false,
                    ideas: newIdeas })
+ }
+
+ handleNewIdeaClick(event) {
+   event.preventDefault()
+   let progressBar = document.getElementById("container").getBoundingClientRect()
+   let clickRight = event.clientX + window.scrollX
+
+   if (clickRight > 119 && this.state.ideas.length > 0) {
+     this.handleIdeaSummaryOpen(event)
+   } else {
+     let clickHeight = event.clientY
+     let topHeight = progressBar.top
+     let bottomHeight = progressBar.bottom
+     let length = bottomHeight - topHeight
+     let difference = clickHeight - topHeight
+     let progressPercent = difference / length
+     progressPercent *= 100
+     this.setState({ newIdeaClickProgressPercent: progressPercent,
+       newIdeaModalShow: true})
+     }
+   }
+
+ handleIdeaSummaryOpen(event) {
+   if (this.state.ideas.length > 0) {
+     let ideaString = event.target.classList[3].split("")
+     let ideaIdString = ideaString.slice(5).join("")
+     let ideaId = parseInt(ideaIdString) - 1
+     let idea = this.state.ideas[ideaId]
+     this.setState({ ideaId: ideaId,
+       ideaSummaryShow: true,
+       newIdeaModalShow: false })
+   }
+ }
+
+ handleIdeaSummaryClose() {
+   this.setState({ ideaSummaryShow: false })
  }
 
  render() {
@@ -209,6 +230,13 @@ class VibeShowPageContainer extends Component {
    } else {
      vibeShow = ""
    }
+
+   // let mixIdeas = []
+   // if (Object.keys(this.state.mix).length > 0) {
+   //   this.state.ideas.forEach( idea => {
+   //     if (idea.mix_id === this.state.mix.id) { mixIdeas.push(idea) }
+   //   })
+   // }
 
    return(
      <div>
@@ -225,13 +253,18 @@ class VibeShowPageContainer extends Component {
         handleNewMixAdded={this.handleNewMixAdded}
         handlePlayClick={this.handlePlayClick}
 
-        ideas={this.state.ideas}
         newIdeaModalShow={this.state.newIdeaModalShow}
         handleNewIdeaClick={this.handleNewIdeaClick}
         handleNewIdeaModalOpen={this.handleNewIdeaModalOpen}
         handleNewIdeaModalClose={this.handleNewIdeaModalClose}
         newIdeaClickProgressPercent={this.state.newIdeaClickProgressPercent}
         handleNewIdeaAdded={this.handleNewIdeaAdded}
+
+        ideas={this.state.ideas}
+        ideaId={this.state.ideaId}
+        ideaSummaryShow={this.state.ideaSummaryShow}
+        handleIdeaSummaryOpen={this.handleIdeaSummaryOpen}
+        handleIdeaSummaryClose={this.handleIdeaSummaryClose}
 
         playing={this.state.playing}
         afterFetch={this.state.afterFetch}
@@ -245,6 +278,7 @@ class VibeShowPageContainer extends Component {
         handleProgressBarDestroyed={this.handleProgressBarDestroyed}
         progressBarDestroyed={this.state.progressBarDestroyed}
 
+        users={this.state.users}
         currentUser={this.state.currentUser}
       />
 

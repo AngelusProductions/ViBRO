@@ -1,6 +1,15 @@
 
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
+@import url('https://fonts.googleapis.com/css?family=Ultra');
+@import url('https://fonts.googleapis.com/css?family=Staatliches');
+@import url('https://fonts.googleapis.com/css?family=Monoton');
+@import url('https://fonts.googleapis.com/css?family=Chewy');
+@import url('https://fonts.googleapis.com/css?family=Concert+One');
+@import url('https://fonts.googleapis.com/css?family=Spicy+Rice');
+@import url('https://fonts.googleapis.com/css?family=Kreon');
+
 body {
-  font-family: monospace;
+  font-family: 'Spicy Rice';
   background-color: white;
   filter: saturate(1.5);
   background-image:
@@ -128,7 +137,11 @@ ul#sign.right a:hover {
 .chill-text,
 .fire-text,
 #vibro-title {
-  font-family: monospace;
+  font-family: 'Staatliches';
+}
+
+.vibe-blurb {
+  font-family: 'Kreon';
 }
 
 @-webkit-keyframes Pulsate {

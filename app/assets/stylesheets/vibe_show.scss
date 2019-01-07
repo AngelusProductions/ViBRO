@@ -4,7 +4,14 @@
   text-align: center;
 }
 
+// .mix {
+//   border: solid 1px #476cff;
+//     background-color: #eafeff;
+//   border-radius: 15%;
+// }
+
 .radio-button-container {
+  font-family: 'Abril Fatface';
   text-align: center;
 }
 
@@ -52,12 +59,12 @@
 }
 
 #mix-blurb {
-  color: #ed1eed;
+  color: blueviolet;
   font-weight: bold;
   font-size: 2rem;
   margin-top: .5rem;
   text-align: center;
-  text-shadow: 1px 1px #476cff;
+  text-shadow: 1px 1px aquamarine;
   animation-name: Attention;
   animation-delay: 10s;
   animation-duration: 15s;
@@ -67,11 +74,15 @@
 #show-page-vibe-name,
 #show-page-username,
 #show-page-blurb,
-#mix-num,
+#new-mix-button,
+#mix-num
+ {
+  font-family: 'Spicy Rice';
+}
+
 #mix-name,
-#mix-blurb,
-#new-mix-button {
-  font-family: monospace;
+#mix-blurb {
+  font-family: 'Chewy'
 }
 
 #show-page-vibe-name {
@@ -114,6 +125,10 @@
 
 .fa-snowflake {
   color: #00f6ff;
+}
+
+.reactions {
+  font-family: 'Spicy Rice';
 }
 
 #fire-icon-deselected,
@@ -318,7 +333,7 @@
 #show-page-vibe-name,
 #show-page-username,
 #show-page-blurb {
-  font-family: monospace;
+  font-family: 'Kreon';
 }
 
 #show-page-vibe-name {
