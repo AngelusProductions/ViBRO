@@ -4,13 +4,14 @@ import MixForm from './MixForm';
 import VibeForm from './VibeForm';
 import IndexPageContainer from '../containers/IndexPageContainer'
 import VibeShowPageContainer from '../containers/VibeShowPageContainer'
+import LandingPage from '../containers/LandingPage'
 
 const App = (props) => {
   return (
     <div>
       <Router history={browserHistory}>
         <Route path='/' >
-          <IndexRoute component={IndexPageContainer} />
+          <IndexRoute component={LandingPage} />
           <Route path='vibes/new' component={VibeForm} />
           <Route path='vibes/:id' component={VibeShowPageContainer} />
           <Route path='vibes/:id/mixes/new' component={MixForm} />

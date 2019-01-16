@@ -1,100 +1,140 @@
 
-.pulse {
-  margin:100px;
-  display: block;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: aquamarine;
-  cursor: pointer;
-  box-shadow: 0 0 0 rgba(93,12,93, 0.4);
-}
-.pulse:hover {
-  animation: none;
+.spicy-rice {
+  font-family: 'Spicy Rice';
 }
 
-.carousel {
-  margin: auto;
-  text-align: center;
-  align-items: center;
-  align-content: center;
-  align-self: center;
+.kreon {
+  font-family: 'Kreon';
 }
 
-.carousel-text {
-  margin-top: 1.5rem;
-  font-size: 0.9rem;
-  color: #ff00dc;
-  text-decoration: none;
-  text-shadow: 1px 1px #476cff;
-}
-.carousel-text:hover {
-  color: #476cff;
-  animation-name: Pulsatehover;
-  animation-duration: .25s;
-  animation-iteration-count: infinite;
-  text-decoration: none;
+#index-page-container {
+  font-family: 'Kreon';
 }
 
-#coverflow-outer {
-  margin-top: 3rem;
-  // background-color: white;
-  // border: solid 15px #ed1eed;
-  // box-shadow: 5px 10px aquamarine;
-  // border-radius: 20%;
-}
-#coverflow-outer:hover {
-  filter: saturate(1.1);
-  // background-color: white;
-  // border: solid 15px #476cff;
-  // box-shadow: 5px 10px #ed1eed;
-  animation-name: Pulsatehover;
-  animation-duration: .25s;
-  animation-iteration-count: infinite;
+#index-page-left,
+#index-page-right {
+  padding: 0;
 }
 
-#coverflow-inner {
-  font-family: Abril Fatface;
-  radius: 20%;
-  animation: pulse 2s infinite;
+#index-page-left-middle {
+  margin: 0 auto;
 }
 
-#discover-container {
-  height: 100%;
-  width: 100%;
-  margin-top: 3rem;
-  box-shadow: 4px 8px 16px 4px rgba(0,0,0,0.3);
+#index-page-left-bottom {
+  bottom: 0;
+  z-index: 1;
+  position: fixed;
+  padding-left: 0.3rem;
+  padding-right: 0;
 }
 
-.pro-pic-mini {
-  height: 25%;
-  width: 25%;
-  border-radius: 50%;
-  border: solid 1px aquamarine;
+#vibro-logo {
+  font-size: 3.5rem;
+  margin: 0;
 }
 
-.user-avatar {
-  margin: 1rem;
-  display: inline-block;
+#vibe-bro {
+  font-family: 'Monoton';
+  font-size: 0.5rem;
 }
 
-.discover-vibes {
-  font-size: 2.5rem;
-  color: #476cff;
-  margin-bottom: .5em;
-  border-radius: 50%;
-  padding: 1rem;
-  animation: Pulsatehover 0.5s infinite;
-}
-
-@-webkit-keyframes pulse {
-  0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(93,12,93, 0.4);
-  }
-  70% {
-      -webkit-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
-  }
-  100% {
-      -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
-  }
-}
+//
+// .pulse {
+//   margin:100px;
+//   display: block;
+//   width: 22px;
+//   height: 22px;
+//   border-radius: 50%;
+//   background: aquamarine;
+//   cursor: pointer;
+//   box-shadow: 0 0 0 rgba(93,12,93, 0.4);
+// }
+// .pulse:hover {
+//   animation: none;
+// }
+//
+// .carousel {
+//   margin: auto;
+//   text-align: center;
+//   align-items: center;
+//   align-content: center;
+//   align-self: center;
+// }
+//
+// .carousel-text {
+//   margin-top: 1.5rem;
+//   font-size: 0.9rem;
+//   color: #ff00dc;
+//   text-decoration: none;
+//   text-shadow: 1px 1px #476cff;
+// }
+// .carousel-text:hover {
+//   color: #476cff;
+//   animation-name: Pulsatehover;
+//   animation-duration: .25s;
+//   animation-iteration-count: infinite;
+//   text-decoration: none;
+// }
+//
+// #coverflow-outer {
+//   margin-top: 3rem;
+// background-color: white;
+// border: solid 15px #ed1eed;
+// box-shadow: 5px 10px aquamarine;
+// border-radius: 20%;
+// }
+// #coverflow-outer:hover {
+//   filter: saturate(1.1);
+//   // background-color: white;
+//   // border: solid 15px #476cff;
+//   // box-shadow: 5px 10px #ed1eed;
+//   animation-name: Pulsatehover;
+//   animation-duration: .25s;
+//   animation-iteration-count: infinite;
+// }
+//
+// #coverflow-inner {
+//   font-family: Abril Fatface;
+//   radius: 20%;
+//   animation: pulse 2s infinite;
+// }
+//
+// #discover-container {
+//   height: 100%;
+//   width: 100%;
+//   margin-top: 3rem;
+//   box-shadow: 4px 8px 16px 4px rgba(0,0,0,0.3);
+// }
+//
+// .pro-pic-mini {
+//   height: 25%;
+//   width: 25%;
+//   border-radius: 50%;
+//   border: solid 1px aquamarine;
+// }
+//
+// .user-avatar {
+//   margin: 1rem;
+//   display: inline-block;
+// }
+//
+// .discover-vibes {
+//   font-size: 2.5rem;
+//   color: #476cff;
+//   margin-bottom: .5em;
+//   border-radius: 50%;
+//   padding: 1rem;
+//   animation: Pulsatehover 0.5s infinite;
+// }
+//
+// @-webkit-keyframes pulse {
+//   0% {
+//     -webkit-box-shadow: 0 0 0 0 rgba(93,12,93, 0.4);
+//   }
+//   70% {
+//       -webkit-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+//   }
+//   100% {
+//       -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+//   }
+// }
