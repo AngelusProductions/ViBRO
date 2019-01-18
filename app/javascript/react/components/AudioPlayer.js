@@ -1,38 +1,26 @@
 import React, { Component } from 'react';
-import ProgressBar from 'progressbar.js'
 import Mix from './Mix'
 import Audio from './Audio'
 import NewIdeaModal from './NewIdeaModal'
+import IdeaSummary from './IdeaSummary'
+import ProgressBar from 'progressbar.js'
 import tippy from 'tippy.js'
-import Popup from 'reactjs-popup'
 
 class AudioPlayer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      clickedIdea: null,
-      hoveredIdea: null,
-      ideaSummaryShow: false,
-      ideaPreviewShow: false
     }
-    this.handleIdeaIconClick = this.handleIdeaIconClick.bind(this)
-  }
-
-  handleIdeaIconClick(event) {
-    let ideaString = event.target.classList[3].split("")
-    let ideaIdString = ideaString.slice(5).join("")
-    let ideaId = parseInt(ideaIdString) - 1
-    let idea = this.props.ideas[ideaId]
-    this.setState({ clickedIdeaId: ideaId})
   }
 
   render() {
     let url = ""
     let playerClass = ""
     let newIdeaModal = ""
+    let ideaPanel = ""
     let progressBar = this.props.progressBar
+    let ideaIcons = ""
     const player = document.getElementsByTagName("audio")[0]
-    const highestREM = 28.5
 
     if (this.props.audioPlayerShow) {
       url = this.props.mix.audio_file.url
@@ -100,23 +88,23 @@ class AudioPlayer extends Component {
       newIdeaModal = ""
     }
 
-    let ideaIcons = this.props.ideas.map( idea => {
-      let marginLeft = idea.time / this.props.mix.runtime * highestREM
-      let CSSclass = `far fa-lightbulb idea-icon idea-${idea.id}`
-      let ideaTitle = idea.title
-      if (idea.mix_id === this.props.mix.id) {
+    const highestREM = 28.5
+    if (Object.keys(this.props.mix).length > 0) {
+      ideaIcons = this.props.mix.ideas.map( idea => {
+        let marginLeft = idea.time / this.props.mix.runtime * highestREM
+        let CSSclass = `far fa-lightbulb idea-icon idea-${idea.id}`
+        let ideaTitle = idea.title
         return  <i className={CSSclass}
                        key={idea.id}
-                       onClick={this.handleIdeaIconClick}
+                       onClick={this.props.handleIdeaSummaryOpen}
                        data-tippy-content={ideaTitle}
                     >
                   <style dangerouslySetInnerHTML={{__html: `
                     .idea-${idea.id} { margin-left: ${marginLeft}rem; }
                   `}} />
                 </i>
-        }
-
-    }, this)
+        }, this)
+      }
 
     tippy('.idea-icon', {
       size: "large",
@@ -153,11 +141,12 @@ class AudioPlayer extends Component {
           url={url}
         />
 
+        <i className="fas fa-mouse-pointer"></i>
+        <div className="click-me">CLiCK to add your idea!</div>
+
           <div id="container" onClick={this.props.handleNewIdeaClick}>
             {ideaIcons}
           </div>
-          <i className="fas fa-mouse-pointer"></i>
-          <div className="click-me">CLiCK to add your idea!</div>
 
       </div>
 
@@ -173,8 +162,16 @@ class AudioPlayer extends Component {
           currentUser={this.props.currentUser}
         />
 
+        {ideaPanel}
         {newIdeaModal}
 
+        <IdeaSummary
+          ideas={this.props.ideas}
+          users={this.props.users}
+          ideaId={this.props.ideaId}
+          ideaSummaryShow={this.props.ideaSummaryShow}
+          handleIdeaSummaryClose={this.props.handleIdeaSummaryClose}
+        />
      </div>
    )
  }
