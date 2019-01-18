@@ -1,0 +1,22 @@
+
+.side {
+  padding-left: 0;
+}
+
+.side-bar-container {
+  padding: 0;
+  border-top-left-radius: 25px;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(214, 224, 252, 0.5);
+  box-shadow: 0 50px 50px 5px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
+}
+
+#sidebar-top {
+  color: white;
+  padding-left: 1rem;
+  border-top-left-radius: 25px;
+  background: rgba(132, 157, 255, 0.5);
+  border-bottom: 4.5px solid rgba(145, 255, 242, 0.5);
+}
