@@ -7,6 +7,7 @@
     "babel-preset-react": "~6.24.1",
     "bootstrap": "^4.1.3",
     "dropzone": "^5.5.1",
+    "mdbreact": "^4.8.7",
     "progressbar.js": "^1.0.1",
     "prop-types": "~15.6.0",
     "react": "~15.4.2",
@@ -14,15 +15,18 @@
     "react-awesome-modal": "^2.0.5",
     "react-bootstrap": "^0.32.4",
     "react-bootstrap-modal": "^4.2.0",
-    "react-coverflow": "^0.2.17",
     "react-dom": "~15.4.2",
     "react-dropzone": "^7.0.1",
     "react-fontawesome": "^1.6.1",
+    "react-id-swiper": "^1.6.8",
+    "react-player-controls": "^1.0.0-beta.0",
     "react-router": "~3.2.0",
     "react-router-dom": "^4.3.1",
     "react-simple-dropdown": "^3.2.3",
+    "react-wavesurfer": "^0.8.6",
     "redbox-react": "1.6.0",
-    "tippy.js": "^3.3.0"
+    "tippy.js": "^3.3.0",
+    "wavesurfer.js": "1.4.0"
   },
   "devDependencies": {
     "enzyme": "~2.9.1",

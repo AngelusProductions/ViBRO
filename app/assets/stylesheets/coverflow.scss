@@ -1,0 +1,21 @@
+
+.swiper-wrapper {
+  margin-bottom: 3rem;
+}
+
+#coverflow-div {
+  margin-top: 5rem;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.swiper-slide img {
+  border-radius: 3%;
+  width: 18rem;
+  height: 18rem;
+  -webkit-box-reflect: below 3px -webkit-gradient(linear, right top, right bottom, from(transparent), color-stop(80%, transparent), to(rgba(255, 255, 255, 0.2)));
+}
+
+.swiper-button-next, .swiper-button-prev {
+  color: #80ffbf;
+}

@@ -15,6 +15,7 @@ class LandingPage extends Component {
       vibePlaying: {},
       vibeSelect: 0,
       mixPlaying: {},
+      mixPlayingUser: null,
       mixSelect: 1,
       playing: false
     }
@@ -44,7 +45,8 @@ class LandingPage extends Component {
     .then(body => {
       let latestMixId = body.vibe.mixes.length - 1
       this.setState({ vibePlaying: body.vibe,
-                      mixPlaying: body.vibe.mixes[latestMixId] })
+                      mixPlaying: body.vibe.mixes[latestMixId],
+                      mixPlayingUser: body.vibe.user })
       })
     }
 
@@ -63,20 +65,26 @@ class LandingPage extends Component {
       this.getRandomMix()
     }
 
-    let myPlayer;
+    let myPlayer, coverflow
     if (vibesLoaded) {
       myPlayer = <MyPlayer
                     vibes={this.state.vibes}
                     vibePlaying={this.state.vibePlaying}
                     vibeSelect={this.state.vibeSelect}
                     mixPlaying={this.state.mixPlaying}
+                    mixPlayingUser={this.state.mixPlayingUser}
                     mixSelect={this.state.mixSelect}
                     handleMiniPlayClick={this.handleMiniPlayClick}
                     users={this.state.users}
                     size={this.size}
                   />
+      coverflow = <Coverflow
+                    size={this.size}
+                    vibes={this.state.vibes}
+                  />
     }
 
+    let waveyPlayer
     if (mixLoaded) {
       var waveSurfer = WaveSurfer.create({
                         container: '#waveform',
@@ -106,22 +114,13 @@ class LandingPage extends Component {
             </div>
             <div className={this.size(6, "columns text-center")} id="waviest-vibes">
               <h1 className="kreon">welcome.</h1>
-              <h2 className="kreon">these are today&#39;s waviest vibes.</h2>
+              <h2 className="kreon">here are today&#39;s waviest vibes.</h2>
             </div>
             {myPlayer}
           </div>
 
           <div className={this.size(9, "row offset-2")} id="index-page-left-middle">
-            <Coverflow
-              vibes={this.state.vibes}
-              vibePlaying={this.state.vibePlaying}
-              vibeSelect={this.state.vibeSelect}
-              mixPlaying={this.state.mixPlaying}
-              mixSelect={this.state.mixSelect}
-              handleMiniPlayClick={this.handleMiniPlayClick}
-              users={this.state.users}
-              size={this.size}
-            />
+            {coverflow}
           </div>
 
           <div className={this.size(9, "columns")} id="index-page-left-bottom">
@@ -139,7 +138,9 @@ class LandingPage extends Component {
           </div>
 
           <div className={this.size(12, "columns side-bar-container")}>
-            <SideBar />
+            <SideBar
+
+            />
           </div>
         </div>
       </div>
@@ -148,22 +149,3 @@ class LandingPage extends Component {
 };
 
 export default LandingPage;
-
-//
-// div class row
-//   div class small 9 columns
-//     div class row
-//       div small 3 columns
-//       div small 6
-//       small 3
-//       small 12
-//       small 12
-//     end
-//   end
-//   div class small 3 columns
-//     div class row
-//       div small 12
-//       div small 12
-//     end
-//   end
-// end
