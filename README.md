@@ -5,7 +5,11 @@
   
                                      DO YOU FEEL MY VIBE, BRO? 
 
-check out the beta: https://vibro.herokuapp.com
+**CURRENTLY UNDER DEVELOPMENT**
+
+(WILL BE AVAILABLE NEXT WEEK)
+
+https://vibro.herokuapp.com
 
     ~~~~~~~~~~~~~
 
