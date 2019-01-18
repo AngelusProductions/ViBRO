@@ -22,22 +22,12 @@ class SearchBar extends Component {
 
   handleClick(event) {
     let searchFieldPosition = document.getElementById('search-field').getBoundingClientRect()
-    let logoPosition = document.getElementsByClassName('vibro-logo')[0].getBoundingClientRect()
-
     if (event.clientX < searchFieldPosition.left ||
         event.clientX > searchFieldPosition.right ||
         event.clientY < searchFieldPosition.top ||
         event.clientY > searchFieldPosition.bottom) {
       this.setState({ searchResultShow: false })
     }
-
-    if (event.clientX > logoPosition.left &&
-        event.clientX < logoPosition.right &&
-        event.clientY > logoPosition.top &&
-        event.clientY < logoPosition.bottom) {
-      window.location = "/"
-    }
-
     if (event.target.href != undefined) {
       window.location = event.target.href
     }
@@ -91,7 +81,6 @@ class SearchBar extends Component {
     let searchUl = ''
 
     if (this.state.searchResultShow) {
-
       if (this.state.users.length > 0) {
         userSearch = this.state.users.map( user => {
           let link = `/users/${user.id}`
@@ -146,7 +135,7 @@ class SearchBar extends Component {
     }
 
     return (
-      <div id='search-bar'>
+      <div className="columns text-center" id='search-bar'>
         <form id="search-field" className='sample eleven' onSubmit={this.handleFieldSubmit}>
           <input type='text'
                  name='searchField'

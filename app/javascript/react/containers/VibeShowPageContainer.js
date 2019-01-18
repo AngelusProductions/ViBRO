@@ -100,7 +100,7 @@ class VibeShowPageContainer extends Component {
       .then(response => response.json())
       .then(body => {
          this.setState({ users: body.users })
-        })
+    })
     fetch(`/api/v1/vibes/${this.state.vibe.id}/mixes/${this.state.mixNum}/ideas`)
     .then(response => response.json())
     .then(body => {

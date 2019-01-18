@@ -4,21 +4,8 @@ class MyPlayer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      vibePlaying: {},
-      mixPlaying: {},
-      playing: false
     }
     this.handleMiniPlayClick = this.handleMiniPlayClick.bind(this)
-  }
-
-  componentDidMount() {
-    fetch(`/api/v1/vibes/${this.props.vibeSelect}`)
-      .then(response => response.json())
-      .then(body => {
-        let latestMixId = body.vibe.mixes.length - 1
-        this.setState({ vibePlaying: body.vibe,
-                        mixPlaying: body.vibe.mixes[latestMixId] })
-    })
   }
 
   handleMiniPlayClick() {
@@ -55,10 +42,10 @@ class MyPlayer extends Component {
 
         <div className="row">
           <ul className="row">
-            <li className={this.props.size(12, "columns")}>
-             - - - - - - - - - - - - - - - - - - - -
+            <li className={this.props.size(2, "columns now-playing")}>
+              Now Playing
             </li>
-            <li className={this.props.size(12, "columns")}>
+            <li className={this.props.size(10, "columns")}>
 
             </li>
           </ul>

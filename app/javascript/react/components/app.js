@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, IndexRoute, Router, browserHistory } from 'react-router';
 import MixForm from './MixForm';
 import VibeForm from './VibeForm';
-import IndexPageContainer from '../containers/IndexPageContainer'
 import VibeShowPageContainer from '../containers/VibeShowPageContainer'
 import LandingPage from '../containers/LandingPage'
 

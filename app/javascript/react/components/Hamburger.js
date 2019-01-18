@@ -43,8 +43,6 @@ class Hamburger extends Component {
     }
   }
 
-  handleSearch
-
   render() {
     let logLink = ""
     let userLink = ""
