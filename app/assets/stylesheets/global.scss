@@ -27,40 +27,70 @@ ul {
 //   font-family: 'Kreon';
 // }
 
-// body {
-//   font-family: 'Spicy Rice';
-//   background-color: white;
-//   filter: saturate(1.5);
-//   background-image:
-//   radial-gradient(circle at 0% 0%,
-//   white 1%,
-//   aquamarine 2%,
-//   aquamarine 3%,
-//   white 4%,
-//   white 5%,
-//   aquamarine 6%,
-//   aquamarine 7%,
-//   white 8%,
-//   white 9%,
-//   aquamarine 10%,
-//   aquamarine 11%,
-//   white 12%,
-//   white 13%,
-//   aquamarine 14%,
-//   aquamarine 15%,
-//   white 16%,
-//   white 17%,
-//   aquamarine 18%,
-//   aquamarine 19%,
-//   white 20%,
-//   white 21%,
-//   aquamarine 22%,
-//   aquamarine 23%,
-//   transparent 10%,
-//   transparent);
-//   background-repeat: no-repeat;
-// }
-//
+body {
+  // font-family: 'Spicy Rice';
+  // background-color: #e7e1f7;
+  // filter: saturate(1.5);
+  background: rgb(13,250,251);
+  background-image:
+  radial-gradient(circle at 0% 0%,
+  white 1%,
+  aquamarine 2%,
+  aquamarine 3%,
+  white 4%,
+  white 5%,
+  aquamarine 6%,
+  aquamarine 7%,
+  white 8%,
+  white 9%,
+  aquamarine 10%,
+  aquamarine 11%,
+  white 12%,
+  white 13%,
+  aquamarine 14%,
+  aquamarine 15%,
+  white 16%,
+  white 17%,
+  aquamarine 18%,
+  aquamarine 19%,
+  white 20%,
+  white 21%,
+  aquamarine 22%,
+  aquamarine 23%,
+  transparent 10%,
+  transparent);
+  background:
+  radial-gradient(circle at 0% 0%,
+  white 1%,
+  aquamarine 2%,
+  aquamarine 3%,
+  white 4%,
+  white 5%,
+  aquamarine 6%,
+  aquamarine 7%,
+  white 8%,
+  white 9%,
+  aquamarine 10%,
+  aquamarine 11%,
+  white 12%,
+  white 13%,
+  aquamarine 14%,
+  aquamarine 15%,
+  // white 16%,
+  // white 17%,
+  // aquamarine 18%,
+  // aquamarine 19%,
+  // white 20%,
+  // white 21%,
+  // aquamarine 22%,
+  // aquamarine 23%,
+  transparent 10%,
+  transparent),
+  radial-gradient(circle, rgba(256,256,256,0.1) 70%, rgba(9,9,121,0.577468487394958) 100%);
+  background-repeat: no-repeat;
+
+}
+
 
 //
 //

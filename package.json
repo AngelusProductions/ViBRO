@@ -22,6 +22,7 @@
     "react-player-controls": "^1.0.0-beta.0",
     "react-router": "~3.2.0",
     "react-router-dom": "^4.3.1",
+    "react-select": "^2.3.0",
     "react-simple-dropdown": "^3.2.3",
     "react-wavesurfer": "^0.8.6",
     "redbox-react": "1.6.0",

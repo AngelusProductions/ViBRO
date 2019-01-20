@@ -4,6 +4,7 @@ import SearchBar from '../components/SearchBar'
 import MyPlayer from '../components/MyPlayer'
 import BreadCrumbs from '../components/BreadCrumbs'
 import Coverflow from '../components/Coverflow'
+import MixSelect from '../components/MixSelect'
 import SideBar from '../components/SideBar'
 
 class LandingPage extends Component {
@@ -84,7 +85,11 @@ class LandingPage extends Component {
                   />
     }
 
-    let waveyPlayer
+    let waveyPlayer,
+        mixSelect,
+        mixDesc,
+        mixInfo,
+        buttonLink
     if (mixLoaded) {
       var waveSurfer = WaveSurfer.create({
                         container: '#waveform',
@@ -101,6 +106,15 @@ class LandingPage extends Component {
                         responsive: true
                       })
       waveSurfer.load(this.state.mixPlaying.audio_file.url)
+      mixSelect = <MixSelect
+                    size={this.size}
+                    vibePlaying={this.state.vibePlaying}
+                    mixPlaying={this.state.mixPlaying}
+                    mixSelect={this.state.mixSelect}
+                  />
+      mixDesc = `desc: ${this.state.mixPlaying.name}`
+      mixInfo = this.state.mixPlaying.blurb
+      buttonLink = `/vibes/${this.state.vibePlaying.id}`
     }
 
     return(
@@ -119,13 +133,48 @@ class LandingPage extends Component {
             {myPlayer}
           </div>
 
-          <div className={this.size(9, "row offset-2")} id="index-page-left-middle">
+          <div className={this.size(9, "row offset-2")} id="index-page-left-middle-high">
             {coverflow}
           </div>
 
+          <div className={this.size(9, "row")} id="index-page-left-middle-low">
+            <ul className="row">
+
+              <li className={this.size(4, "columns")}>
+                <img id="swirl-left" src="http://www.clker.com/cliparts/H/T/1/n/4/n/a-purple-purple-swirl-2-hi.png"/>
+              </li>
+
+              <li className={this.size(4, "columns")}>
+                <ul className="columns">
+                	<li className="row">{mixSelect}</li>
+                  <li className="row">
+                    <div className={this.size(12, "row")} id="mix-description-container">
+                      {mixDesc}
+                    </div>
+                  </li>
+                  <li className="row">
+                    <div className={this.size(12, "row")} id="mix-blurb-container">
+                    {mixInfo}
+                    <i className="fa fa-question-circle" id="mix-question-mark"></i>
+                    </div>
+                  </li>
+                  <li className="row">
+                    <div className={this.size(12, "row")} id="mix-button-container">
+                      <button href={buttonLink} id="mix-button">help finish this vibe</button>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+
+              <li className={this.size(4, "columns")}>
+                <img id="swirl-right" src="http://www.clipartable.com/images/22/waudYMX4.png"/>
+              </li>
+
+            </ul>
+          </div>
+
           <div className={this.size(9, "columns")} id="index-page-left-bottom">
-            <div id="waveform">
-            </div>
+            <div id="waveform" />
           </div>
         </div>
 
@@ -149,3 +198,22 @@ class LandingPage extends Component {
 };
 
 export default LandingPage;
+
+//
+// div class row
+//   div class small 9 columns
+//     div class row
+//       div small 3 columns
+//       div small 6
+//       small 3
+//       small 12
+//       small 12
+//     end
+//   end
+//   div class small 3 columns
+//     div class row
+//       div small 12
+//       div small 12
+//     end
+//   end
+// end

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import WaveyPlayer from '../components/WaveyPlayer'
 
 class MyPlayer extends Component {
   constructor(props) {
@@ -13,6 +14,17 @@ class MyPlayer extends Component {
   }
 
   render() {
+    let waveyPlayer
+    let mixLoaded = Object.keys(this.props.mixPlaying).length > 0
+    if (mixLoaded) {
+      waveyPlayer = <WaveyPlayer
+                      size={this.props.size}
+                      vibePlaying={this.props.vibePlaying}
+                      mixPlaying={this.props.mixPlaying}
+                      mixPlayingUser={this.props.mixPlayingUser}
+                      playing={this.props.playing}
+                    />
+    }
 
     return (
       <div className={this.props.size(3, "columns my-player")}>
@@ -43,10 +55,28 @@ class MyPlayer extends Component {
         <div className="row">
           <ul className="row">
             <li className={this.props.size(2, "columns now-playing")}>
-              Now Playing
+              Now Playing:
             </li>
-            <li className={this.props.size(10, "columns")}>
+            <li className={this.props.size(10, "columns wavey-player")}>
+              {waveyPlayer}
+            </li>
+          </ul>
+        </div>
 
+        <div className="reactions row">
+          <ul className="row" id="index-page-vibe-reactions">
+            <li className="row">
+              <div className="fire columns">
+                <i className="fas fa-fire"></i>
+                <span className="reaction-num">{this.props.vibePlaying.fire}</span>
+              </div>
+            </li>
+
+            <li className="row">
+              <div className="ice columns">
+                <i className="fas fa-snowflake"></i>
+                <span className="reaction-num">{this.props.vibePlaying.ice}</span>
+              </div>
             </li>
           </ul>
         </div>
