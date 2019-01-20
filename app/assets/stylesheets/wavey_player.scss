@@ -1,0 +1,128 @@
+// @import 'https://fonts.googleapis.com/css?family=Reem+Kufi';
+
+@keyframes wave {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.music-card {
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+  // box-shadow: 0px 8px 28px -9px rgba(0,0,0,0.45);
+  overflow: hidden;
+  position: relative;
+  width: 13rem;
+  height: 4rem;
+  border-radius: 6px;
+}
+
+.image {
+  background-size: contain;
+  background-size: 100%;
+  position: absolute;
+  z-index: 2;
+  opacity: 0.3;
+  height: 50rem;
+  width: 50rem;
+}
+
+.image:after {
+  height: 100px;
+  background-size: 15px;
+  content: '';
+  top: 200px;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  // background: linear-gradient(rgba(9, 2, 4, 0), #444);
+}
+
+.wave {
+  position: absolute;
+  height: 20rem;
+  width: 40rem;
+  opacity: 0.2;
+  left: 0;
+  top: 0;
+  margin-left: -70%;
+  margin-top: -130%;
+  // background: radial-gradient(#a5ffc0, #fcdbf8);
+  // background-color: #a5ffc0;
+}
+
+.wave:nth-child(2),
+.wave:nth-child(3) {
+  top: 10px;
+}
+
+.playing .wave {
+  border-radius: 40%;
+  animation: wave 60000ms infinite linear;
+}
+/* when stop */
+.wave {
+  border-radius: 40%;
+  animation: wave 55s infinite linear;
+}
+
+.playing .wave:nth-child(2) {
+  animation-duration: 40000ms;
+}
+/* when stop */
+.wave:nth-child(2) {
+  animation-duration: 50s;
+}
+
+.playing .wave:nth-child(3) {
+  animation-duration: 50000ms;
+}
+/* when stop */
+.wave:nth-child(3) {
+  animation-duration: 45s;
+}
+
+.info {
+  color: black;
+  position: absolute;
+  // bottom: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  // -webkit-animation: glow 10s ease-in-out infinite alternate;
+}
+
+.title {
+  font-size: 1.4em;
+  font-weight: 400;
+  color: black;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  font-family: 'Kreon', sans-serif;
+}
+
+.artist {
+  color: black;
+  font-size: 1.2em;
+  letter-spacing: 0.08em;
+  // font-family: 'Reem Kufi', sans-serif;
+  margin-top: -10px;
+}
+
+.now-playing {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.music-card {
+  margin: 1rem 0 0 0.5rem;
+  width: 12rem;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff00dc, 0 0 40px #ff00dc, 0 0 50px #ff00dc, 0 0 60px #ff00dc, 0 0 70px #ff00dc;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #80ffbf, 0 0 40px #80ffbf, 0 0 50px #80ffbf, 0 0 60px #80ffbf, 0 0 70px #80ffbf, 0 0 80px #80ffbf;
+  }
+}

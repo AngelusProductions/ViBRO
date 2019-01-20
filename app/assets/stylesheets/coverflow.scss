@@ -9,10 +9,14 @@
   margin: 0 auto;
 }
 
+.swiper-slide-active {
+  margin: 0;
+}
+
 .swiper-slide img {
   border-radius: 3%;
-  width: 18rem;
-  height: 18rem;
+  width: 15rem;
+  height: 15rem;
   -webkit-box-reflect: below 3px -webkit-gradient(linear, right top, right bottom, from(transparent), color-stop(80%, transparent), to(rgba(255, 255, 255, 0.2)));
 }
 

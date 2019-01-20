@@ -20,7 +20,7 @@ class Coverflow extends React.Component {
       loop: false,
       width: 1000,
       speed: 500,
-      spaceBetween: 50,
+      spaceBetween: 0,
       slidesPerView: 3,
       grabCursor: false,
       virtualTranslate: false,
@@ -33,10 +33,10 @@ class Coverflow extends React.Component {
       parallax: true,
       coverflowEffect: {
         rotate: 45,
-        stretch: 250,
+        stretch: 300,
         depth: 350,
         modifier: 3,
-        slideShadows: true
+        slideShadows: false
       },
       fadeEffect: {
         crossFade: true
@@ -50,8 +50,8 @@ class Coverflow extends React.Component {
         clickable: true
       },
       navigation: {
-       nextEl: '.swiper-button-next',
-       prevEl: '.swiper-button-prev'
+       nextEl: '.swiper-button-prev',
+       prevEl: '.swiper-button-next'
      }
     }
 

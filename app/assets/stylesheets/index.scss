@@ -7,25 +7,9 @@
   font-family: 'Kreon';
 }
 
-#index-page-container {
+#index-page-container,
+#mix-button {
   font-family: 'Kreon';
-}
-
-#index-page-left,
-#index-page-right {
-  padding: 0;
-}
-
-#index-page-left-middle {
-  margin: 0 auto;
-}
-
-#index-page-left-bottom {
-  bottom: 0;
-  z-index: 1;
-  position: fixed;
-  padding-left: 0.3rem;
-  padding-right: 0;
 }
 
 #vibro-logo {
@@ -40,21 +24,32 @@
 
 .breadcrumbs {
   border: none;
-  background-color: white;
+  background: none;
 }
 
-//
-// .pulse {
-//   margin:100px;
-//   display: block;
-//   width: 22px;
-//   height: 22px;
-//   border-radius: 50%;
-//   background: aquamarine;
-//   cursor: pointer;
-//   box-shadow: 0 0 0 rgba(93,12,93, 0.4);
-// }
-// .pulse:hover {
-//   animation: none;
-// }
-//
+#index-page-left,
+#index-page-right {
+  padding: 0;
+}
+
+#index-page-left-middle-high,
+#index-page-left-middle-low {
+  // margin: 0 auto;
+}
+
+#index-page-left-bottom {
+  bottom: 0;
+  z-index: 1;
+  position: fixed;
+  padding-left: 0.3rem;
+  padding-right: 0;
+}
+
+#swirl-right,
+#swirl-left {
+  width: 50%;
+}
+
+#swirl-left {
+  float: right;
+}
