@@ -16,6 +16,30 @@
   margin-top: 0.3rem;
 }
 
+#mix-blurb-container {
+  font-size: 1.15rem;
+}
+
 #mix-question-mark {
   margin-left: 0.25rem;
+}
+
+#mix-button {
+  margin-top: 1rem;
+  border-radius: 25px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 20px 20px 50px 10px hotpink inset;
+  }
+  &:active {
+    outline: none;
+    transform: scale(0.93);
+    background: linear-gradient(135deg, #a777e3, hotpink);
+    box-shadow: -2px -2px 10px 2px grey, 20px 20px 50px 10px #6e8efb inset;
+  }
+  &:focus {
+    outline: none;
+  }
 }

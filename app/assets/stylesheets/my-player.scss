@@ -7,9 +7,30 @@
   margin-top: 1rem;
 }
 
+.playback:hover {
+  transform: scale(1.3);
+}
+
+.repeat-unclicked {
+  color: black;
+}
+.repeat-clicked {
+  color: #ff00dc;
+  text-shadow: 1px 1px black, -1px -1px black;
+}
+
+.shuffle-unclicked {
+  color: black;
+}
+.shuffle-clicked {
+  color: #ffff00;
+  text-shadow: 1px 1px black, -1px -1px black;
+}
+
 .switch {
   margin-left: 0.5rem;
   margin-bottom: 0;
+  filter: hue-rotate(60deg);
 }
 
 .control {
@@ -21,6 +42,10 @@
   margin-top: 0.5rem;
   padding-left: 0;
   padding-right: 0;
+  filter: hue-rotate(-30deg);
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .range-slider {
@@ -29,6 +54,9 @@
 
 .play-icon {
   transform: scale(2);
+  &:hover {
+    transform: scale(2.3);
+  }
 }
 
 #index-page-vibe-reactions {

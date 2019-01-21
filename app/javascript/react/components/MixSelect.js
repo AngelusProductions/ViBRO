@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import Select from 'react-select';
 
 class MixSelect extends Component {
   constructor(props) {
@@ -24,7 +23,7 @@ class MixSelect extends Component {
         <ul className={this.props.size(12, "row")} id="mix-select-ul">
           <li className={this.props.size(3, "row")} id="mix-select-label">mix:</li>
           <li className={this.props.size(9, "columns")} >
-            <select name="mix-select" id="mix-select">
+            <select name="mix-select" id="mix-select" onChange={this.props.mixSelectClick}>
               {options.reverse()}
             </select>
           </li>
