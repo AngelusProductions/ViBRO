@@ -12,7 +12,7 @@ class Sidebar extends Component {
     return (
       <div className="top-bar" id="sidebar-top">
         <div className="top-bar-left sidebar-top-text">
-          Angelus
+          Feed
         </div>
       </div>
     )

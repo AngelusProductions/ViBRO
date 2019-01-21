@@ -26,13 +26,7 @@
 
 <body>
 
-  <script type="text/javascript">
-  $(document).ready(function(){
-    setTimeout(function(){
-      $('.flash').fadeOut();
-    }, 2000);
-  })
-  </script>
+
 
   <%- flash.each do |key, value| -%>
     <div class="flash flash-<%= key %>">
@@ -52,5 +46,13 @@
   <%= javascript_pack_tag 'application' %>
 
   <%= yield :extra_footer %>
+
+  <script type="text/javascript">
+  $(document).ready(function(){
+    setTimeout(function(){
+      $('.flash').fadeOut();
+    }, 2000);
+  })
+  </script>
 </body>
 </html>

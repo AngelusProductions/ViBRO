@@ -6,6 +6,7 @@ import BreadCrumbs from '../components/BreadCrumbs'
 import Coverflow from '../components/Coverflow'
 import MixSelect from '../components/MixSelect'
 import SideBar from '../components/SideBar'
+import Hamburger from '../components/Hamburger'
 
 class LandingPage extends Component {
   constructor(props) {
@@ -18,18 +19,36 @@ class LandingPage extends Component {
       mixPlaying: {},
       mixPlayingUser: null,
       mixSelect: 1,
-      playing: false
+      playing: false,
+      waveSurfer: "",
+      volume: 0.5,
+      progress: 0,
+      mute: false,
+      repeat: false,
+      shuffle: false
     }
-    this.size = this.size.bind(this)
     this.getRandomMix = this.getRandomMix.bind(this)
-    this.handleMiniPlayClick = this.handleMiniPlayClick.bind(this)
+    this.waveSurferRendered = this.waveSurferRendered.bind(this)
+    this.handleKey = this.handleKey.bind(this)
+    this.size = this.size.bind(this)
+
+    this.playPauseClick = this.playPauseClick.bind(this)
+    this.volumeSlide = this.volumeSlide.bind(this)
+    this.skipAhead = this.skipAhead.bind(this)
+    this.skipBack = this.skipBack.bind(this)
+    this.toggleMute = this.toggleMute.bind(this)
+    this.toggleRepeat = this.toggleRepeat.bind(this)
+    this.toggleShuffle = this.toggleShuffle.bind(this)
+    this.whatIsNext = this.whatIsNext.bind(this)
+    this.mixSelectClick = this.mixSelectClick.bind(this)
   }
 
   componentDidMount() {
    fetch(`/api/v1/vibes`)
     .then(response => response.json())
     .then(body => {
-      let vibeSelect = Math.floor(Math.random() * body.vibes.length + 1)
+      // let vibeSelect = Math.floor(Math.random() * body.vibes.length + 1)
+      let vibeSelect = 1
       this.setState({ vibes: body.vibes,
                       vibeSelect: vibeSelect })
     })
@@ -38,6 +57,8 @@ class LandingPage extends Component {
       .then(body => {
         this.setState({ users: body.users })
     })
+
+    document.addEventListener('keydown', this.handleKey)
   }
 
   getRandomMix() {
@@ -55,19 +76,62 @@ class LandingPage extends Component {
     return `${other} small-${amt} medium-${amt} large-${amt}`
   }
 
-  handleMiniPlayClick() {
-    this.setState({ playing: true })
+  waveSurferRendered(waveSurfer) {
+    this.setState({ waveSurfer: waveSurfer })
+  }
+
+  handleKey(event) {
+    // event.preventDefault()
+    if (event.keyCode === 32) { this.playPauseClick() }
+    if (event.keyCode === 39) { this.skipAhead() }
+    if (event.keyCode === 37) { this.skipBack() }
+  }
+
+  playPauseClick() {
+    this.state.waveSurfer.playPause()
+    this.setState({ playing: !this.state.playing})
+  }
+  volumeSlide(volume) {
+    this.state.waveSurfer.setVolume(volume.target.value / 100)
+  }
+  skipAhead() {
+    let currentTime = Math.floor(this.state.waveSurfer.getCurrentTime())
+    let duration = Math.floor(this.state.waveSurfer.getDuration())
+    if (duration - currentTime <= 5) { this.whatIsNext() }
+    this.state.waveSurfer.skipForward(5)
+  }
+  skipBack() {
+    this.state.waveSurfer.skipBackward(5)
+  }
+  toggleRepeat() {
+    this.setState({ repeat: !this.state.repeat })
+  }
+  toggleShuffle() {
+    this.setState({ shuffle: !this.state.shuffle })
+  }
+  toggleMute() {
+    this.state.waveSurfer.toggleMute()
+    this.setState({ mute: !this.state.mute })
+  }
+  whatIsNext() {
+    debugger
+  }
+
+  mixSelectClick(event) {
+    this.setState({ mixSelect: event.target.value,
+                    mixPlaying: this.state.vibePlaying.mixes[event.target.value -1] })
+    this.playPauseClick()
   }
 
   render() {
-    let vibesLoaded = this.state.vibes.length > 0
-    let mixLoaded = Object.keys(this.state.mixPlaying).length > 0
-    if (vibesLoaded && !mixLoaded ) {
+    let vibesRendered = this.state.vibes.length > 0
+    let mixRendered = Object.keys(this.state.mixPlaying).length > 0
+    if (vibesRendered && !mixRendered ) {
       this.getRandomMix()
     }
 
     let myPlayer, coverflow
-    if (vibesLoaded) {
+    if (vibesRendered) {
       myPlayer = <MyPlayer
                     vibes={this.state.vibes}
                     vibePlaying={this.state.vibePlaying}
@@ -75,9 +139,23 @@ class LandingPage extends Component {
                     mixPlaying={this.state.mixPlaying}
                     mixPlayingUser={this.state.mixPlayingUser}
                     mixSelect={this.state.mixSelect}
-                    handleMiniPlayClick={this.handleMiniPlayClick}
                     users={this.state.users}
                     size={this.size}
+
+                    playing={this.state.playing}
+                    progress={this.state.progress}
+                    mute={this.state.mute}
+                    repeat={this.state.repeat}
+                    shuffle={this.state.shuffle}
+
+                    playPauseClick={this.playPauseClick}
+                    volumeSlide={this.volumeSlide}
+                    skipAhead={this.skipAhead}
+                    skipBack={this.skipBack}
+                    toggleMute={this.toggleMute}
+                    toggleRepeat={this.toggleRepeat}
+                    toggleShuffle={this.toggleShuffle}
+                    whatIsNext={this.whatIsNext}
                   />
       coverflow = <Coverflow
                     size={this.size}
@@ -85,36 +163,53 @@ class LandingPage extends Component {
                   />
     }
 
-    let waveyPlayer,
-        mixSelect,
-        mixDesc,
-        mixInfo,
-        buttonLink
-    if (mixLoaded) {
-      var waveSurfer = WaveSurfer.create({
-                        container: '#waveform',
-                        waveColor: '#B6C6FE',
-                        progressColor: '#A3E2F7',
-                        backend: 'MediaElement',
-                        scrollParent: false,
-                        hideScrollbar: true,
-                        autoCenter:	true,
-                        barHeight: 1,
-                        normalize: true,
-                        interact: true,
-                        loopSelection: true,
-                        responsive: true
-                      })
-      waveSurfer.load(this.state.mixPlaying.audio_file.url)
+    let mixSelect, mixInfo, buttonLink
+    if (mixRendered) {
       mixSelect = <MixSelect
                     size={this.size}
                     vibePlaying={this.state.vibePlaying}
                     mixPlaying={this.state.mixPlaying}
                     mixSelect={this.state.mixSelect}
+                    mixSelectClick={this.mixSelectClick}
                   />
-      mixDesc = `desc: ${this.state.mixPlaying.name}`
       mixInfo = this.state.mixPlaying.blurb
       buttonLink = `/vibes/${this.state.vibePlaying.id}`
+    }
+
+    let waveform = document.getElementById("waveform")
+    let waveformDivRendered = waveform != null
+    let waveformRendered = false
+    if (waveformDivRendered) {
+      waveformRendered = waveform.children.length > 0
+    }
+    if (mixRendered && waveformDivRendered
+                    && !waveformRendered) {
+      let waveSurfer = WaveSurfer.create({
+          container: '#waveform',
+          waveColor: '#4300ff',
+          progressColor: '#00ffff',
+          backend: 'MediaElement',
+          barWidth: 1,
+          scrollParent: false,
+          hideScrollbar: true,
+          autoCenter:	true,
+          barHeight: 1,
+          normalize: true,
+          interact: true,
+          loopSelection: true,
+          responsive: true,
+          cursorColor: '#00ffc7',
+          audioprocess: {}
+        })
+      waveSurfer.load(this.state.mixPlaying.audio_file.url)
+      waveSurfer.setVolume(0.5)
+      this.waveSurferRendered(waveSurfer)
+    }
+
+    if (waveformRendered) {
+      this.state.waveSurfer.on('finish', function() {
+        this.whatIsNext()
+      }.bind(this))
     }
 
     return(
@@ -124,7 +219,7 @@ class LandingPage extends Component {
             <div className={this.size(3, "columns")}>
               <h1 className="kreon large-offset-1" id="vibro-logo">ViBRO</h1>
               <p className="small-offset-0 medium-offset-2 large-offset-3" id="vibe-bro">do you feel my vibe, bro?</p>
-              <BreadCrumbs />
+              <BreadCrumbs/>
             </div>
             <div className={this.size(6, "columns text-center")} id="waviest-vibes">
               <h1 className="kreon">welcome.</h1>
@@ -148,14 +243,8 @@ class LandingPage extends Component {
                 <ul className="columns">
                 	<li className="row">{mixSelect}</li>
                   <li className="row">
-                    <div className={this.size(12, "row")} id="mix-description-container">
-                      {mixDesc}
-                    </div>
-                  </li>
-                  <li className="row">
                     <div className={this.size(12, "row")} id="mix-blurb-container">
                     {mixInfo}
-                    <i className="fa fa-question-circle" id="mix-question-mark"></i>
                     </div>
                   </li>
                   <li className="row">
@@ -174,22 +263,27 @@ class LandingPage extends Component {
           </div>
 
           <div className={this.size(9, "columns")} id="index-page-left-bottom">
-            <div id="waveform" />
+            <div id="waveform"/>
           </div>
         </div>
 
         <div className={this.size(3, "columns")} id="index-page-right">
           <div className={this.size(3, "row search-bar-container")}>
-            <SearchBar
-              vibes={this.state.vibes}
-              users={this.state.users}
-            />
+            <ul className={this.size(12, "columns top-right-ul")}>
+              <li className={this.size(8, "columns top-right-elements")}>
+                <SearchBar
+                  vibes={this.state.vibes}
+                  users={this.state.users}
+                />
+              </li>
+              <li className={this.size(4, "columns top-right-elements")}>
+                <Hamburger />
+              </li>
+            </ul>
           </div>
 
           <div className={this.size(12, "columns side-bar-container")}>
-            <SideBar
-
-            />
+            <SideBar/>
           </div>
         </div>
       </div>
@@ -217,3 +311,11 @@ export default LandingPage;
 //     end
 //   end
 // end
+
+// <li className="row">
+//   <div className={this.size(12, "row")} id="mix-description-container">
+//     {mixDesc}
+//   </div>
+// </li>
+
+// <i className="fa fa-question-circle" id="mix-question-mark"></i>

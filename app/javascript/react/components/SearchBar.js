@@ -34,9 +34,7 @@ class SearchBar extends Component {
   }
 
   handleKey(event) {
-    if(event.keyCode === 27) {
-      this.setState({ searchResultShow: false })
-    }
+    if(event.keyCode === 27) { this.setState({ searchResultShow: false }) }
   }
 
   handleFieldChange(event) {

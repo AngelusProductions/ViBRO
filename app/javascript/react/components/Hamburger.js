@@ -14,24 +14,13 @@ class Hamburger extends Component {
 
   componentDidMount() {
     fetch('/api/v1/current_user')
-    .then(response => {
-        if (response.ok) {
-        return response;
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-        throw(error);
-      }
-    })
     .then(response => response.json())
     .then(body => {
       if (body != null) {
         this.setState({ currentUser: body.user })
       }
     })
-    .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
-
 
   handleHamburgerClick () {
     if (this.state.hamburgerClass === "fas fa-bars") {
@@ -44,10 +33,9 @@ class Hamburger extends Component {
   }
 
   render() {
+    let dropdownMenu, userName
     let logLink = ""
     let userLink = ""
-    let dropdownMenu = ""
-
     let icon = <i onClick={this.handleHamburgerClick} className={this.state.hamburgerClass}></i>
 
     if (this.state.dropdownShow) {
@@ -65,6 +53,7 @@ class Hamburger extends Component {
                                 >sign out</a></li>
                           </ul>
                         </div>
+        userName = <a href={userPath} className="hamburger-user-name">{this.state.currentUser.username}</a>
       } else {
         dropdownMenu = <div className="hamburger-menu">
                           <ul>
@@ -73,11 +62,20 @@ class Hamburger extends Component {
                             <li className="small-12 columns hamburger-li"><a href="/users/sign_up">sign up</a></li>
                           </ul>
                         </div>
+      userName = <a href="/users/sign_in" className="hamburger-user-name">sign in</a>
+      }
+    } else {
+      if (this.state.currentUser != null) {
+        let userPath = "/users/" + this.state.currentUser.id
+        userName = <a href={userPath} className="hamburger-user-name">{this.state.currentUser.username}</a>
+      } else {
+        userName = <a href="/users/sign_in" className="hamburger-user-name">sign in</a>
       }
     }
 
     return (
       <div className="hamburger-container">
+        {userName}
         {icon}
         {dropdownMenu}
       </div>
@@ -85,4 +83,4 @@ class Hamburger extends Component {
   }
 }
 
-export default Hamburger;
+export default Hamburger
