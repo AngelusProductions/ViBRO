@@ -1,4 +1,11 @@
 
+.construction {
+  margin-top: 1rem;
+  font-size: 2rem;
+  color: red;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+}
+
 .spicy-rice {
   font-family: 'Spicy Rice';
 }
@@ -37,16 +44,23 @@
   // margin: 0 auto;
 }
 
-#index-page-left-bottom {
+#index-page-left-middle-high {
+  top: 30px;
+}
+
+#index-page-left-bottom-bottom {
   bottom: 0;
   z-index: 1;
-  position: fixed;
+  position: relative;
   padding-left: 0.3rem;
   padding-right: 0;
+  width: 100%;
+  float: left;
 }
 
 #swirl-right,
 #swirl-left {
+  // visibility: hidden;
   width: 50%;
 }
 

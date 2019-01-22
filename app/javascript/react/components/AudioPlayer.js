@@ -87,7 +87,8 @@ class AudioPlayer extends Component {
     } else {
       newIdeaModal = ""
     }
-
+    //kill small-12 "row"
+    //set x-y position
     const highestREM = 28.5
     if (Object.keys(this.props.mix).length > 0) {
       ideaIcons = this.props.mix.ideas.map( idea => {

@@ -41,14 +41,14 @@ class LandingPage extends Component {
     this.toggleShuffle = this.toggleShuffle.bind(this)
     this.whatIsNext = this.whatIsNext.bind(this)
     this.mixSelectClick = this.mixSelectClick.bind(this)
+    this.changeVibePlaying = this.changeVibePlaying.bind(this)
   }
 
   componentDidMount() {
    fetch(`/api/v1/vibes`)
     .then(response => response.json())
     .then(body => {
-      // let vibeSelect = Math.floor(Math.random() * body.vibes.length + 1)
-      let vibeSelect = 1
+      let vibeSelect = Math.floor(Math.random() * body.vibes.length + 1)
       this.setState({ vibes: body.vibes,
                       vibeSelect: vibeSelect })
     })
@@ -57,7 +57,6 @@ class LandingPage extends Component {
       .then(body => {
         this.setState({ users: body.users })
     })
-
     document.addEventListener('keydown', this.handleKey)
   }
 
@@ -67,6 +66,7 @@ class LandingPage extends Component {
     .then(body => {
       let latestMixId = body.vibe.mixes.length - 1
       this.setState({ vibePlaying: body.vibe,
+                      mixSelect: latestMixId + 1,
                       mixPlaying: body.vibe.mixes[latestMixId],
                       mixPlayingUser: body.vibe.user })
       })
@@ -80,6 +80,14 @@ class LandingPage extends Component {
     this.setState({ waveSurfer: waveSurfer })
   }
 
+  changeVibePlaying(vibe, mix) {
+    this.state.waveSurfer.empty()
+    this.state.waveSurfer.load(mix.audio_file.url)
+    this.state.waveSurfer.play()
+    this.setState({ playing: true,
+                    mixSelect: vibe.mixes.length })
+  }
+
   handleKey(event) {
     // event.preventDefault()
     if (event.keyCode === 32) { this.playPauseClick() }
@@ -87,18 +95,39 @@ class LandingPage extends Component {
     if (event.keyCode === 37) { this.skipBack() }
   }
 
-  playPauseClick() {
-    this.state.waveSurfer.playPause()
-    this.setState({ playing: !this.state.playing})
+  playPauseClick(event) {
+    let currentVibeId, vibeId = currentVibeId = this.state.vibePlaying.id
+    if (event.target.parentElement.parentElement.parentElement.classList[1] != "audio-controls") {
+      vibeId = event.target.parentElement.parentElement.id
+    }
+    if (vibeId != currentVibeId) {
+      fetch(`/api/v1/vibes/${vibeId}`)
+      .then(response => response.json())
+      .then(body => {
+        let latestMixId = body.vibe.mixes.length - 1
+        let latestMix = body.vibe.mixes[latestMixId]
+        this.changeVibePlaying(body.vibe, latestMix)
+        this.setState({ vibePlaying: body.vibe,
+                        mixPlaying: latestMix,
+                        mixPlayingUser: body.vibe.user })
+        })
+    } else {
+      this.state.waveSurfer.playPause()
+      this.setState({ playing: !this.state.playing})
+    }
   }
+
   volumeSlide(volume) {
     this.state.waveSurfer.setVolume(volume.target.value / 100)
   }
   skipAhead() {
     let currentTime = Math.floor(this.state.waveSurfer.getCurrentTime())
     let duration = Math.floor(this.state.waveSurfer.getDuration())
-    if (duration - currentTime <= 5) { this.whatIsNext() }
-    this.state.waveSurfer.skipForward(5)
+    if (duration - currentTime <= 5) {
+      this.whatIsNext()
+    } else {
+      this.state.waveSurfer.skipForward(5)
+    }
   }
   skipBack() {
     this.state.waveSurfer.skipBackward(5)
@@ -158,6 +187,10 @@ class LandingPage extends Component {
                     whatIsNext={this.whatIsNext}
                   />
       coverflow = <Coverflow
+                    vibePlaying={this.state.vibePlaying}
+                    waveSurfer={this.state.waveSurfer}
+                    playPauseClick={this.playPauseClick}
+                    playing={this.state.playing}
                     size={this.size}
                     vibes={this.state.vibes}
                   />
@@ -213,26 +246,24 @@ class LandingPage extends Component {
     }
 
     return(
-      <div className={this.size(12, "row")} id="index-page-container">
+      <div className="row" id="index-page-container">
         <div className={this.size(9, "columns")} id="index-page-left">
-          <div className={this.size(12, "row")} id="index-page-left-top">
+          <div className="row" id="index-page-left-top">
             <div className={this.size(3, "columns")}>
               <h1 className="kreon large-offset-1" id="vibro-logo">ViBRO</h1>
               <p className="small-offset-0 medium-offset-2 large-offset-3" id="vibe-bro">do you feel my vibe, bro?</p>
-              <BreadCrumbs/>
             </div>
             <div className={this.size(6, "columns text-center")} id="waviest-vibes">
-              <h1 className="kreon">welcome.</h1>
-              <h2 className="kreon">here are today&#39;s waviest vibes.</h2>
+              <h1 className="construction">SITE UNDER CONSTRUCTION</h1>
             </div>
             {myPlayer}
           </div>
 
-          <div className={this.size(9, "row offset-2")} id="index-page-left-middle-high">
+          <div className="row offset-2" id="index-page-left-middle-high">
             {coverflow}
           </div>
 
-          <div className={this.size(9, "row")} id="index-page-left-middle-low">
+          <div className="row" id="index-page-left-middle-low">
             <ul className="row">
 
               <li className={this.size(4, "columns")}>
@@ -243,12 +274,12 @@ class LandingPage extends Component {
                 <ul className="columns">
                 	<li className="row">{mixSelect}</li>
                   <li className="row">
-                    <div className={this.size(12, "row")} id="mix-blurb-container">
+                    <div className="row" id="mix-blurb-container">
                     {mixInfo}
                     </div>
                   </li>
                   <li className="row">
-                    <div className={this.size(12, "row")} id="mix-button-container">
+                    <div className="row" id="mix-button-container">
                       <button href={buttonLink} id="mix-button">help finish this vibe</button>
                     </div>
                   </li>
@@ -262,13 +293,17 @@ class LandingPage extends Component {
             </ul>
           </div>
 
-          <div className={this.size(9, "columns")} id="index-page-left-bottom">
+          <div className={this.size(9, "columns")} id="index-page-left-bottom-top">
+
+          </div>
+
+          <div className={this.size(9, "columns")} id="index-page-left-bottom-bottom">
             <div id="waveform"/>
           </div>
         </div>
 
         <div className={this.size(3, "columns")} id="index-page-right">
-          <div className={this.size(3, "row search-bar-container")}>
+          <div className="row search-bar-container">
             <ul className={this.size(12, "columns top-right-ul")}>
               <li className={this.size(8, "columns top-right-elements")}>
                 <SearchBar
@@ -300,22 +335,33 @@ export default LandingPage;
 //       div small 3 columns
 //       div small 6
 //       small 3
+//     div class row
 //       small 12
+//     div class row
 //       small 12
 //     end
 //   end
 //   div class small 3 columns
 //     div class row
 //       div small 12
+//     div class row
 //       div small 12
 //     end
 //   end
 // end
 
 // <li className="row">
-//   <div className={this.size(12, "row")} id="mix-description-container">
+//   <div className="row" id="mix-description-container">
 //     {mixDesc}
 //   </div>
 // </li>
 
 // <i className="fa fa-question-circle" id="mix-question-mark"></i>
+
+// <BreadCrumbs/>
+
+// <h1 className="kreon">welcome.</h1>
+// <h2 className="kreon">here are today&#39;s waviest vibes.</h2>
+
+// http://www.clker.com/cliparts/H/T/1/n/4/n/a-purple-purple-swirl-2-hi.png
+// http://www.clipartable.com/images/22/waudYMX4.png

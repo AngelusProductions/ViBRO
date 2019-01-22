@@ -67,7 +67,7 @@ class MyPlayer extends Component {
         </div>
 
         <div className="row audio-controls">
-          <ul className={this.props.size(12, "row")}>
+          <ul className="row">
             <li className={this.props.size(1, "columns control playback")}>
               <i className="fas fa-backward" onClick={this.props.skipBack}></i>
             </li>
