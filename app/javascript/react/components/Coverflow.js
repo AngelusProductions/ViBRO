@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import Swiper from 'react-id-swiper'
+const swipe = require('swiper')
 
 class Coverflow extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-
-    }
+    this.state = {}
   }
 
  render() {
@@ -14,7 +13,6 @@ class Coverflow extends React.Component {
    if (this.props.vibes.length > 0) {
      initialIndex = Math.floor(this.props.vibes.length / 2)
    }
-
    let params = {
       effect: 'coverflow',
       loop: false,
@@ -54,19 +52,27 @@ class Coverflow extends React.Component {
        prevEl: '.swiper-button-next'
      }
     }
-
     let covers = this.props.vibes.map(vibe => {
-      let id = `vibe${vibe.id}`
       let url = `/vibes/${vibe.id}`
-      return <div id={id} className="swiper-slide" key={vibe.id}>
+      let button = ""
+      let playPause = "fas fa-play-circle play-overlay"
+      if(this.props.playing &&
+         this.props.vibePlaying.id === vibe.id) {
+        playPause = "fas fa-pause-circle play-overlay"
+      }
+      return <div id={vibe.id} className="swiper-slide" key={vibe.id}>
                <img src={vibe.art.url} />
+               <button className="play-overlay-button">
+                 <i className={playPause} onClick={this.props.playPauseClick}></i>
+               </button>
              </div>
-    })
+    }, this)
+
    return (
     <div id="coverflow-div">
        <Swiper {...params} shouldSwiperUpdate>
          {covers}
-      </Swiper>
+       </Swiper>
      </div>
    )
  }

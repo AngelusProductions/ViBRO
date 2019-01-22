@@ -6,22 +6,22 @@ class MixSelect extends Component {
     this.state = {
       value: this.props.vibePlaying.mixes.length
     }
-    this.handleSelect = this.handleSelect.bind(this)
-  }
-
-  handleSelect(event) {
-    debugger
   }
 
   render() {
+    console.log(this.props.mixSelect)
     let options = this.props.vibePlaying.mixes.map( mix => {
-        return <option value={mix.number} key={mix.number}>{mix.number}</option>
+        if (this.props.mixSelect === mix.id) {
+          return <option value={mix.number} key={mix.number} selected>{mix.number}</option>
+        } else {
+          return <option value={mix.number} key={mix.number}>{mix.number}</option>
+        }
       })
 
     return (
-      <div className={this.props.size(12, "row mix-info-container")} id="mix-select-container">
-        <ul className={this.props.size(12, "row")} id="mix-select-ul">
-          <li className={this.props.size(3, "row")} id="mix-select-label">mix:</li>
+      <div className="row mix-info-container" id="mix-select-container">
+        <ul className="row" id="mix-select-ul">
+          <li className="row" id="mix-select-label">mix:</li>
           <li className={this.props.size(9, "columns")} >
             <select name="mix-select" id="mix-select" onChange={this.props.mixSelectClick}>
               {options.reverse()}

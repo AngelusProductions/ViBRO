@@ -1,6 +1,6 @@
 
 .swiper-wrapper {
-  margin-bottom: 3rem;
+  // margin-bottom: 3rem;
 }
 
 #coverflow-div {
@@ -9,17 +9,59 @@
   margin: 0 auto;
 }
 
+.swiper-container {
+  top: -3rem;
+  height: 20rem;
+}
+
 .swiper-slide-active {
   margin: 0;
 }
 
 .swiper-slide img {
   border-radius: 3%;
-  width: 15rem;
-  height: 15rem;
+  width: 20rem;
+  height: 20rem;
   -webkit-box-reflect: below 3px -webkit-gradient(linear, right top, right bottom, from(transparent), color-stop(80%, transparent), to(rgba(255, 255, 255, 0.2)));
 }
 
 .swiper-button-next, .swiper-button-prev {
   color: #80ffbf;
+}
+
+.swiper-pagination {
+  z-index: 2;
+  position: absolute;
+  top: 20rem;
+}
+
+.play-overlay-button {
+  z-index: 5;
+  background: none;
+  transform: translate(120%, -80%);
+  &:hover {
+    outline: none;
+    background: none;
+  }
+  &:active {
+    outline: none;
+    background: none;
+  }
+  &:focus {
+    outline: none;
+    background: none;
+  }
+}
+
+.play-overlay {
+  color: white;
+  font-size: 3rem;
+  opacity: 0.7;
+  &:hover {
+    opacity: 2;
+  }
+  &:active {
+    opacity: 0.5;
+    color: #007bff;
+  }
 }
