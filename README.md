@@ -7,8 +7,6 @@
 
 **CURRENTLY UNDER DEVELOPMENT**
 
-(WILL BE AVAILABLE NEXT WEEK)
-
 https://vibro.herokuapp.com
 
     ~~~~~~~~~~~~~
