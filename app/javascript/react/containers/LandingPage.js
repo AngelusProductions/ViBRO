@@ -89,7 +89,7 @@ class LandingPage extends Component {
   }
 
   handleKey(event) {
-    // event.preventDefault()
+    event.preventDefault()
     if (event.keyCode === 32) { this.playPauseClick() }
     if (event.keyCode === 39) { this.skipAhead() }
     if (event.keyCode === 37) { this.skipBack() }
@@ -147,9 +147,12 @@ class LandingPage extends Component {
   }
 
   mixSelectClick(event) {
+    let newWaveform = this.state.vibePlaying.mixes[event.target.value - 1]
+    this.state.waveSurfer.empty()
+    this.state.waveSurfer.load(newWaveform.audio_file.url)
     this.setState({ mixSelect: event.target.value,
-                    mixPlaying: this.state.vibePlaying.mixes[event.target.value -1] })
-    this.playPauseClick()
+                    mixPlaying: newWaveform,
+                    playing: false })
   }
 
   render() {
