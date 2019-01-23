@@ -1,9 +1,10 @@
 
 .construction {
+  font-family: 'Spicy Rice';
   margin-top: 1rem;
   font-size: 2rem;
   color: red;
-  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -webkit-animation: glow 2s ease-in-out infinite alternate;
 }
 
 .spicy-rice {
@@ -60,7 +61,7 @@
 
 #swirl-right,
 #swirl-left {
-  // visibility: hidden;
+  visibility: hidden;
   width: 50%;
 }
 
@@ -70,4 +71,13 @@
 
 .top-right-ul {
   margin: 0;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 5px white, 0 0 6px white, 0 0 7px white, 0 0 8px white;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 7.5px hotpink, 0 0 10px hotpink, 0 0 15px hotpink;
+  }
 }

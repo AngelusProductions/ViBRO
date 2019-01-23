@@ -89,15 +89,16 @@ class LandingPage extends Component {
   }
 
   handleKey(event) {
-    event.preventDefault()
+    // event.preventDefault()
     if (event.keyCode === 32) { this.playPauseClick() }
     if (event.keyCode === 39) { this.skipAhead() }
     if (event.keyCode === 37) { this.skipBack() }
   }
 
-  playPauseClick(event) {
+  playPauseClick(event = "") {
     let currentVibeId, vibeId = currentVibeId = this.state.vibePlaying.id
-    if (event.target.parentElement.parentElement.parentElement.classList[1] != "audio-controls") {
+    if (event != "" &&
+        event.target.parentElement.parentElement.parentElement.classList[1] != "audio-controls") {
       vibeId = event.target.parentElement.parentElement.id
     }
     if (vibeId != currentVibeId) {
@@ -208,7 +209,7 @@ class LandingPage extends Component {
                     mixSelect={this.state.mixSelect}
                     mixSelectClick={this.mixSelectClick}
                   />
-      mixInfo = this.state.mixPlaying.blurb
+      mixInfo = this.state.mixPlaying.name
       buttonLink = `/vibes/${this.state.vibePlaying.id}`
     }
 
@@ -257,7 +258,7 @@ class LandingPage extends Component {
               <p className="small-offset-0 medium-offset-2 large-offset-3" id="vibe-bro">do you feel my vibe, bro?</p>
             </div>
             <div className={this.size(6, "columns text-center")} id="waviest-vibes">
-              <h1 className="construction">SITE UNDER CONSTRUCTION</h1>
+              <h1 className="construction">UNDER CONSTRUCTION</h1>
             </div>
             {myPlayer}
           </div>

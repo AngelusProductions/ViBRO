@@ -117,12 +117,3 @@
   margin: 1rem 0 0 0.5rem;
   width: 12rem;
 }
-
-@-webkit-keyframes glow {
-  from {
-    text-shadow: 0 0 5px #fff, 0 0 20px #fff, 0 0 30px yellow, 0 0 40px yellow, 0 0 50px yellow, 0 0 60px yellow, 0 0 70px yellow;
-  }
-  to {
-    text-shadow: 0 0 5px #fff, 0 0 30px red, 0 0 40px red, 0 0 50px red, 0 0 60px red, 0 0 70px red, 0 0 80px red;
-  }
-}
