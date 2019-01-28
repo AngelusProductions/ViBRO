@@ -258,7 +258,6 @@ class LandingPage extends Component {
               <p className="small-offset-0 medium-offset-2 large-offset-3" id="vibe-bro">do you feel my vibe, bro?</p>
             </div>
             <div className={this.size(6, "columns text-center")} id="waviest-vibes">
-              <h1 className="construction">UNDER CONSTRUCTION</h1>
             </div>
             {myPlayer}
           </div>
@@ -369,3 +368,4 @@ export default LandingPage;
 
 // http://www.clker.com/cliparts/H/T/1/n/4/n/a-purple-purple-swirl-2-hi.png
 // http://www.clipartable.com/images/22/waudYMX4.png
+// <h1 className="construction">UNDER CONSTRUCTION</h1>
