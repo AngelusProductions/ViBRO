@@ -4,6 +4,7 @@
 }
 
 #coverflow-div {
+  width: 90%;
   margin-top: 5rem;
   text-align: center;
   margin: 0 auto;
@@ -64,4 +65,8 @@
     opacity: 0.5;
     color: #007bff;
   }
+}
+
+.de-saturate {
+  filter: saturate(50%);
 }
