@@ -8,8 +8,11 @@
 @import url('https://fonts.googleapis.com/css?family=Spicy+Rice');
 @import url('https://fonts.googleapis.com/css?family=Kreon');
 
+$primary : #476cff;
+
 * {
   font-family: 'Kreon';
+  color: white;
 }
 
 .row {
@@ -31,51 +34,24 @@ body {
   // font-family: 'Spicy Rice';
   // background-color: #e7e1f7;
   // filter: saturate(1.5);
-  background: rgb(13,250,251);
-  background-image:
-  radial-gradient(circle at 0% 0%,
-  white 1%,
-  aquamarine 2%,
-  aquamarine 3%,
-  white 4%,
-  white 5%,
-  aquamarine 6%,
-  aquamarine 7%,
-  white 8%,
-  white 9%,
-  aquamarine 10%,
-  aquamarine 11%,
-  white 12%,
-  white 13%,
-  aquamarine 14%,
-  aquamarine 15%,
-  white 16%,
-  white 17%,
-  aquamarine 18%,
-  aquamarine 19%,
-  white 20%,
-  white 21%,
-  aquamarine 22%,
-  aquamarine 23%,
-  transparent 10%,
-  transparent);
-  background:
-  radial-gradient(circle at 0% 0%,
-  white 1%,
-  aquamarine 2%,
-  aquamarine 3%,
-  white 4%,
-  white 5%,
-  aquamarine 6%,
-  aquamarine 7%,
-  white 8%,
-  white 9%,
-  aquamarine 10%,
-  aquamarine 11%,
-  white 12%,
-  white 13%,
-  aquamarine 14%,
-  aquamarine 15%,
+  // background: rgb(13,250,251);
+  // background-image:
+  // radial-gradient(circle at 0% 0%,
+  // white 1%,
+  // aquamarine 2%,
+  // aquamarine 3%,
+  // white 4%,
+  // white 5%,
+  // aquamarine 6%,
+  // aquamarine 7%,
+  // white 8%,
+  // white 9%,
+  // aquamarine 10%,
+  // aquamarine 11%,
+  // white 12%,
+  // white 13%,
+  // aquamarine 14%,
+  // aquamarine 15%,
   // white 16%,
   // white 17%,
   // aquamarine 18%,
@@ -84,13 +60,47 @@ body {
   // white 21%,
   // aquamarine 22%,
   // aquamarine 23%,
-  transparent 10%,
-  transparent),
-  radial-gradient(circle, rgba(255,255,255,0.1) 70%, rgba(71, 108, 255, 0.5) 100%);
-  background-repeat: no-repeat;
+  // transparent 10%,
+  // transparent);
+  // background:
+  // radial-gradient(circle at 0% 0%,
+  // white 1%,
+  // aquamarine 2%,
+  // aquamarine 3%,
+  // white 4%,
+  // white 5%,
+  // aquamarine 6%,
+  // aquamarine 7%,
+  // white 8%,
+  // white 9%,
+  // aquamarine 10%,
+  // aquamarine 11%,
+  // white 12%,
+  // white 13%,
+  // aquamarine 14%,
+  // aquamarine 15%,
+  // // white 16%,
+  // // white 17%,
+  // // aquamarine 18%,
+  // // aquamarine 19%,
+  // // white 20%,
+  // // white 21%,
+  // // aquamarine 22%,
+  // // aquamarine 23%,
+  // transparent 10%,
+  // transparent),
+  // radial-gradient(circle, rgba(255,255,255,0.1) 70%, rgba(71, 108, 255, 0.5) 100%);
+  // background-repeat: no-repeat;
 
+  background: rgba(89,89,89,1);
+  background: -moz-radial-gradient(center, ellipse cover, rgba(89,89,89,1) 0%, rgba(85,85,85,1) 5%, rgba(0,0,0,1) 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(89,89,89,1)), color-stop(5%, rgba(85,85,85,1)), color-stop(100%, rgba(0,0,0,1)));
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(89,89,89,1) 0%, rgba(85,85,85,1) 5%, rgba(0,0,0,1) 100%);
+  background: -o-radial-gradient(center, ellipse cover, rgba(89,89,89,1) 0%, rgba(85,85,85,1) 5%, rgba(0,0,0,1) 100%);
+  background: -ms-radial-gradient(center, ellipse cover, rgba(89,89,89,1) 0%, rgba(85,85,85,1) 5%, rgba(0,0,0,1) 100%);
+  background: radial-gradient(ellipse at center, rgba(89,89,89,1) 0%, rgba(85,85,85,1) 5%, rgba(0,0,0,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#595959', endColorstr='#000000', GradientType=1 );
 }
-
 
 //
 //
