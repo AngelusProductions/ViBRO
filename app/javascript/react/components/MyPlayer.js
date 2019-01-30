@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import WaveyPlayer from '../components/WaveyPlayer'
-import Audio from '../components/Audio'
 
 class MyPlayer extends Component {
   constructor(props) {
@@ -53,9 +52,7 @@ class MyPlayer extends Component {
     return (
       <div className={this.props.size(3, "columns my-player")}>
 
-      <Audio />
-
-        <div className="playback-buttons row small-offset-0 medium-offset-1 large-offset-6">
+        <div className="playback-buttons row small-offset-0 medium-offset-1 large-offset-4">
           <ul className="row text-right">
             {repeat}
             {shuffle}

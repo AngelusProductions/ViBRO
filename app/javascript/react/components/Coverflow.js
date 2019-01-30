@@ -5,24 +5,32 @@ const swipe = require('swiper')
 class Coverflow extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      activeIndex: 0
+    }
+    this.handleSlideChange = this.handleSlideChange.bind(this)
+  }
+
+  componentDidMount () {
+    this.setState({ activeIndex: this.props.vibeSelect - 1})
+  }
+
+  handleSlideChange(activeIndex) {
+    this.setState({ activeIndex: activeIndex })
   }
 
  render() {
-   let initialIndex = 1;
-   if (this.props.vibes.length > 0) {
-     initialIndex = Math.floor(this.props.vibes.length / 2)
-   }
+
    let params = {
       effect: 'coverflow',
       loop: false,
       width: 1000,
-      speed: 500,
-      spaceBetween: 0,
+      speed: 300,
+      spaceBetween: 50,
       slidesPerView: 3,
-      grabCursor: false,
+      grabCursor: true,
       virtualTranslate: false,
-      initialSlide: initialIndex,
+      initialSlide: this.props.vibeSelect - 1,
       runCallbacksOnInit: true,
       centeredSlides: true,
       touchReleaseOnEdges: true,
@@ -33,7 +41,7 @@ class Coverflow extends React.Component {
         rotate: 45,
         stretch: 300,
         depth: 350,
-        modifier: 3,
+        modifier: 2,
         slideShadows: false
       },
       fadeEffect: {
@@ -50,17 +58,30 @@ class Coverflow extends React.Component {
       navigation: {
        nextEl: '.swiper-button-prev',
        prevEl: '.swiper-button-next'
+     },
+     on: {
+       'activeIndexChange': () => {
+         let index = this.activeIndex
+         this.handleSlideChange(this.activeIndex)
+       }
      }
     }
+
     let covers = this.props.vibes.map(vibe => {
+      let button
       let url = `/vibes/${vibe.id}`
-      let button = ""
-      let playPause = "fas fa-play-circle play-overlay"
-      if(this.props.playing &&
-         this.props.vibePlaying.id === vibe.id) {
-        playPause = "fas fa-pause-circle play-overlay"
+      let isPlaying = this.props.vibePlaying.id === vibe.id
+
+      let saturation = "de-saturate"
+      if (vibe.id === this.state.activeIndex) {
+        saturation = ""
       }
-      return <div id={vibe.id} className="swiper-slide" key={vibe.id}>
+      let coverClass = `swiper-slide ${saturation}`
+
+      let playPause = `fas fa-play-circle play-overlay`
+      if (this.props.playing && isPlaying) { playPause = `fas fa-pause-circle play-overlay` }
+
+      return <div id={vibe.id} className={coverClass} key={vibe.id}>
                <img src={vibe.art.url} />
                <button className="play-overlay-button">
                  <i className={playPause} onClick={this.props.playPauseClick}></i>
@@ -68,12 +89,14 @@ class Coverflow extends React.Component {
              </div>
     }, this)
 
+    let swiper = <Swiper {...params} shouldSwiperUpdate>
+                   {covers}
+                 </Swiper>
+
    return (
     <div id="coverflow-div">
-       <Swiper {...params} shouldSwiperUpdate>
-         {covers}
-       </Swiper>
-     </div>
+      {swiper}
+    </div>
    )
  }
 }
