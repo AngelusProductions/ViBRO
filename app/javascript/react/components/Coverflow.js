@@ -35,7 +35,7 @@ class Coverflow extends React.Component {
       centeredSlides: true,
       touchReleaseOnEdges: true,
       simulateTouch: true,
-      mousewheel: true,
+      mousewheel: false,
       parallax: true,
       coverflowEffect: {
         rotate: 45,
@@ -47,9 +47,6 @@ class Coverflow extends React.Component {
       fadeEffect: {
         crossFade: true
       },
-      zoom: {
-    maxRatio: 5,
-  },
       pagination: {
         el: '.swiper-pagination',
         type: 'bullets',
@@ -68,7 +65,7 @@ class Coverflow extends React.Component {
     }
 
     let covers = this.props.vibes.map(vibe => {
-      let button
+      let button, borderGlow
       let url = `/vibes/${vibe.id}`
       let isPlaying = this.props.vibePlaying.id === vibe.id
 
@@ -78,11 +75,13 @@ class Coverflow extends React.Component {
       }
       let coverClass = `swiper-slide ${saturation}`
 
+      if (isPlaying) { borderGlow = "is-playing"}
+
       let playPause = `fas fa-play-circle play-overlay`
       if (this.props.playing && isPlaying) { playPause = `fas fa-pause-circle play-overlay` }
 
-      return <div id={vibe.id} className={coverClass} key={vibe.id}>
-               <img src={vibe.art.url} />
+      return <div id={vibe.id} className={`${coverClass} ${borderGlow}`} key={vibe.id}>
+               <img src={vibe.art.url} className={borderGlow}/>
                <button className="play-overlay-button">
                  <i className={playPause} onClick={this.props.playPauseClick}></i>
                </button>

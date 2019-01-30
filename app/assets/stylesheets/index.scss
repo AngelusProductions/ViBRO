@@ -24,6 +24,7 @@
   color: white;
   font-size: 3.5rem;
   margin: 0;
+  text-shadow: 1px 4px 5px #fff, 3px 5px 10px #80ffbf;
 }
 
 #vibe-bro {
@@ -39,6 +40,10 @@
 #index-page-left,
 #index-page-right {
   padding: 0;
+}
+
+#top-bar-middle {
+  margin-left: 15%;
 }
 
 #index-page-left-middle-high,

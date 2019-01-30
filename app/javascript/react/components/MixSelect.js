@@ -10,7 +10,7 @@ class MixSelect extends Component {
 
   render() {
     let options = this.props.vibePlaying.mixes.map( mix => {
-        if (this.props.mixSelect === mix.id) {
+        if (this.props.mixSelect === mix.number) {
           return <option value={mix.number} key={mix.number} selected>{mix.number}</option>
         } else {
           return <option value={mix.number} key={mix.number}>{mix.number}</option>

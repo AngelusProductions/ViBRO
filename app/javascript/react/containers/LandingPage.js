@@ -8,6 +8,7 @@ import MixSelect from '../components/MixSelect'
 import SideBar from '../components/SideBar'
 import Hamburger from '../components/Hamburger'
 import AudioVisualizer from '../components/AudioVisualizer'
+import WaveyPlayer from '../components/WaveyPlayer'
 
 
 class LandingPage extends Component {
@@ -86,8 +87,7 @@ class LandingPage extends Component {
     this.state.waveSurfer.empty()
     this.state.waveSurfer.load(mix.audio_file.url)
     this.state.waveSurfer.play()
-    this.setState({ playing: true,
-                    mixSelect: vibe.mixes.length })
+    this.setState({ playing: true })
   }
 
   handleKey(event) {
@@ -107,10 +107,11 @@ class LandingPage extends Component {
       fetch(`/api/v1/vibes/${vibeId}`)
       .then(response => response.json())
       .then(body => {
-        let latestMixId = body.vibe.mixes.length - 1
-        let latestMix = body.vibe.mixes[latestMixId]
+        let latestMixId = body.vibe.mixes.length
+        let latestMix = body.vibe.mixes[latestMixId - 1]
         this.changeVibePlaying(body.vibe, latestMix)
         this.setState({ vibePlaying: body.vibe,
+                        mixSelect: latestMix.number,
                         mixPlaying: latestMix,
                         mixPlayingUser: body.vibe.user })
         })
@@ -209,7 +210,7 @@ class LandingPage extends Component {
                   />
     }
 
-    let mixSelect, mixInfo, buttonLink
+    let mixSelect, mixInfo, waveyPlayer, buttonLink
     if (mixRendered) {
       mixSelect = <MixSelect
                     size={this.size}
@@ -220,6 +221,14 @@ class LandingPage extends Component {
                   />
       mixInfo = this.state.mixPlaying.blurb
       buttonLink = `/vibes/${this.state.vibePlaying.id}`
+
+      waveyPlayer = <WaveyPlayer
+                      size={this.size}
+                      vibePlaying={this.state.vibePlaying}
+                      mixPlaying={this.state.mixPlaying}
+                      mixPlayingUser={this.state.mixPlayingUser}
+                      playing={this.state.playing}
+                    />
     }
 
     let visualizer, url = visualizer = ""
@@ -235,7 +244,7 @@ class LandingPage extends Component {
           id: 'waveform',
           container: '#waveform',
           waveColor: '#4300ff',
-          progressColor: '#00ffff',
+          progressColor: '#80ffbf',
           backend: 'MediaElement',
           barWidth: 1,
           scrollParent: false,
@@ -275,6 +284,16 @@ class LandingPage extends Component {
               <p className="small-offset-0 medium-offset-2 large-offset-3" id="vibe-bro">by Angelus Productions</p>
             </div>
             <div className={this.size(6, "columns text-center")}>
+            <div className="row" id="top-bar-middle">
+              <ul className="row">
+                <li className={this.size(2, "columns now-playing")}>
+                  Now Playing:
+                </li>
+                <li className={this.size(10, "columns wavey-player")}>
+                  {waveyPlayer}
+                </li>
+              </ul>
+            </div>
             </div>
             {myPlayer}
           </div>
@@ -291,7 +310,7 @@ class LandingPage extends Component {
               </li>
 
               <li className={this.size(4, "columns")}>
-                <ul className="columns">
+                <ul className="columns mix-info">
                 	<li className="row">{mixSelect}</li>
                   <li className="row">
                     <div className="row" id="mix-blurb-container">

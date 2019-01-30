@@ -18,8 +18,8 @@ class WaveyPlayer extends Component {
         <div className='wave'></div>
 
         <div className="info">
-          <h2 className='title'>{this.props.vibePlaying.name}</h2>
-          <div className='artist'>{this.props.mixPlayingUser.username}</div>
+          <div className='title'>{this.props.vibePlaying.name}</div>
+          <div className='artist'>by {this.props.mixPlayingUser.username}</div>
         </div>
 
       </div>

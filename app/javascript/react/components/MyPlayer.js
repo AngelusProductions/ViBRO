@@ -80,16 +80,7 @@ class MyPlayer extends Component {
           </ul>
         </div>
 
-        <div className="row">
-          <ul className="row">
-            <li className={this.props.size(2, "columns now-playing")}>
-              Now Playing:
-            </li>
-            <li className={this.props.size(10, "columns wavey-player")}>
-              {waveyPlayer}
-            </li>
-          </ul>
-        </div>
+
       </div>
     )
   }

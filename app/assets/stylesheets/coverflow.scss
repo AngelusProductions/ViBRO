@@ -11,7 +11,7 @@
 }
 
 .swiper-container {
-  top: -3rem;
+  // top: -3rem;
   height: 20rem;
 }
 
@@ -27,7 +27,19 @@
 }
 
 .swiper-button-next, .swiper-button-prev {
-  color: #80ffbf;
+    border-radius: 49%;
+    padding: 2.5rem;
+    // border: 1px outset aquamarine;
+
+    &:hover {
+      background-color: aquamarine;
+      border: 3px  #007bff;
+    }
+    &:active{
+      background-color: hotpink;
+      border: 3px solid aquamarine;
+      transform: scale(0.75);
+    }
 }
 
 .swiper-pagination {
@@ -74,3 +86,7 @@
   // .de-saturate {
   //   filter: saturate(50%);
   // }
+
+.is-playing {
+  box-shadow: 1px 4px 5px #fff, 3px 5px 10px hotpink, 0 0 50px hotpink, 0 0 100px hotpink;
+}
