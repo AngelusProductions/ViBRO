@@ -1,22 +1,22 @@
 
 users_seeds = [
-  {email: "angelusproductions@gmail.com", password: 123456, first_name: "Corey", last_name: "Angelus", username: "Angelus", remote_pro_pic_url: "https://s3.amazonaws.com/vibro-development/Art/angelus.jpg", bio: "Hi, I\'m Corey. I developed this site and produced a number of songs. Please DM me if you\'re intersted in collaborating. Let\'s make this music better!"},
-  {email: "cca257@nyu.edu", password: 123456, first_name: "Shmlorey", last_name: "Shmlangelus", username: "Shmlangelus", remote_pro_pic_url: "https://s3.amazonaws.com/vibro-development/Art/velvetopia pixelated.jpg", bio: "Hi, I\'m Corey\'s alter ego."}
+  {id: 1, email: "angelusproductions@gmail.com", password: 123456, first_name: "Corey", last_name: "Angelus", username: "Angelus", remote_pro_pic_url: "https://s3.amazonaws.com/vibro-development/Art/angelus.jpg", bio: "Hi, I\'m Corey. I developed this site and produced a number of songs. Please DM me if you\'re intersted in collaborating. Let\'s make this music better!"},
+  {id: 2, email: "cca257@nyu.edu", password: 123456, first_name: "Shmlorey", last_name: "Shmlangelus", username: "Shmlangelus", remote_pro_pic_url: "https://s3.amazonaws.com/vibro-development/Art/velvetopia pixelated.jpg", bio: "Hi, I\'m Corey\'s alter ego."}
 ]
 
 managers_seeds = [
-  {stake: 100, vibe_id: 1, user_id: 1},
-  {stake: 100, vibe_id: 2, user_id: 1},
-  {stake: 100, vibe_id: 3, user_id: 1},
-  {stake: 100, vibe_id: 4, user_id: 1},
-  {stake: 100, vibe_id: 5, user_id: 1},
-  {stake: 100, vibe_id: 6, user_id: 1}
+  {id: 1, stake: 100, vibe_id: 1, user_id: 1},
+  {id: 2, stake: 100, vibe_id: 2, user_id: 1},
+  {id: 3, stake: 100, vibe_id: 3, user_id: 1},
+  {id: 4, stake: 100, vibe_id: 4, user_id: 1},
+  {id: 5, stake: 100, vibe_id: 5, user_id: 1},
+  {id: 6, stake: 100, vibe_id: 6, user_id: 1}
 ]
 
 lineups_seeds = [
-  {name: "Don\'t Phunq Up!", blurb: "Funk/disco album.", art: "https://i.pinimg.com/474x/fa/84/ac/fa84ac45b38fb8a44a8987d73d9c9fbb.jpg", waves: 7, user_id: 1},
-  {name: "Blue Kangaroo", blurb: "Electronic R&B.", art: "http://pixelartmaker.com/art/983eebd1c0805ad.png", waves: 35, user_id: 1},
-  {name: "The Rest", blurb: "Miscellaneous.", art: "/assets/therest.gif", waves: 12, user_id: 1}
+  {id: 1, name: "Don\'t Phunq Up!", blurb: "Funk/disco album.", art: "https://i.pinimg.com/474x/fa/84/ac/fa84ac45b38fb8a44a8987d73d9c9fbb.jpg", waves: 7, user_id: 1},
+  {id: 2, name: "Blue Kangaroo", blurb: "Electronic R&B.", art: "http://pixelartmaker.com/art/983eebd1c0805ad.png", waves: 35, user_id: 1},
+  {id: 3, name: "The Rest", blurb: "Miscellaneous.", art: "/assets/therest.gif", waves: 12, user_id: 1}
 ]
 
 vibes_seeds = [

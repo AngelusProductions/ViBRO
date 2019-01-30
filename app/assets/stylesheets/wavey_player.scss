@@ -62,7 +62,7 @@
 /* when stop */
 .wave {
   border-radius: 40%;
-  left: 50%;
+  align-items: center;
   animation: wave 55s infinite linear;
 }
 
@@ -115,6 +115,6 @@
 }
 
 .music-card {
-  width: 30rem;
   margin: 1rem 0 0 0.5rem;
+  width: 10rem;
 }
