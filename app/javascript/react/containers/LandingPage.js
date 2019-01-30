@@ -24,7 +24,7 @@ class LandingPage extends Component {
       mixSelect: 1,
       playing: false,
       waveSurfer: "",
-      volume: 0.5,
+      volume: 1,
       progress: 0,
       mute: false,
       repeat: false,
