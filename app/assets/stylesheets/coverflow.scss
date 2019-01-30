@@ -37,16 +37,21 @@
 }
 
 .play-overlay-button {
-  z-index: 5;
+  z-index: 3;
   background: none;
-  transform: translate(120%, -80%);
+  transform: translate(230%, -110%);
+  background: white;
+  border: 2px solid black;
+  padding: 0;
+  border-radius: 50%;
   &:hover {
+    color: white;
     outline: none;
-    background: none;
+    background: black;
   }
   &:active {
     outline: none;
-    background: none;
+    background: white;
   }
   &:focus {
     outline: none;
@@ -55,18 +60,17 @@
 }
 
 .play-overlay {
-  color: white;
+  color: black;
   font-size: 3rem;
-  opacity: 0.7;
+  // opacity: 0.7;
   &:hover {
-    opacity: 2;
+    color: white;
   }
   &:active {
-    opacity: 0.5;
     color: #007bff;
   }
 }
-
-.de-saturate {
-  filter: saturate(50%);
-}
+  //
+  // .de-saturate {
+  //   filter: saturate(50%);
+  // }

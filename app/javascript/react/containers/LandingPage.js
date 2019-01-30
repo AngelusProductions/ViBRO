@@ -7,6 +7,8 @@ import Coverflow from '../components/Coverflow'
 import MixSelect from '../components/MixSelect'
 import SideBar from '../components/SideBar'
 import Hamburger from '../components/Hamburger'
+import AudioVisualizer from '../components/AudioVisualizer'
+
 
 class LandingPage extends Component {
   constructor(props) {
@@ -113,6 +115,12 @@ class LandingPage extends Component {
                         mixPlayingUser: body.vibe.user })
         })
     } else {
+      // let audioElement = document.getElementById("audio-element")
+      // if(this.state.playing) {
+      //   audioElement.pause()
+      // } else {
+      //   audioElement.play()
+      // }
       this.state.waveSurfer.playPause()
       this.setState({ playing: !this.state.playing})
     }
@@ -191,6 +199,7 @@ class LandingPage extends Component {
                     whatIsNext={this.whatIsNext}
                   />
       coverflow = <Coverflow
+                    vibeSelect={this.state.vibeSelect}
                     vibePlaying={this.state.vibePlaying}
                     waveSurfer={this.state.waveSurfer}
                     playPauseClick={this.playPauseClick}
@@ -209,10 +218,11 @@ class LandingPage extends Component {
                     mixSelect={this.state.mixSelect}
                     mixSelectClick={this.mixSelectClick}
                   />
-      mixInfo = this.state.mixPlaying.name
+      mixInfo = this.state.mixPlaying.blurb
       buttonLink = `/vibes/${this.state.vibePlaying.id}`
     }
 
+    let visualizer, url = visualizer = ""
     let waveform = document.getElementById("waveform")
     let waveformDivRendered = waveform != null
     let waveformRendered = false
@@ -222,6 +232,7 @@ class LandingPage extends Component {
     if (mixRendered && waveformDivRendered
                     && !waveformRendered) {
       let waveSurfer = WaveSurfer.create({
+          id: 'waveform',
           container: '#waveform',
           waveColor: '#4300ff',
           progressColor: '#00ffff',
@@ -238,9 +249,15 @@ class LandingPage extends Component {
           cursorColor: '#00ffc7',
           audioprocess: {}
         })
-      waveSurfer.load(this.state.mixPlaying.audio_file.url)
-      waveSurfer.setVolume(0.5)
+      url = this.state.mixPlaying.audio_file.url
+      waveSurfer.load(url)
+      waveSurfer.setVolume(1)
       this.waveSurferRendered(waveSurfer)
+
+      visualizer = <AudioVisualizer
+                      mixPlaying={this.state.mixPlaying}
+                    />
+      document.getElementsByTagName("audio")[0].id = "audio-element"
     }
 
     if (waveformRendered) {
@@ -251,13 +268,13 @@ class LandingPage extends Component {
 
     return(
       <div className="row" id="index-page-container">
-        <div className={this.size(9, "columns")} id="index-page-left">
+        <div className={this.size(12, "columns")} id="index-page-left">
           <div className="row" id="index-page-left-top">
             <div className={this.size(3, "columns")}>
               <h1 className="kreon large-offset-1" id="vibro-logo">ViBRO</h1>
-              <p className="small-offset-0 medium-offset-2 large-offset-3" id="vibe-bro">do you feel my vibe, bro?</p>
+              <p className="small-offset-0 medium-offset-2 large-offset-3" id="vibe-bro">by Angelus Productions</p>
             </div>
-            <div className={this.size(6, "columns text-center")} id="waviest-vibes">
+            <div className={this.size(6, "columns text-center")}>
             </div>
             {myPlayer}
           </div>
@@ -283,7 +300,6 @@ class LandingPage extends Component {
                   </li>
                   <li className="row">
                     <div className="row" id="mix-button-container">
-                      <button href={buttonLink} id="mix-button">help finish this vibe</button>
                     </div>
                   </li>
                 </ul>
@@ -305,25 +321,6 @@ class LandingPage extends Component {
           </div>
         </div>
 
-        <div className={this.size(3, "columns")} id="index-page-right">
-          <div className="row search-bar-container">
-            <ul className={this.size(12, "columns top-right-ul")}>
-              <li className={this.size(8, "columns top-right-elements")}>
-                <SearchBar
-                  vibes={this.state.vibes}
-                  users={this.state.users}
-                />
-              </li>
-              <li className={this.size(4, "columns top-right-elements")}>
-                <Hamburger />
-              </li>
-            </ul>
-          </div>
-
-          <div className={this.size(12, "columns side-bar-container")}>
-            <SideBar/>
-          </div>
-        </div>
       </div>
     );
   }
@@ -369,3 +366,26 @@ export default LandingPage;
 // http://www.clker.com/cliparts/H/T/1/n/4/n/a-purple-purple-swirl-2-hi.png
 // http://www.clipartable.com/images/22/waudYMX4.png
 // <h1 className="construction">UNDER CONSTRUCTION</h1>
+
+        //
+        // <div className={this.size(3, "columns")} id="index-page-right">
+        //   <div className="row search-bar-container">
+        //     <ul className={this.size(12, "columns top-right-ul")}>
+        //       <li className={this.size(8, "columns top-right-elements")}>
+        //         <SearchBar
+        //           vibes={this.state.vibes}
+        //           users={this.state.users}
+        //         />
+        //       </li>
+        //       <li className={this.size(4, "columns top-right-elements")}>
+        //         <Hamburger />
+        //       </li>
+        //     </ul>
+        //   </div>
+        //
+        //   <div className={this.size(12, "columns side-bar-container")}>
+        //     <SideBar/>
+        //   </div>
+        // </div>
+
+        // <button href={buttonLink} id="mix-button">help finish this vibe</button>
