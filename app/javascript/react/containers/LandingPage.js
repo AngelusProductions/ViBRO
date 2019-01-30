@@ -131,6 +131,7 @@ class LandingPage extends Component {
     this.state.waveSurfer.setVolume(volume.target.value / 100)
   }
   skipAhead() {
+    event.preventDefault()
     let currentTime = Math.floor(this.state.waveSurfer.getCurrentTime())
     let duration = Math.floor(this.state.waveSurfer.getDuration())
     if (duration - currentTime <= 5) {
@@ -140,6 +141,7 @@ class LandingPage extends Component {
     }
   }
   skipBack() {
+    event.preventDefault()
     this.state.waveSurfer.skipBackward(5)
   }
   toggleRepeat() {
