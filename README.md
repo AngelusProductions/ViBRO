@@ -8,6 +8,7 @@
   Right now the site only hosts my music but feel free to post your own vibes and mixes and become part of the ongoing project! Join ViBRO for free today.
   
   
+  
 **CURRENTLY UNDER DEVELOPMENT**
 
 https://vibro.herokuapp.com
