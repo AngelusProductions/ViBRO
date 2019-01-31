@@ -1,10 +1,13 @@
-  ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO ViBRO
 
-  The music process is grueling, lonely and can lack perspective. Many musicians are perfectionists and only show their final product and release it without any outside opinions. Think about it: if you want your song to appeal to the masses, shouldn’t you get input from the masses? Crowdfunding has brought the world some of the most innovative products ever created. If the creative process is democratized, then the contributor will be more invested in the final product. Music itself has a monetization problem— and Vibro seeks to fix that.
+  ViBRO is a platform for crowdsourcing the music process.
+
+  Making good music is difficult! As a modern day producer, we have to wear all the hats: engineer, songwriter, manager, marketing... and then the attitude is: only release a track when it’s mixed, mastered and “radio ready.” Perfectionism! So artists often don't receive any input before releasing their final product. If you want your song to appeal to the masses, wouldn’t it be great to get help from the masses? 
+
+  ViBRO seeks to solve all of these issues. Workshop your piece. Find a bassist, a vocalist or even theremin-player to collaborate with or maybe just find loyal fans who get a stake in the process because they can contribute their own ideas! Everyone is a musician and the music is all the better for it. 
+
+  Right now the site only hosts my music but feel free to post your own vibes and mixes and become part of the ongoing project! Join ViBRO for free today.
   
   
-                                     DO YOU FEEL MY VIBE, BRO? 
-
 **CURRENTLY UNDER DEVELOPMENT**
 
 https://vibro.herokuapp.com
