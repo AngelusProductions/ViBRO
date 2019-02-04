@@ -28,14 +28,14 @@ class Coverflow extends React.Component {
       speed: 300,
       spaceBetween: 50,
       slidesPerView: 3,
-      grabCursor: true,
+      grabCursor: false,
       virtualTranslate: false,
       initialSlide: this.props.vibeSelect - 1,
       runCallbacksOnInit: true,
       centeredSlides: true,
       touchReleaseOnEdges: true,
       simulateTouch: true,
-      mousewheel: false,
+      mousewheel: true,
       parallax: true,
       coverflowEffect: {
         rotate: 45,
@@ -47,11 +47,11 @@ class Coverflow extends React.Component {
       fadeEffect: {
         crossFade: true
       },
-      pagination: {
-        el: '.swiper-pagination',
-        type: 'bullets',
-        clickable: true
-      },
+      // pagination: {
+      //   el: '.swiper-pagination',
+      //   type: 'bullets',
+      //   clickable: true
+      // },
       navigation: {
        nextEl: '.swiper-button-prev',
        prevEl: '.swiper-button-next'
@@ -85,6 +85,7 @@ class Coverflow extends React.Component {
                <button className="play-overlay-button">
                  <i className={playPause} onClick={this.props.playPauseClick}></i>
                </button>
+               <div className="cover-title">{vibe.name}</div>
              </div>
     }, this)
 

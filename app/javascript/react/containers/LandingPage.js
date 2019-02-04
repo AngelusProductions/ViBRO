@@ -245,7 +245,7 @@ class LandingPage extends Component {
       let waveSurfer = WaveSurfer.create({
           id: 'waveform',
           container: '#waveform',
-          waveColor: '#4300ff',
+          waveColor: '#fff',
           progressColor: '#80ffbf',
           backend: 'MediaElement',
           barWidth: 1,
@@ -285,7 +285,7 @@ class LandingPage extends Component {
               <h1 className="kreon large-offset-1" id="vibro-logo">ViBRO</h1>
               <p className="small-offset-0 medium-offset-2 large-offset-3" id="vibe-bro">by Angelus Productions</p>
             </div>
-            <div className={this.size(6, "columns text-center")}>
+            <div className={this.size(5, "columns text-center")}>
             <div className="row" id="top-bar-middle">
               <ul className="row">
                 <li className={this.size(2, "columns now-playing")}>
@@ -316,7 +316,7 @@ class LandingPage extends Component {
                 	<li className="row">{mixSelect}</li>
                   <li className="row">
                     <div className="row" id="mix-blurb-container">
-                    {mixInfo}
+
                     </div>
                   </li>
                   <li className="row">
@@ -410,3 +410,5 @@ export default LandingPage;
         // </div>
 
         // <button href={buttonLink} id="mix-button">help finish this vibe</button>
+
+// {mixInfo}

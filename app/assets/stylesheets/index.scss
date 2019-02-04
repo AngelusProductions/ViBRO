@@ -43,7 +43,7 @@
 }
 
 #top-bar-middle {
-  // margin-left: 15%;
+  margin-top: 1rem;
 }
 
 #index-page-left-middle-high,
@@ -53,6 +53,10 @@
 
 #index-page-left-middle-high {
   top: 30px;
+}
+
+#index-page-left-middle-low {
+  height: 15%;
 }
 
 #index-page-left-bottom-bottom {
@@ -81,9 +85,9 @@
 
 @-webkit-keyframes glow {
   from {
-    text-shadow: 0 0 5px white, 0 0 6px white, 0 0 7px white, 0 0 8px white;
+    text-shadow: 0 0 5px #fff, 0 0 7.5px hotpink, 0 0 10px hotpink, 0 0 15px hotpink;
   }
   to {
-    text-shadow: 0 0 5px #fff, 0 0 7.5px hotpink, 0 0 10px hotpink, 0 0 15px hotpink;
+    text-shadow: 0 0 5px white, 0 0 6px white, 0 0 7px white, 0 0 8px white;
   }
 }

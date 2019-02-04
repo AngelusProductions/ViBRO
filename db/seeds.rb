@@ -21,9 +21,9 @@ lineups_seeds = [
 
 vibes_seeds = [
   {id: 1, name: "Pretty Good", blurb: "My mom loves this one. Needs live violin.", remote_art_url: "https://rlv.zcache.com/3d_ape_monkey_club_electro_motive_headphones_t_shirt-raa0d14f6bf4c470b861f62207c91f467_k2gr0_307.jpg?rvtype=content", fire: 0, ice: 0, user_id: 1, manager_id: 1, lineup_id: 1},
-  {id: 2, name: "Mary Louisa ft. Chris Turner", blurb: "Off the project \"Blue Kangaroo\". Been working on the album for 5+ years! Someone help!!", remote_art_url: "http://www.octobergalleries.com/wp-content/uploads/2018/08/Wall-Art-African-American-Black-Abstract-Portrait-Art-Canvas-Afro-Women-Poster-Canvas-Painting-for-Room-9.jpg_640x640-9.jpg", fire: 0, ice: 0, user_id: 1, manager_id: 1, lineup_id: 2},
+  {id: 2, name: "Mary Louisa", blurb: "Off the project \"Blue Kangaroo\". Been working on the album for 5+ years! Someone help!!", remote_art_url: "http://www.octobergalleries.com/wp-content/uploads/2018/08/Wall-Art-African-American-Black-Abstract-Portrait-Art-Canvas-Afro-Women-Poster-Canvas-Painting-for-Room-9.jpg_640x640-9.jpg", fire: 0, ice: 0, user_id: 1, manager_id: 1, lineup_id: 2},
   {id: 3, name: "Recursion", blurb: "Quick loop with potential methinks.", remote_art_url: "https://i.pinimg.com/474x/b6/83/78/b683780882e8225f6014ab21f91434ed--motion-design-animated-gif.jpg", fire: 0, ice: 0, user_id: 1, manager_id: 1, lineup_id: 3},
-  {id: 4, name: "Digital Prayer ft. Summer Like The Season", blurb: "That\'s my old voice! Recorded badly. Dubstep by Summer Like The Season.", remote_art_url: "https://cms-assets.tutsplus.com/uploads/users/1381/posts/26562/image/FINAL%20IMAGE-min.jpg", fire: 0, ice: 0, user_id: 1, manager_id: 1, lineup_id: 3},
+  {id: 4, name: "Digital Prayer", blurb: "That\'s my old voice! Recorded badly. Dubstep by Summer Like The Season.", remote_art_url: "https://cms-assets.tutsplus.com/uploads/users/1381/posts/26562/image/FINAL%20IMAGE-min.jpg", fire: 0, ice: 0, user_id: 1, manager_id: 1, lineup_id: 3},
   {id: 5, name: "Don\'t Phunq Up!", blurb: "Possible title track from new funk/disco project. Need to flesh out.", remote_art_url: "https://i.pinimg.com/474x/fa/84/ac/fa84ac45b38fb8a44a8987d73d9c9fbb.jpg", fire: 0, ice: 0, user_id: 1, manager_id: 1, lineup_id: 1},
   {id: 6, name: "Tasty", blurb: "Steel drums all day baby.", remote_art_url: "https://i.pinimg.com/474x/45/c8/4a/45c84a6d8c3d23d184e590d6a09c35eb--january--black-heart.jpg", fire: 0, ice: 0, user_id: 1, manager_id: 1, lineup_id: 2}
 ]
@@ -82,3 +82,8 @@ end
 # reactions_seeds.each do |seed|
 #   Reaction.create!(seed)
 # end
+
+
+# I Wonder
+# All my life
+# Elements
