@@ -30,16 +30,16 @@ class MyPlayer extends Component {
 
     let repeat
     if (this.props.repeat) {
-      repeat = <li className={this.props.size(2, "columns playback")}><i className="fas fa-redo-alt repeat-clicked" onClick={this.props.toggleRepeat}></i></li>
+      repeat = <li className={this.props.size(12, "next-icon row")}><i className="fas fa-redo-alt repeat-clicked" onClick={this.props.toggleRepeat}></i></li>
     } else {
-      repeat = <li className={this.props.size(2, "columns playback")}><i className="fas fa-redo-alt repeat-unclicked" onClick={this.props.toggleRepeat}></i></li>
+      repeat = <li className={this.props.size(12, "next-icon row")}><i className="fas fa-redo-alt repeat-unclicked" onClick={this.props.toggleRepeat}></i></li>
     }
 
     let shuffle
     if (this.props.shuffle) {
-      shuffle = <li className={this.props.size(2, "columns playback")}><i className="fas fa-random shuffle-clicked" onClick={this.props.toggleShuffle}></i></li>
+      shuffle = <li className={this.props.size(12, "next-icon row")}><i className="fas fa-random shuffle-clicked" onClick={this.props.toggleShuffle}></i></li>
     } else {
-      shuffle = <li className={this.props.size(2, "columns playback")}><i className="fas fa-random shuffle-unclicked" onClick={this.props.toggleShuffle}></i></li>
+      shuffle = <li className={this.props.size(12, "next-icon row")}><i className="fas fa-random shuffle-unclicked" onClick={this.props.toggleShuffle}></i></li>
     }
 
     let playPause
@@ -50,36 +50,39 @@ class MyPlayer extends Component {
     }
 
     return (
-      <div className={this.props.size(3, "columns my-player")}>
+      <div className={this.props.size(4, "columns my-player")}>
+          <ul className={this.props.size(12, "row")}>
 
-        <div className="playback-buttons row small-offset-0 medium-offset-1 large-offset-4">
-          <ul className="row text-right">
-            {repeat}
-            {shuffle}
-            <li className={this.props.size(5, "switch round small columns playback")}>
-              {mute}
-              <label htmlFor="on-off"></label>
+            <li className={this.props.size(4, "columns")}>
+              <ul className={this.props.size(12, "columns what-is-next")}>
+                {repeat}
+                {shuffle}
+              </ul>
             </li>
-          </ul>
-        </div>
 
-        <div className="row audio-controls">
-          <ul className="row">
-            <li className={this.props.size(1, "columns control playback")}>
-              <i className="fas fa-backward" onClick={this.props.skipBack}></i>
-            </li>
-            <li className={this.props.size(1, "columns control play-icon playback")}>
-              {playPause}
-            </li>
-            <li className={this.props.size(1, "columns control playback")}>
-              <i className="fas fa-forward" onClick={this.props.skipAhead}></i>
-            </li>
-            <li className={this.props.size(5, "columns volume-slider small-offset-1")}>
+              <div className="playback-buttons">
+                <div className="playback-buttons-container">
+
+                  <li className={this.props.size(1, "columns control back-icon playback")}>
+                    <i className="fas fa-backward" onClick={this.props.skipBack}></i>
+                  </li>
+
+                  <li className={this.props.size(1, "columns control play-icon playback")}>
+                    {playPause}
+                  </li>
+
+                  <li className={this.props.size(1, "columns control forward-icon playback")}>
+                    <i className="fas fa-forward" onClick={this.props.skipAhead}></i>
+                  </li>
+
+                </div>
+              </div>
+
+            <li className={this.props.size(4, "columns volume-slider")}>
               <input type="range" value={this.props.volume} className="custom-range" id="customRange1" onChange={this.props.volumeSlide}/>
             </li>
-          </ul>
-        </div>
 
+          </ul>
 
       </div>
     )
@@ -105,3 +108,9 @@ export default MyPlayer
 //     </li>
 //   </ul>
 // </div>
+
+            //
+            // <li className={this.props.size(2, "switch round small columns playback")}>
+            //   {mute}
+            //   <label htmlFor="on-off"></label>
+            // </li>

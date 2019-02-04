@@ -5,9 +5,8 @@
 
 #coverflow-div {
   width: 90%;
-  margin-top: 5rem;
   text-align: center;
-  margin: 0 auto;
+  margin: 3rem auto 0 auto;
 }
 
 .swiper-container {
@@ -29,11 +28,9 @@
 .swiper-button-next, .swiper-button-prev {
     border-radius: 49%;
     padding: 2.5rem;
-    // border: 1px outset aquamarine;
-
     &:hover {
-      background-color: aquamarine;
       border: 3px  #007bff;
+      box-shadow: 0 0 5px #fff, 0 0 2.5px #fff, 0 0 5px #fff, 0 0 20px #fff;
     }
     &:active{
       background-color: hotpink;
@@ -45,11 +42,12 @@
 .swiper-pagination {
   z-index: 2;
   position: absolute;
-  top: 20rem;
+  // top: 20rem;
 }
 
 .play-overlay-button {
   z-index: 3;
+
   background: none;
   transform: translate(230%, -110%);
   background: white;
@@ -74,7 +72,6 @@
 .play-overlay {
   color: black;
   font-size: 3rem;
-  // opacity: 0.7;
   &:hover {
     color: white;
   }
@@ -82,10 +79,18 @@
     color: #007bff;
   }
 }
-  //
-  // .de-saturate {
-  //   filter: saturate(50%);
-  // }
+
+.cover-title {
+  width: 60%;
+  font-size: 1rem;
+  background: white;
+  position: absolute;
+  color: black;
+  border: 5px solid black;
+  border-radius: 3%;
+  text-transform: uppercase;
+  transform: translate(10%, -340%);
+}
 
 .is-playing {
   box-shadow: 1px 4px 5px #fff, 3px 5px 10px hotpink, 0 0 50px hotpink, 0 0 100px hotpink;

@@ -12,7 +12,6 @@ class WaveyPlayer extends Component {
     return (
       <div className='music-card playing'>
 
-        <div className='image'></div>
         <div className='wave'></div>
         <div className='wave'></div>
         <div className='wave'></div>
