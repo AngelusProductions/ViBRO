@@ -16,7 +16,7 @@ class MyPlayer extends Component {
                       size={this.props.size}
                       vibePlaying={this.props.vibePlaying}
                       mixPlaying={this.props.mixPlaying}
-                      mixPlayingUser={this.props.mixPlayingUser}
+                      artist={this.props.artist}
                       playing={this.props.playing}
                     />
     }

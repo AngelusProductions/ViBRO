@@ -9,6 +9,8 @@ import SideBar from '../components/SideBar'
 import Hamburger from '../components/Hamburger'
 import AudioVisualizer from '../components/AudioVisualizer'
 import WaveyPlayer from '../components/WaveyPlayer'
+import Waveform from '../components/Waveform'
+import tippy from 'tippy.js'
 
 
 class LandingPage extends Component {
@@ -17,10 +19,11 @@ class LandingPage extends Component {
     this.state = {
       users: [],
       vibes: [],
+      ideas: [],
       vibePlaying: {},
       vibeSelect: 0,
       mixPlaying: {},
-      mixPlayingUser: null,
+      artist: null,
       mixSelect: 1,
       playing: false,
       waveSurfer: "",
@@ -34,7 +37,6 @@ class LandingPage extends Component {
     this.waveSurferRendered = this.waveSurferRendered.bind(this)
     this.handleKey = this.handleKey.bind(this)
     this.size = this.size.bind(this)
-
     this.playPauseClick = this.playPauseClick.bind(this)
     this.volumeSlide = this.volumeSlide.bind(this)
     this.skipAhead = this.skipAhead.bind(this)
@@ -45,6 +47,7 @@ class LandingPage extends Component {
     this.whatIsNext = this.whatIsNext.bind(this)
     this.mixSelectClick = this.mixSelectClick.bind(this)
     this.changeVibePlaying = this.changeVibePlaying.bind(this)
+    this.expandIdea = this.expandIdea.bind(this)
   }
 
   componentDidMount() {
@@ -53,7 +56,7 @@ class LandingPage extends Component {
     .then(body => {
       let vibeSelect = Math.floor(Math.random() * body.vibes.length + 1)
       this.setState({ vibes: body.vibes,
-                      vibeSelect: vibeSelect })
+                      vibeSelect: 5 })
     })
     fetch(`/api/v1/users`)
       .then(response => response.json())
@@ -68,10 +71,12 @@ class LandingPage extends Component {
     .then(response => response.json())
     .then(body => {
       let latestMixId = body.vibe.mixes.length - 1
+      let latestMix = body.vibe.mixes[latestMixId]
       this.setState({ vibePlaying: body.vibe,
                       mixSelect: latestMixId + 1,
-                      mixPlaying: body.vibe.mixes[latestMixId],
-                      mixPlayingUser: body.vibe.user })
+                      mixPlaying: latestMix,
+                      artist: body.vibe.user,
+                      ideas: latestMix.ideas })
       })
     }
 
@@ -91,7 +96,7 @@ class LandingPage extends Component {
   }
 
   handleKey(event) {
-    // event.preventDefault()
+    debugger
     if (event.keyCode === 32) { this.playPauseClick() }
     if (event.keyCode === 39) { this.skipAhead() }
     if (event.keyCode === 37) { this.skipBack() }
@@ -113,15 +118,10 @@ class LandingPage extends Component {
         this.setState({ vibePlaying: body.vibe,
                         mixSelect: latestMix.number,
                         mixPlaying: latestMix,
-                        mixPlayingUser: body.vibe.user })
+                        artist: body.vibe.user,
+                        ideas: latestMix.ideas })
         })
     } else {
-      // let audioElement = document.getElementById("audio-element")
-      // if(this.state.playing) {
-      //   audioElement.pause()
-      // } else {
-      //   audioElement.play()
-      // }
       this.state.waveSurfer.playPause()
       this.setState({ playing: !this.state.playing})
     }
@@ -159,12 +159,17 @@ class LandingPage extends Component {
   }
 
   mixSelectClick(event) {
-    let newWaveform = this.state.vibePlaying.mixes[event.target.value - 1]
+    let newMixPlaying = this.state.vibePlaying.mixes[event.target.value - 1]
     this.state.waveSurfer.empty()
-    this.state.waveSurfer.load(newWaveform.audio_file.url)
+    this.state.waveSurfer.load(newMixPlaying.audio_file.url)
     this.setState({ mixSelect: event.target.value,
-                    mixPlaying: newWaveform,
-                    playing: false })
+                    mixPlaying: newMixPlaying,
+                    ideas: newMixPlaying,
+                    playing: true })
+  }
+
+  expandIdea(event) {
+    debugger
   }
 
   render() {
@@ -181,17 +186,15 @@ class LandingPage extends Component {
                     vibePlaying={this.state.vibePlaying}
                     vibeSelect={this.state.vibeSelect}
                     mixPlaying={this.state.mixPlaying}
-                    mixPlayingUser={this.state.mixPlayingUser}
+                    artist={this.state.artist}
                     mixSelect={this.state.mixSelect}
                     users={this.state.users}
                     size={this.size}
-
                     playing={this.state.playing}
                     progress={this.state.progress}
                     mute={this.state.mute}
                     repeat={this.state.repeat}
                     shuffle={this.state.shuffle}
-
                     playPauseClick={this.playPauseClick}
                     volumeSlide={this.volumeSlide}
                     skipAhead={this.skipAhead}
@@ -212,6 +215,7 @@ class LandingPage extends Component {
                   />
     }
 
+    let ideas = ""
     let mixSelect, mixInfo, waveyPlayer, buttonLink
     if (mixRendered) {
       mixSelect = <MixSelect
@@ -223,52 +227,45 @@ class LandingPage extends Component {
                   />
       mixInfo = this.state.mixPlaying.blurb
       buttonLink = `/vibes/${this.state.vibePlaying.id}`
-
       waveyPlayer = <WaveyPlayer
                       size={this.size}
                       vibePlaying={this.state.vibePlaying}
                       mixPlaying={this.state.mixPlaying}
-                      mixPlayingUser={this.state.mixPlayingUser}
+                      artist={this.state.artist}
                       playing={this.state.playing}
                     />
+
+      ideas = this.state.ideas.map( idea => {
+        const waveformLength = 88
+        let CSSclass = `far fa-lightbulb idea-icon idea-${idea.id}`
+        let left = idea.time / this.state.mixPlaying.runtime * waveformLength
+        return  <i className={CSSclass}
+                       key={idea.id}
+                       onClick={this.expandIdea}
+                    >
+                  <style dangerouslySetInnerHTML={{__html: `
+                    .idea-${idea.id} { left: ${left}rem; }
+                  `}} />
+                </i>
+        }, this)
     }
 
     let visualizer, url = visualizer = ""
     let waveform = document.getElementById("waveform")
     let waveformDivRendered = waveform != null
     let waveformRendered = false
-    if (waveformDivRendered) {
-      waveformRendered = waveform.children.length > 0
-    }
+    if (waveformDivRendered) { waveformRendered = waveform.children.length > 0 }
+
     if (mixRendered && waveformDivRendered
                     && !waveformRendered) {
-      let waveSurfer = WaveSurfer.create({
-          id: 'waveform',
-          container: '#waveform',
-          waveColor: '#fff',
-          progressColor: '#80ffbf',
-          backend: 'MediaElement',
-          barWidth: 1,
-          scrollParent: false,
-          hideScrollbar: true,
-          autoCenter:	true,
-          barHeight: 1,
-          normalize: true,
-          interact: true,
-          loopSelection: true,
-          responsive: true,
-          cursorColor: '#00ffc7',
-          audioprocess: {}
-        })
-      url = this.state.mixPlaying.audio_file.url
-      waveSurfer.load(url)
-      waveSurfer.setVolume(1)
-      this.waveSurferRendered(waveSurfer)
-
+      waveform = <Waveform
+                    mixPlaying={this.state.mixPlaying}
+                    waveSurferRendered={this.waveSurferRendered}
+                  />
       visualizer = <AudioVisualizer
                       mixPlaying={this.state.mixPlaying}
                     />
-      document.getElementsByTagName("audio")[0].id = "audio-element"
+
     }
 
     if (waveformRendered) {
@@ -333,12 +330,14 @@ class LandingPage extends Component {
             </ul>
           </div>
 
-          <div className={this.size(9, "columns")} id="index-page-left-bottom-top">
-
+          <div className={this.size(12, "columns")} id="index-page-left-bottom-top">
+            <img className="new-idea" src="https://cdn0.iconfinder.com/data/icons/finance-1-2/97/35-512.png" />
+            {ideas}
           </div>
 
-          <div className={this.size(9, "columns")} id="index-page-left-bottom-bottom">
+          <div className={this.size(12, "columns")} id="index-page-left-bottom-bottom">
             <div id="waveform"/>
+            {waveform}
           </div>
         </div>
 

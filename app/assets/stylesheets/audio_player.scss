@@ -1,88 +1,84 @@
-.show-page {
-  margin: 1rem;
+
+.player-column {
+  padding: 0;
+  // left: -2rem;
+  // top: -2rem;
 }
 
 .player-div {
-  height: 400px;
-  text-align: center;
-  position: relative;
-  margin-left: 1rem;
-  width: 100%;
-  top: 100%;
-  z-index: 1;
-  background-blend-mode: lighten;
-}
-
-.spinner-wrap {
-  display: block;
-  width: 50%;
-  height: 35px;
-  position: relative;
-  left: 50%;
-  margin-left: -163px;
-  top: 0;
-  top: 19px;
-}
-
-.spinner-wrap * {
-  cursor: crosshair;
+  // transform: scale(0.8);
+  top: 20%;
 }
 
 .spinner-outer {
-  display: block;
-  width: 327px;
-  height: 327px;
-  position: absolute;
-  left: 50%;
-  margin-left: -163px;
+  width: 25rem;
+  height: 25rem;
   border-radius: 50%;
-  background: url(https://s3.amazonaws.com/vibro-production/Art/spinner-outer.png) center center no-repeat #32302e;
-  filter: hue-rotate(270deg);
-  box-shadow: 0 0 5px 5px #ed1eed;
-}
-.playing .spinner-outer {
-  animation-name: Spin-CCW;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-}
-
-.spinner-center {
-  height: 200px;
-  width: 200px;
-  position: absolute;
-  background: url(https://s3.amazonaws.com/vibro-production/Art/spinner-center.png) center center no-repeat;
-  filter: hue-rotate(90deg);
-  border-radius: 50%;
-  left: 50%;
-  top: 42%;
-  margin: -99px;
-  pointer-events: none;
-}
-
-.playing .spinner-center {
-  animation-name: Spin-CW;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-}
-
-.play-sprite {
-  position: absolute;
-  top: 42%;
-  left: 50%;
-  margin: -35px 0 0 -35px;
-  background: url(https://s3.amazonaws.com/vibro-production/Art/play-sprite.png) 0px 0px no-repeat;
-  filter: hue-rotate(-90deg);
-  height: 70px;
-  width: 70px;
-}
-.playing .play-sprite {
-  background-position: 0px -70px;
+  background: url(https://s3.amazonaws.com/vibro-production/Art/spinner-outer.png) center center no-repeat;
 }
 
 @-webkit-keyframes Spin-CW {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.spinner-outer .playing {
+  animation-name: Spin-CW;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+//
+// .spinner-wrap {
+//   display: block;
+//   width: 50%;
+//   height: 35px;
+//   position: relative;
+//   left: 50%;
+//   margin-left: -163px;
+//   top: 0;
+//   top: 19px;
+// }
+//
+// .spinner-wrap * {
+//   cursor: crosshair;
+// }
+
+//
+// .spinner-center {
+//   height: 200px;
+//   width: 200px;
+//   position: absolute;
+//   background: url(https://s3.amazonaws.com/vibro-production/Art/spinner-center.png) center center no-repeat;
+//   filter: hue-rotate(90deg);
+//   border-radius: 50%;
+//   left: 50%;
+//   top: 42%;
+//   margin: -99px;
+//   pointer-events: none;
+// }
+//
+// .playing .spinner-center {
+//   animation-name: Spin-CW;
+//   animation-duration: 5s;
+//   animation-iteration-count: infinite;
+// }
+//
+// .play-sprite {
+//   position: absolute;
+//   top: 42%;
+//   left: 50%;
+//   margin: -35px 0 0 -35px;
+//   background: url(https://s3.amazonaws.com/vibro-production/Art/play-sprite.png) 0px 0px no-repeat;
+//   filter: hue-rotate(-90deg);
+//   height: 70px;
+//   width: 70px;
+// }
+// .playing .play-sprite {
+//   background-position: 0px -70px;
+// }
+//
 
 @-webkit-keyframes Spin-CCW {
   from { transform: rotate(360deg); }
