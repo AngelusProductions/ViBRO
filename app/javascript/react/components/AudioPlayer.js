@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Mix from './Mix'
-import Audio from './Audio'
 import NewIdeaModal from './NewIdeaModal'
 import IdeaSummary from './IdeaSummary'
 import ProgressBar from 'progressbar.js'
@@ -137,10 +136,6 @@ class AudioPlayer extends Component {
              onClick={this.props.handlePlayClick}>
         </div>
 
-        <Audio
-          playerClass={playerClass}
-          url={url}
-        />
 
         <i className="fas fa-mouse-pointer"></i>
         <div className="click-me">CLiCK to add your idea!</div>

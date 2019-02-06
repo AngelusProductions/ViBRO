@@ -1,3 +1,5 @@
+$green: #80ffbf;
+$pink: #ff00dc;
 
 .construction {
   font-family: 'Spicy Rice';
@@ -22,14 +24,16 @@
 
 #vibro-logo {
   color: white;
+  font-family: 'Monoton';
   font-size: 3.5rem;
   margin: 0;
-  text-shadow: 1px 4px 5px #fff, 3px 5px 10px #80ffbf;
+  text-shadow: 1px 4px 5px #fff, 3px 5px 10px $green;
 }
 
 #vibe-bro {
   font-family: 'Monoton';
-  font-size: 0.5rem;
+  font-size: 1rem;
+  text-shadow: 1px 1px 3px #fff, 1px 1px 3px $pink;
 }
 
 .breadcrumbs {
@@ -46,17 +50,12 @@
   margin-top: 1rem;
 }
 
-#index-page-left-middle-high,
-#index-page-left-middle-low {
-  // margin: 0 auto;
-}
-
 #index-page-left-middle-high {
   top: 30px;
 }
 
 #index-page-left-middle-low {
-  height: 15%;
+  height: 6.5%;
 }
 
 #index-page-left-bottom-bottom {

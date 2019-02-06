@@ -43,11 +43,12 @@ mixes_seeds = [
   {id: 13, number: 1, name: "Wrapped up the ending with tempo increase. IDK about it.", blurb: "My friend hates the steel drums— what do you guys think?", bpm: 83, color: "orange", remote_audio_file_url: "https://s3.amazonaws.com/vibro-development/Vibes/Shadang.mp3", runtime: 157, vibe_id: 6 }
 ]
 
-# ideas_seeds = [
-#   {title: "Maybe a breakdown?", description: "I think you should try out some new chords and do something completely different here", time: 73, vibe_id: 1, mix_id: 1, user_id: 2},
-#   {title: "Love that idea!!", description: "Lemme try it. Be honest when you hear it okay?", time: 81, vibe_id: 1, mix_id: 1, user_id: 1},
-#   {title: "Bad bassline", description: "The chords you play here don\'t sync well with the bassline", time: 34, vibe_id: 1, mix_id: 2, user_id: 2}
-# ]
+ideas_seeds = [
+  {title: "Maybe a breakdown?", description: "I think you should try out some new chords and do something completely different here", time: 73, vibe_id: 5, mix_id: 11, user_id: 2},
+  {title: "Love that idea!!", description: "Lemme try it. Be honest when you hear it okay?", time: 81, vibe_id: 5, mix_id: 11, user_id: 2},
+  {title: "Bad bassline", description: "The chords you play here don\'t sync well with the bassline", time: 34, vibe_id: 5, mix_id: 12, user_id: 2},
+  {title: "Why the silence here?", description: "If you\'re trying to be artsy, you\'re failing :|", time: 309, vibe_id: 5, mix_id: 12, user_id: 2}
+]
 
 # reactions_seeds = [
 #   {kind: "fire", user_id: 2, vibe_id: 1},
@@ -75,9 +76,9 @@ mixes_seeds.each do |seed|
   Mix.create!(seed)
 end
 
-# ideas_seeds.each do |seed|
-#   Idea.create!(seed)
-# end
+ideas_seeds.each do |seed|
+  Idea.create!(seed)
+end
 
 # reactions_seeds.each do |seed|
 #   Reaction.create!(seed)
