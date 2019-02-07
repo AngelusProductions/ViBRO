@@ -43,9 +43,7 @@ class Hamburger extends Component {
         let userPath = "/users/" + this.state.currentUser.id
         dropdownMenu = <div className="hamburger-menu">
                           <ul className="row">
-                            <li className="small-12 columns hamburger-li" id="first-hamburger-li"><a href="/">home</a></li>
                             <li className="small-12 columns hamburger-li"><a href={userPath}>my page</a></li>
-                            <li className="small-12 columns hamburger-li"><a href="/users/edit">settings</a></li>
                             <li className="small-12 columns hamburger-li"><a className="sign-out"
                                    href="/users/sign_out"
                                    rel="nofollow"
@@ -57,7 +55,6 @@ class Hamburger extends Component {
       } else {
         dropdownMenu = <div className="hamburger-menu">
                           <ul>
-                            <li className="small-12 columns hamburger-li" id="first-hamburger-li"><a href="/">home</a></li>
                             <li className="small-12 columns hamburger-li"><a href="/users/sign_in">sign in</a></li>
                             <li className="small-12 columns hamburger-li"><a href="/users/sign_up">sign up</a></li>
                           </ul>
@@ -84,3 +81,10 @@ class Hamburger extends Component {
 }
 
 export default Hamburger
+
+// <li className="small-12 columns hamburger-li" id="first-hamburger-li"><a href="/">home</a></li>
+
+
+// <li className="small-12 columns hamburger-li" id="first-hamburger-li"><a href="/">home</a></li>
+
+// <li className="small-12 columns hamburger-li"><a href="/users/edit">settings</a></li>

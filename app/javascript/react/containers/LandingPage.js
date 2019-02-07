@@ -60,7 +60,7 @@ class LandingPage extends Component {
     .then(body => {
       let vibeSelect = Math.floor(Math.random() * body.vibes.length + 1)
       this.setState({ vibes: body.vibes,
-                      vibeSelect: 5 })
+                      vibeSelect: vibeSelect })
     })
     fetch(`/api/v1/ideas`)
       .then(response => response.json())
@@ -223,6 +223,7 @@ class LandingPage extends Component {
                     mixPlaying={this.state.mixPlaying}
                     artist={this.state.artist}
                     mixSelect={this.state.mixSelect}
+                    currentUser={this.state.currentUser}
                     users={this.state.users}
                     size={this.size}
                     playing={this.state.playing}
@@ -274,6 +275,7 @@ class LandingPage extends Component {
         const waveformLength = 88
         let CSSclass = `far fa-lightbulb idea-icon idea-${idea.id}`
         let left = idea.time / this.state.mixPlaying.runtime * waveformLength
+        debugger
         return  <i className={CSSclass}
                        key={idea.id}
                        onClick={this.openCloseIdea} >
@@ -315,50 +317,6 @@ class LandingPage extends Component {
                         currentUser={this.state.currentUser}
                         openCloseIdea={this.openCloseIdea}
                       />
-
-      // 
-      // dragElement(document.getElementById("drag-new-idea"));
-      //
-      // function dragElement(elmnt) {
-      //   debugger
-      //   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-      //   if (document.getElementById(elmnt.id + "header")) {
-      //     document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-      //   } else {
-      //     elmnt.onmousedown = dragMouseDown;
-      //   }
-      //
-      //   function dragMouseDown(e) {
-      //     e = e || window.event;
-      //     e.preventDefault();
-      //     // get the mouse cursor position at startup:
-      //     pos3 = e.clientX;
-      //     pos4 = e.clientY;
-      //     document.onmouseup = closeDragElement;
-      //     // call a function whenever the cursor moves:
-      //     document.onmousemove = elementDrag;
-      //   }
-      //
-      //   function elementDrag(e) {
-      //     e = e || window.event;
-      //     e.preventDefault();
-      //     // calculate the new cursor position:
-      //     pos1 = pos3 - e.clientX;
-      //     pos2 = pos4 - e.clientY;
-      //     pos3 = e.clientX;
-      //     pos4 = e.clientY;
-      //     // set the element's new position:
-      //     elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-      //     elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-      //   }
-      //
-      //   function closeDragElement() {
-      //     // stop moving when mouse button is released:
-      //     document.onmouseup = null;
-      //     document.onmousemove = null;
-      //   }
-      // }
-
     return(
       <div className="row" id="index-page-container">
         <div className={this.size(12, "columns")} id="index-page-left">

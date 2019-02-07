@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import WaveyPlayer from '../components/WaveyPlayer'
+import Hamburger from '../components/Hamburger'
 
 class MyPlayer extends Component {
   constructor(props) {
@@ -53,7 +54,7 @@ class MyPlayer extends Component {
       <div className={this.props.size(4, "columns my-player")}>
           <ul className={this.props.size(12, "row")}>
 
-            <li className={this.props.size(4, "columns")}>
+            <li className={this.props.size(1, "columns")}>
               <ul className={this.props.size(12, "columns what-is-next")}>
                 {repeat}
                 {shuffle}
@@ -80,6 +81,12 @@ class MyPlayer extends Component {
 
             <li className={this.props.size(4, "columns volume-slider")}>
               <input type="range" value={this.props.volume} className="custom-range" id="customRange1" onChange={this.props.volumeSlide}/>
+            </li>
+
+            <li className={this.props.size(4, "columns hamburger-party")}>
+              <Hamburger
+                currentUser={this.props.currentUser}
+              />
             </li>
 
           </ul>
