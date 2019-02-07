@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       post 'users/search', to: 'users#search'
       resources :current_user, only: [:index]
       resources :users
+      resources :ideas
       resources :vibes do
         resources :reactions
         resources :mixes do

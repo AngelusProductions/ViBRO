@@ -7,7 +7,7 @@ const Waveform = ( props => {
   let waveSurfer = WaveSurfer.create({
       id: 'waveform',
       container: '#waveform',
-      waveColor: indigo,
+      waveColor: '#fff',
       progressColor: green,
       backend: 'MediaElement',
       barWidth: 1,

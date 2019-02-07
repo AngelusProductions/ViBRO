@@ -20,7 +20,6 @@ class Coverflow extends React.Component {
   }
 
  render() {
-
    let params = {
       effect: 'coverflow',
       loop: false,
@@ -47,11 +46,6 @@ class Coverflow extends React.Component {
       fadeEffect: {
         crossFade: true
       },
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      //   clickable: true
-      // },
       navigation: {
        nextEl: '.swiper-button-prev',
        prevEl: '.swiper-button-next'
@@ -68,14 +62,11 @@ class Coverflow extends React.Component {
       let button, borderGlow
       let url = `/vibes/${vibe.id}`
       let isPlaying = this.props.vibePlaying.id === vibe.id
+      if (isPlaying) { borderGlow = "is-playing"}
 
       let saturation = "de-saturate"
-      if (vibe.id === this.state.activeIndex) {
-        saturation = ""
-      }
+      if (vibe.id === this.state.activeIndex) { saturation = "" }
       let coverClass = `swiper-slide ${saturation}`
-
-      if (isPlaying) { borderGlow = "is-playing"}
 
       let playPause = `fas fa-play-circle play-overlay`
       if (this.props.playing && isPlaying) { playPause = `fas fa-pause-circle play-overlay` }
@@ -89,7 +80,8 @@ class Coverflow extends React.Component {
              </div>
     }, this)
 
-    let swiper = <Swiper {...params} shouldSwiperUpdate>
+
+    let swiper = <Swiper {...params} shouldSwiperUpdate ref={(swiper) => {this.swiper = swiper}}>
                    {covers}
                  </Swiper>
 

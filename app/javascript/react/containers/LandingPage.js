@@ -10,6 +10,7 @@ import Hamburger from '../components/Hamburger'
 import AudioVisualizer from '../components/AudioVisualizer'
 import WaveyPlayer from '../components/WaveyPlayer'
 import Waveform from '../components/Waveform'
+import IdeaSummary from '../components/IdeaSummary'
 import tippy from 'tippy.js'
 
 
@@ -23,17 +24,20 @@ class LandingPage extends Component {
       vibePlaying: {},
       vibeSelect: 0,
       mixPlaying: {},
-      artist: null,
+      mixPlayingIdeas: [],
       mixSelect: 1,
+      artist: null,
       playing: false,
       waveSurfer: "",
       volume: 1,
       progress: 0,
       mute: false,
       repeat: false,
-      shuffle: false
+      shuffle: false,
+      ideaOpen: false,
+      idea: {}
     }
-    this.getRandomMix = this.getRandomMix.bind(this)
+    this.getVibe = this.getVibe.bind(this)
     this.waveSurferRendered = this.waveSurferRendered.bind(this)
     this.handleKey = this.handleKey.bind(this)
     this.size = this.size.bind(this)
@@ -46,8 +50,8 @@ class LandingPage extends Component {
     this.toggleShuffle = this.toggleShuffle.bind(this)
     this.whatIsNext = this.whatIsNext.bind(this)
     this.mixSelectClick = this.mixSelectClick.bind(this)
-    this.changeVibePlaying = this.changeVibePlaying.bind(this)
-    this.expandIdea = this.expandIdea.bind(this)
+    this.changePlaying = this.changePlaying.bind(this)
+    this.openCloseIdea = this.openCloseIdea.bind(this)
   }
 
   componentDidMount() {
@@ -58,6 +62,11 @@ class LandingPage extends Component {
       this.setState({ vibes: body.vibes,
                       vibeSelect: 5 })
     })
+    fetch(`/api/v1/ideas`)
+      .then(response => response.json())
+      .then(body => {
+        this.setState({ ideas: body })
+    })
     fetch(`/api/v1/users`)
       .then(response => response.json())
       .then(body => {
@@ -66,7 +75,7 @@ class LandingPage extends Component {
     document.addEventListener('keydown', this.handleKey)
   }
 
-  getRandomMix() {
+  getVibe(vibeSelect) {
     fetch(`/api/v1/vibes/${this.state.vibeSelect}`)
     .then(response => response.json())
     .then(body => {
@@ -76,7 +85,7 @@ class LandingPage extends Component {
                       mixSelect: latestMixId + 1,
                       mixPlaying: latestMix,
                       artist: body.vibe.user,
-                      ideas: latestMix.ideas })
+                      mixPlayingIdeas: latestMix.ideas })
       })
     }
 
@@ -88,25 +97,35 @@ class LandingPage extends Component {
     this.setState({ waveSurfer: waveSurfer })
   }
 
-  changeVibePlaying(vibe, mix) {
-    this.state.waveSurfer.empty()
-    this.state.waveSurfer.load(mix.audio_file.url)
-    this.state.waveSurfer.play()
-    this.setState({ playing: true })
-  }
-
   handleKey(event) {
-    debugger
     if (event.keyCode === 32) { this.playPauseClick() }
     if (event.keyCode === 39) { this.skipAhead() }
     if (event.keyCode === 37) { this.skipBack() }
   }
 
+  changePlaying(vibe, mix) {
+    this.state.waveSurfer.empty()
+    this.state.waveSurfer.load(mix.audio_file.url)
+    this.state.waveSurfer.play()
+    this.setState({ vibePlaying: vibe,
+                    vibeSelect: vibe.id,
+                    mixPlaying: mix,
+                    mixSelect: mix.number,
+                    artist: vibe.user,
+                    ideas: mix.ideas,
+                    playing: true })
+  }
+
+  mixSelectClick(event) {
+    let newMixPlaying = this.state.vibePlaying.mixes[event.target.value - 1]
+    this.changePlaying(this.state.vibePlaying, newMixPlaying)
+  }
+
   playPauseClick(event = "") {
     let currentVibeId, vibeId = currentVibeId = this.state.vibePlaying.id
-    if (event != "" &&
-        event.target.parentElement.parentElement.parentElement.classList[1] != "audio-controls") {
-      vibeId = event.target.parentElement.parentElement.id
+    if (event != "" && event.keyCode != 32) {
+      let divClass = event.target.parentElement.parentElement.parentElement.classList[0]
+      if (divClass != "playback-buttons") {vibeId = event.target.parentElement.parentElement.id}
     }
     if (vibeId != currentVibeId) {
       fetch(`/api/v1/vibes/${vibeId}`)
@@ -114,13 +133,8 @@ class LandingPage extends Component {
       .then(body => {
         let latestMixId = body.vibe.mixes.length
         let latestMix = body.vibe.mixes[latestMixId - 1]
-        this.changeVibePlaying(body.vibe, latestMix)
-        this.setState({ vibePlaying: body.vibe,
-                        mixSelect: latestMix.number,
-                        mixPlaying: latestMix,
-                        artist: body.vibe.user,
-                        ideas: latestMix.ideas })
-        })
+        this.changePlaying(body.vibe, latestMix)
+      })
     } else {
       this.state.waveSurfer.playPause()
       this.setState({ playing: !this.state.playing})
@@ -155,28 +169,49 @@ class LandingPage extends Component {
     this.setState({ mute: !this.state.mute })
   }
   whatIsNext() {
-    debugger
+    if (this.state.repeat) {
+      this.changePlaying(this.state.vibePlaying, this.state.mixPlaying)
+    } else {
+      if (this.state.shuffle) {
+        let vibeSelect = Math.floor(Math.random() * this.state.vibes.length)
+        let newVibePlaying = this.state.vibes[vibeSelect]
+        let newMixPlaying = newVibePlaying.mixes[newVibePlaying.mixes.length - 1]
+        this.changePlaying(newVibePlaying, newMixPlaying)
+      } else {
+        if (this.state.vibePlaying.mixes.length === this.state.mixPlaying.number) {
+          if (this.state.vibeSelect === this.state.vibes.length) {
+            let firstVibe = this.state.vibes[0]
+            let firstVibeLatestMix = firstVibe.mixes[firstVibe.mixes.length - 1]
+            this.changePlaying(firstVibe, firstVibeLatestMix)
+          } else {
+            let newVibePlaying = this.state.vibes[this.state.vibePlaying.id]
+            let newMixPlaying = newVibePlaying.mixes[newVibePlaying.mixes.length - 1]
+            this.changePlaying(newVibePlaying, newMixPlaying)
+          }
+        } else {
+          let newMixPlaying = this.state.vibePlaying.mixes[this.state.mixPlaying.number]
+          this.changePlaying(this.state.vibePlaying, newMixPlaying)
+        }
+      }
+    }
   }
 
-  mixSelectClick(event) {
-    let newMixPlaying = this.state.vibePlaying.mixes[event.target.value - 1]
-    this.state.waveSurfer.empty()
-    this.state.waveSurfer.load(newMixPlaying.audio_file.url)
-    this.setState({ mixSelect: event.target.value,
-                    mixPlaying: newMixPlaying,
-                    ideas: newMixPlaying,
-                    playing: true })
-  }
-
-  expandIdea(event) {
-    debugger
+  openCloseIdea(event) {
+    if (event != undefined) {
+      let ideaClass = event.target.classList[3]
+      let ideaId = ideaClass.slice(ideaClass.length - 1)
+      this.setState({ idea: this.state.ideas[ideaId - 1],
+                      ideaOpen: !this.state.ideaOpen})
+    } else {
+      this.setState({ ideaOpen: false })
+    }
   }
 
   render() {
     let vibesRendered = this.state.vibes.length > 0
     let mixRendered = Object.keys(this.state.mixPlaying).length > 0
     if (vibesRendered && !mixRendered ) {
-      this.getRandomMix()
+      this.getVibe(this.state.vibeSelect)
     }
 
     let myPlayer, coverflow
@@ -235,14 +270,13 @@ class LandingPage extends Component {
                       playing={this.state.playing}
                     />
 
-      ideas = this.state.ideas.map( idea => {
+      ideas = this.state.mixPlayingIdeas.map( idea => {
         const waveformLength = 88
         let CSSclass = `far fa-lightbulb idea-icon idea-${idea.id}`
         let left = idea.time / this.state.mixPlaying.runtime * waveformLength
         return  <i className={CSSclass}
                        key={idea.id}
-                       onClick={this.expandIdea}
-                    >
+                       onClick={this.openCloseIdea} >
                   <style dangerouslySetInnerHTML={{__html: `
                     .idea-${idea.id} { left: ${left}rem; }
                   `}} />
@@ -273,6 +307,57 @@ class LandingPage extends Component {
         this.whatIsNext()
       }.bind(this))
     }
+
+    let ideaSummary = <IdeaSummary
+                        idea={this.state.idea}
+                        ideaOpen={this.state.ideaOpen}
+                        users={this.state.users}
+                        currentUser={this.state.currentUser}
+                        openCloseIdea={this.openCloseIdea}
+                      />
+
+      // 
+      // dragElement(document.getElementById("drag-new-idea"));
+      //
+      // function dragElement(elmnt) {
+      //   debugger
+      //   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      //   if (document.getElementById(elmnt.id + "header")) {
+      //     document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+      //   } else {
+      //     elmnt.onmousedown = dragMouseDown;
+      //   }
+      //
+      //   function dragMouseDown(e) {
+      //     e = e || window.event;
+      //     e.preventDefault();
+      //     // get the mouse cursor position at startup:
+      //     pos3 = e.clientX;
+      //     pos4 = e.clientY;
+      //     document.onmouseup = closeDragElement;
+      //     // call a function whenever the cursor moves:
+      //     document.onmousemove = elementDrag;
+      //   }
+      //
+      //   function elementDrag(e) {
+      //     e = e || window.event;
+      //     e.preventDefault();
+      //     // calculate the new cursor position:
+      //     pos1 = pos3 - e.clientX;
+      //     pos2 = pos4 - e.clientY;
+      //     pos3 = e.clientX;
+      //     pos4 = e.clientY;
+      //     // set the element's new position:
+      //     elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      //     elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      //   }
+      //
+      //   function closeDragElement() {
+      //     // stop moving when mouse button is released:
+      //     document.onmouseup = null;
+      //     document.onmousemove = null;
+      //   }
+      // }
 
     return(
       <div className="row" id="index-page-container">
@@ -331,8 +416,9 @@ class LandingPage extends Component {
           </div>
 
           <div className={this.size(12, "columns")} id="index-page-left-bottom-top">
-            <img className="new-idea" src="https://cdn0.iconfinder.com/data/icons/finance-1-2/97/35-512.png" />
+            <img className="new-idea" id="drag-new-idea" src="https://cdn0.iconfinder.com/data/icons/finance-1-2/97/35-512.png" />
             {ideas}
+            {ideaSummary}
           </div>
 
           <div className={this.size(12, "columns")} id="index-page-left-bottom-bottom">

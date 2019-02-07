@@ -136,6 +136,10 @@ class AudioPlayer extends Component {
              onClick={this.props.handlePlayClick}>
         </div>
 
+        <Audio
+          playerClass={playerClass}
+          url={url}
+        />
 
         <i className="fas fa-mouse-pointer"></i>
         <div className="click-me">CLiCK to add your idea!</div>
