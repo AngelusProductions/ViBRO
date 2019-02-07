@@ -1,15 +1,21 @@
+$green: #80ffbf;
+$pink: #ff00dc;
 
 .fa-bars,
 .fa-times {
-  color: #476cff;
+  color: white;
   margin-top: 1rem;
+  margin-left: 0.4rem;
+  // padding-right: 0.2rem;
+  transform: scale(2);
+  text-shadow: 0px 0px 1px #724cff, 1px 1px 2px white;
   &:hover {
-    color: #724cff;
+    transform: scale(2);
+    color: $pink;
   }
 }
 
 .fa-times {
-  margin-left: 0.15rem;
   animation: TwitchRotate;
   animation-duration: 3s;
   animation-iteration-count: 1;
@@ -25,22 +31,34 @@
   padding: 0;
 }
 
+.hamburger-party {
+  top: -1rem;
+  padding-right: 0;
+}
+
 .hamburger-container {
-  margin-right: 1rem;
-  margin-top: 0.5rem;
+  // margin-right: 1rem;
+  // margin-top: 0.5rem;
+  // border: solid 1px white;
   border-radius: 10px;
   text-align: center;
-  padding: 0 0.25rem 0.5rem 0.25rem;
-  background-color: white;
-  box-shadow: 2px 4px 12px 2px rgba(0,0,0,0.2);
+  // padding: 0.7rem;
+  // padding: 0.2rem 0.25rem 0.5rem 0.1rem;
+  // background-color: white;
+  // box-shadow: 6px 1px 5px 2px rgba(255, 255, 255, 0.6);
 }
 
 .hamburger-user-name {
-  color: #476cff;
-  margin-right: 0.5rem;
-  text-transform: uppercase;
+  color: white;
+  font-family: 'Monoton';
+  margin-right: 0.8rem;
+  font-size: 1.2rem;
+  // text-transform: uppercase;
+  text-shadow: 1px 2px 3px #fff, 3px 5px 5px $green;
   &:hover {
-    color: #724cff;
+    color: $pink;
+    transform: scale(1.2);
+    text-shadow: 1px 2px 5px $green;
     text-decoration: none;
   }
 }
@@ -49,24 +67,25 @@
   // width: 5rem;
   right: 0px;
   z-index: 1;
-  margin-right: 1rem;
+  // margin-right: 1rem;
   position: absolute;
   text-align: center;
 }
 
 .hamburger-li a {
-  background-color: white;
+  margin-bottom: white;
 }
 
 .hamburger-menu a {
-  color: #476cff;
+  color: white;
+  // text-transform: uppercase;
   border-radius: 10px;
-  margin-top: 0.2rem;
+  margin-top: 1rem;
 	display: block;
-  background-color: white;
-  box-shadow: 2px 4px 12px 2px rgba(0,0,0,0.2);
+  margin-bottom: white;
+  box-shadow: 9px 7px 0px 7px $green;
   &:hover {
-    color: #724cff;
+    color: $pink;
     text-decoration: none;
   }
 }
@@ -76,11 +95,17 @@
 }
 
 @-webkit-keyframes Hello {
-  from { transform: scale(0); }
-  5% { transform: scale(1); }
-  10% { transform: scale(1.5); }
-  20% { transform: scale(1); }
-  30% { transform: scale(.8); }
-  50% { transform: scale(1); }
-  to { transform: scale(1); }
+  from { transform: scale(1); }
+  5% { transform: scale(2); }
+  10% { transform: scale(2.5); }
+  20% { transform: scale(2); }
+  30% { transform: scale(1.7); }
+  50% { transform: scale(2); }
+  to { transform: scale(2); }
+}
+
+@-webkit-keyframes TwitchRotate {
+  from { transform: rotate(0deg) scale(2); }
+  10% { transform: rotate(360deg) scale(2); }
+  to { transform: rotate(360deg) scale(2); }
 }

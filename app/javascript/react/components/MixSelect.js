@@ -21,7 +21,7 @@ class MixSelect extends Component {
       <div className="row mix-info-container" id="mix-select-container">
         <ul className="row" id="mix-select-ul">
           <li className="row" id="mix-select-label">mix:</li>
-          <li className={this.props.size(9, "columns")} >
+          <li className={this.props.size(9, "mix-select-div columns")} >
             <select name="mix-select" id="mix-select" onChange={this.props.mixSelectClick}>
               {options.reverse()}
             </select>

@@ -12,9 +12,9 @@ $indigo: #476cff;
   height: 3rem;
   float: right;
   top: -3rem;
-  filter: saturate(18) hue-rotate(-55deg);
+  filter: saturate(18);
   &:hover {
-    filter: saturate(18);
+    filter: saturate(18) hue-rotate(-55deg);
   }
   &:active {
     transform: scale(0.75);

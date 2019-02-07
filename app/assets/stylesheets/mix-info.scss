@@ -1,3 +1,6 @@
+$green: #80ffbf;
+$pink: #ff00dc;
+$indigo: #476cff;
 
 .mix-info {
   margin-top: 1.3rem;
@@ -14,6 +17,18 @@
 #mix-select {
   margin-left: 0.75rem;
   width: 2.5rem;
+}
+
+select {
+  width: 150px;
+  font-size: 1rem;
+  border-radius: 50%;
+  -webkit-appearance: none;
+  appearance: none;
+  box-shadow: 3px 3px 3px 3px $green, 4px 4px 4px 4px $pink;
+  &:active, &:focus, &:visited {
+    outline: 0;
+  }
 }
 
 #mix-select-label {
