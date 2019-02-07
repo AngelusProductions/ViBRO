@@ -2,31 +2,25 @@ import React, { Component } from 'react'
 import Modal from 'react-awesome-modal';
 
 const IdeaSummary = ( props => {
-  let modal = ""
-
-  if (props.ideaId) {
-    let description = ""
-    let idea = props.ideas[props.ideaId]
+  let modal, description = modal = ""
+  let idea = props.idea
+  if (Object.keys(idea).length > 0) {
     let user = props.users[idea.user_id - 1]
-    let url = user.pro_pic.url
-    if (idea.description) {
-      description = idea.description
-    }
-
+    description = idea.description
     modal = <Modal
-              visible={props.ideaSummaryShow}
+              visible={props.ideaOpen}
               width="50%"
-              height="50%"
-              effect="fadeInLeft"
-              onClickAway={() => props.handleIdeaSummaryClose()}
+              height="35%"
+              effect="fadeInUp"
+              onClickAway={() => props.openCloseIdea()}
             >
-            <div id="idea-header-bar columns">
-              <img src={url} className="user-photo" id="idea-user" />
-              <div id="idea-username">{user.username}</div>
-            </div>
-            <div id="idea-title">{idea.title}</div>
-            <div id="idea-description">{description}</div>
-            <i className="far fa-lightbulb ideas" id="idea-lightbulb"></i>
+              <div id="idea-header-bar columns">
+                <img src={user.pro_pic.url} className="user-photo" id="idea-user" />
+                <div id="idea-username">{user.username}</div>
+              </div>
+              <div id="idea-title">{idea.title}</div>
+              <div id="idea-description">{description}</div>
+              <i className="far fa-lightbulb ideas" id="idea-lightbulb"></i>
             </Modal>
   }
 

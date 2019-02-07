@@ -49,55 +49,6 @@
   animation-duration: 2s;
 }
 
-#idea-user {
-  float: left;
-  margin-left: 1.5rem;
-  font-family: 'Kreon';
-}
-
-#idea-user {
-  height: 25%;
-  width: 25%;
-  border-width: 2px;
-  box-shadow: 4px 2px 8px 2px rgba(0,0,0,0.2);
-}
-
-#idea-username {
-  color: blueviolet;
-}
-
-#idea-username {
-  font-size: 2rem;
-  text-align: center;
-  box-shadow: 4px 2px 8px 2px rgba(0,0,0,0.2);
-}
-
-#idea-title,
-#idea-description {
-  font-family: 'Kreon';
-  text-align: center;
-}
-
-#idea-title {
-  margin-top: 2rem;
-  text-align: center;
-  color: #ea5f2c;
-  font-size: 2rem;
-}
-
-#idea-description {
-  color: royalblue;
-  font-size: 1rem;
-  margin: 2rem;
-}
-
-#idea-title-row {
-  display: inline;
-}
-
-#idea-lightbulb {
-  margin: 3rem;
-}
 
 @-webkit-keyframes Colorize {
   from { filter: hue-rotate(0deg); }
