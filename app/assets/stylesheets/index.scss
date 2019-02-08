@@ -22,6 +22,7 @@ $pink: #ff00dc;
   font-family: 'Monoton';
   font-size: 1rem;
   text-shadow: 1px 1px 3px #fff, 1px 1px 3px $pink;
+  -webkit-box-reflect: below -9px -webkit-gradient(linear, left top, right bottom, from(transparent), color-stop(2%, transparent), to(rgba(255, 255, 255, 0.3)))
 }
 
 .breadcrumbs {

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { browserHistory } from 'react-router';
 import SearchBar from '../components/SearchBar'
 import MyPlayer from '../components/MyPlayer'
-import BreadCrumbs from '../components/BreadCrumbs'
 import Coverflow from '../components/Coverflow'
 import MixSelect from '../components/MixSelect'
 import SideBar from '../components/SideBar'
@@ -169,6 +168,7 @@ class LandingPage extends Component {
     this.setState({ mute: !this.state.mute })
   }
   whatIsNext() {
+    //switch statement
     if (this.state.repeat) {
       this.changePlaying(this.state.vibePlaying, this.state.mixPlaying)
     } else {
@@ -301,7 +301,6 @@ class LandingPage extends Component {
       visualizer = <AudioVisualizer
                       mixPlaying={this.state.mixPlaying}
                     />
-
     }
 
     if (waveformRendered) {
