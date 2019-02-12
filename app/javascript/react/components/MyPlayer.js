@@ -22,13 +22,6 @@ class MyPlayer extends Component {
                     />
     }
 
-    let mute
-    if (this.props.mute) {
-      mute = <input id="on-off" type="checkbox" name="on-off" className="playback" onClick={this.props.toggleMute}/>
-    } else {
-      mute = <input checked id="on-off" type="checkbox" name="on-off" className="playback" onClick={this.props.toggleMute}/>
-    }
-
     let repeat
     if (this.props.repeat) {
       repeat = <li className={this.props.size(12, "next-icon row")}><i className="fas fa-redo-alt repeat-clicked" onClick={this.props.toggleRepeat}></i></li>
@@ -42,14 +35,12 @@ class MyPlayer extends Component {
     } else {
       shuffle = <li className={this.props.size(12, "next-icon row")}><i className="fas fa-random shuffle-unclicked" onClick={this.props.toggleShuffle}></i></li>
     }
-
     let playPause
     if (this.props.playing) {
       playPause = <i className="far fa-pause-circle" onClick={this.props.playPauseClick}></i>
     } else {
       playPause = <i className="far fa-play-circle" onClick={this.props.playPauseClick}></i>
     }
-
     return (
       <div className={this.props.size(4, "columns my-player")}>
           <ul className={this.props.size(12, "row")}>
@@ -118,6 +109,5 @@ export default MyPlayer
 
             //
             // <li className={this.props.size(2, "switch round small columns playback")}>
-            //   {mute}
             //   <label htmlFor="on-off"></label>
             // </li>
