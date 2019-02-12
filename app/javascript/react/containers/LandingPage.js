@@ -30,13 +30,12 @@ class LandingPage extends Component {
       waveSurfer: "",
       volume: 1,
       progress: 0,
-      mute: false,
       repeat: false,
       shuffle: false,
       ideaOpen: false,
       idea: {}
     }
-    this.getVibe = this.getVibe.bind(this)
+    this.fetchVibe = this.fetchVibe.bind(this)
     this.waveSurferRendered = this.waveSurferRendered.bind(this)
     this.handleKey = this.handleKey.bind(this)
     this.size = this.size.bind(this)
@@ -44,7 +43,6 @@ class LandingPage extends Component {
     this.volumeSlide = this.volumeSlide.bind(this)
     this.skipAhead = this.skipAhead.bind(this)
     this.skipBack = this.skipBack.bind(this)
-    this.toggleMute = this.toggleMute.bind(this)
     this.toggleRepeat = this.toggleRepeat.bind(this)
     this.toggleShuffle = this.toggleShuffle.bind(this)
     this.whatIsNext = this.whatIsNext.bind(this)
@@ -71,22 +69,28 @@ class LandingPage extends Component {
       .then(body => {
         this.setState({ users: body.users })
     })
+
     document.addEventListener('keydown', this.handleKey)
   }
 
-  getVibe(vibeSelect) {
-    fetch(`/api/v1/vibes/${this.state.vibeSelect}`)
+  fetchVibe(vibeSelect) {
+    fetch(`/api/v1/vibes/${vibeSelect}`)
     .then(response => response.json())
     .then(body => {
-      let latestMixId = body.vibe.mixes.length - 1
-      let latestMix = body.vibe.mixes[latestMixId]
-      this.setState({ vibePlaying: body.vibe,
-                      mixSelect: latestMixId + 1,
-                      mixPlaying: latestMix,
-                      artist: body.vibe.user,
-                      mixPlayingIdeas: latestMix.ideas })
-      })
-    }
+      let vibe = body.vibe
+      let latestMixId = vibe.mixes.length - 1
+      let latestMix = vibe.mixes[latestMixId]
+      if (this.state.waveSurfer != "") {
+        this.changePlaying(vibe, latestMix)
+      } else {
+        this.setState({ vibePlaying: body.vibe,
+                        mixSelect: latestMixId + 1,
+                        mixPlaying: latestMix,
+                        artist: body.vibe.user,
+                        mixPlayingIdeas: latestMix.ideas })
+      }
+    })
+  }
 
   size(amt, other = "") {
     return `${other} small-${amt} medium-${amt} large-${amt}`
@@ -109,9 +113,9 @@ class LandingPage extends Component {
     this.setState({ vibePlaying: vibe,
                     vibeSelect: vibe.id,
                     mixPlaying: mix,
+                    mixPlayingIdeas: mix.ideas,
                     mixSelect: mix.number,
                     artist: vibe.user,
-                    ideas: mix.ideas,
                     playing: true })
   }
 
@@ -124,16 +128,18 @@ class LandingPage extends Component {
     let currentVibeId, vibeId = currentVibeId = this.state.vibePlaying.id
     if (event != "" && event.keyCode != 32) {
       let divClass = event.target.parentElement.parentElement.parentElement.classList[0]
-      if (divClass != "playback-buttons") {vibeId = event.target.parentElement.parentElement.id}
+      if (divClass != "playback-buttons") { vibeId = event.target.parentElement.parentElement.id }
     }
     if (vibeId != currentVibeId) {
-      fetch(`/api/v1/vibes/${vibeId}`)
-      .then(response => response.json())
-      .then(body => {
-        let latestMixId = body.vibe.mixes.length
-        let latestMix = body.vibe.mixes[latestMixId - 1]
-        this.changePlaying(body.vibe, latestMix)
-      })
+      let vibe = this.fetchVibe(vibeId)
+      this.changePlaying(vibe)
+      // fetch(`/api/v1/vibes/${vibeId}`)
+      // .then(response => response.json())
+      // .then(body => {
+      //   let latestMixId = body.vibe.mixes.length
+      //   let latestMix = body.vibe.mixes[latestMixId - 1]
+      //   this.changePlaying(body.vibe, latestMix)
+      // })
     } else {
       this.state.waveSurfer.playPause()
       this.setState({ playing: !this.state.playing})
@@ -162,10 +168,6 @@ class LandingPage extends Component {
   }
   toggleShuffle() {
     this.setState({ shuffle: !this.state.shuffle })
-  }
-  toggleMute() {
-    this.state.waveSurfer.toggleMute()
-    this.setState({ mute: !this.state.mute })
   }
   whatIsNext() {
     //switch statement
@@ -211,7 +213,7 @@ class LandingPage extends Component {
     let vibesRendered = this.state.vibes.length > 0
     let mixRendered = Object.keys(this.state.mixPlaying).length > 0
     if (vibesRendered && !mixRendered ) {
-      this.getVibe(this.state.vibeSelect)
+      this.fetchVibe(this.state.vibeSelect)
     }
 
     let myPlayer, coverflow
@@ -228,14 +230,12 @@ class LandingPage extends Component {
                     size={this.size}
                     playing={this.state.playing}
                     progress={this.state.progress}
-                    mute={this.state.mute}
                     repeat={this.state.repeat}
                     shuffle={this.state.shuffle}
                     playPauseClick={this.playPauseClick}
                     volumeSlide={this.volumeSlide}
                     skipAhead={this.skipAhead}
                     skipBack={this.skipBack}
-                    toggleMute={this.toggleMute}
                     toggleRepeat={this.toggleRepeat}
                     toggleShuffle={this.toggleShuffle}
                     whatIsNext={this.whatIsNext}
@@ -275,7 +275,6 @@ class LandingPage extends Component {
         const waveformLength = 88
         let CSSclass = `far fa-lightbulb idea-icon idea-${idea.id}`
         let left = idea.time / this.state.mixPlaying.runtime * waveformLength
-        debugger
         return  <i className={CSSclass}
                        key={idea.id}
                        onClick={this.openCloseIdea} >
@@ -298,9 +297,6 @@ class LandingPage extends Component {
                     mixPlaying={this.state.mixPlaying}
                     waveSurferRendered={this.waveSurferRendered}
                   />
-      visualizer = <AudioVisualizer
-                      mixPlaying={this.state.mixPlaying}
-                    />
     }
 
     if (waveformRendered) {

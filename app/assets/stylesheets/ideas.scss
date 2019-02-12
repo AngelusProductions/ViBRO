@@ -35,7 +35,7 @@ $indigo: #476cff;
   }
   &:active {
     z-index: 3;
-    transform: scale(0.5);
+    filter: brightness(5);
     border: none;
   }
 }
