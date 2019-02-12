@@ -133,13 +133,6 @@ class LandingPage extends Component {
     if (vibeId != currentVibeId) {
       let vibe = this.fetchVibe(vibeId)
       this.changePlaying(vibe)
-      // fetch(`/api/v1/vibes/${vibeId}`)
-      // .then(response => response.json())
-      // .then(body => {
-      //   let latestMixId = body.vibe.mixes.length
-      //   let latestMix = body.vibe.mixes[latestMixId - 1]
-      //   this.changePlaying(body.vibe, latestMix)
-      // })
     } else {
       this.state.waveSurfer.playPause()
       this.setState({ playing: !this.state.playing})
@@ -170,7 +163,6 @@ class LandingPage extends Component {
     this.setState({ shuffle: !this.state.shuffle })
   }
   whatIsNext() {
-    //switch statement
     if (this.state.repeat) {
       this.changePlaying(this.state.vibePlaying, this.state.mixPlaying)
     } else {
